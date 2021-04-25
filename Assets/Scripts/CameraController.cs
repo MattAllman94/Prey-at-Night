@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : Prey    
 {
 
     public float rotationSpeed = 1;
@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        if(_UI.gamePaused == false)
         CamControl();
     }
 
