@@ -12,6 +12,7 @@ public class UIPower : Prey
         power = _PM.allPowers.Find(x => x.power == myPower); // Finds the power in allPowers list that is equal to myPower
         // set power icon to power.icon
         // Logic relating to status
+
     }
 
     public void Selected()
