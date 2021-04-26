@@ -8,6 +8,7 @@ public class Prey : MonoBehaviour
     protected static GameManager _GM { get { return GameManager.INSTANCE; } }
     protected static UIManager _UI { get { return UIManager.INSTANCE; } }
 
+    protected static PowersManager _PM { get { return PowersManager.INSTANCE; } }
 
 
 

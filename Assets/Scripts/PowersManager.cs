@@ -12,16 +12,28 @@ public class PowersManager : Singleton<PowersManager>
 
 }
 
+public enum Powers
+{
+    BloodDrain,
+    StakeThrow
+}
+
 [System.Serializable]
 public class Power 
 {
-    public enum Powers
+    
+
+    public enum PowerStatus
     {
-        BloodDrain,
-        StakeThrow
+        Locked,
+        Unlocked,
+        Purchased,
+        Active
     }
 
     public Powers power;
+
+    public string description;
 
     public float cooldown;
     public float damage;
@@ -32,4 +44,8 @@ public class Power
 
     public AudioClip castSound;
 
+    public string GetPowerName()
+    {
+        return power.ToString();
+    }
 }

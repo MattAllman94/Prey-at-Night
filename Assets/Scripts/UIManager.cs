@@ -8,10 +8,10 @@ public class UIManager : Singleton<UIManager>
 {
     public GameObject bloodUI;
     public GameObject inGamePanel;
-    public GameObject skillTreePanel;
+    public GameObject powerTreePanel;
 
-    public TextMeshProUGUI skillTitle;
-    public TextMeshProUGUI skillDesc;
+    public TextMeshProUGUI powerName;
+    public TextMeshProUGUI powerDesc;
 
     public bool gamePaused = false;
 
@@ -19,7 +19,7 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
-        skillTreePanel.SetActive(false);
+        powerTreePanel.SetActive(false);
     }
 
     void Update()
@@ -48,7 +48,7 @@ public class UIManager : Singleton<UIManager>
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             inGamePanel.SetActive(true);
-            skillTreePanel.SetActive(false);
+            powerTreePanel.SetActive(false);
         }
         else
         {
@@ -56,15 +56,12 @@ public class UIManager : Singleton<UIManager>
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             inGamePanel.SetActive(false);
-            skillTreePanel.SetActive(true);
+            powerTreePanel.SetActive(true);
         }
     }
 
     
-    public void SelectSkill(UISkill _skillScript)
-    {
-        _skillScript.Selected();
-    }
+    
 
 
     // FOR TESTING BLOOD LEVEL FILL EFFECT
