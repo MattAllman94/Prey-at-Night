@@ -6,16 +6,23 @@ using TMPro;
 using System;
 public class UIManager : Singleton<UIManager>
 {
-    public GameObject bloodUI;
     public GameObject inGamePanel;
+
+    public bool gamePaused = false;
+
+    [Header ("Power Tree")]
     public GameObject powerTreePanel;
+    public GameObject powerTextSide;
 
     public TextMeshProUGUI powerName;
     public TextMeshProUGUI powerDesc;
 
-    public bool gamePaused = false;
+    public GameObject unlockButton;
+    public TextMeshProUGUI unlockText;
 
+    public GameObject equipPanel;
 
+    public Power selectedPower;
 
     private void Start()
     {
@@ -24,12 +31,8 @@ public class UIManager : Singleton<UIManager>
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H) && bloodUI.transform.localScale.y < 1f)  // FOR TESTING BLOOD UI
-            AddBlood(0.1f);
-
-        if (Input.GetKeyDown(KeyCode.J) && bloodUI.transform.localScale.y > 0f)  // FOR TESTING BLOOD UI
-            ReduceBlood(0.2f);
-
+        
+        
         if(Input.GetKeyDown(KeyCode.P))
         {
             PauseGame();
@@ -61,24 +64,47 @@ public class UIManager : Singleton<UIManager>
     }
 
     
-    
-
-
-    // FOR TESTING BLOOD LEVEL FILL EFFECT
-    void AddBlood(float _bloodValue)
+    public void PurchasePower()
     {
-        bloodUI.transform.localScale += new Vector3(0, _bloodValue, 0);
-
-        if (bloodUI.transform.localScale.y > 1)
-            bloodUI.transform.localScale = new Vector3(1, 1, 1);
-
+        if (_GM.powerPoints >= selectedPower.unlockCost && selectedPower.powerStatus == Power.PowerStatus.Unlocked)
+        {
+            selectedPower.powerStatus = Power.PowerStatus.Purchased;
+            unlockButton.SetActive(false);
+            equipPanel.SetActive(true);
+        }
     }
 
-    void ReduceBlood(float _bloodValue)
+    public void EquipPower(string _EquipKey)
     {
-        bloodUI.transform.localScale -= new Vector3(0, _bloodValue, 0);
+        selectedPower.powerStatus = Power.PowerStatus.Active;
+        
+        switch (_EquipKey)
+        {
+            case ("1"):
+            {
+                    if(_PM.activePower2 == selectedPower) // remove selected power assignment from other keys
+                    {
+                        _PM.activePower2 = null;
+                    }
 
-        if (bloodUI.transform.localScale.y < 0)
-            bloodUI.transform.localScale = new Vector3(1, 0, 1);
+                    _PM.activePower1 = selectedPower;              
+                    break;
+            }
+
+            case ("2"):
+            {
+                    if (_PM.activePower1 == selectedPower) // remove selected power assignment from other keys
+                    {
+                        _PM.activePower1 = null;
+                    }
+
+                    _PM.activePower2 = selectedPower;
+                    break;
+            }    
+        }
     }
+
+
+
+
 }

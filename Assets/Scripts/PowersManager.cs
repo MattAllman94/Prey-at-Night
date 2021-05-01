@@ -8,8 +8,21 @@ public class PowersManager : Singleton<PowersManager>
     [Header ("Powers")]
     public List<Power> allPowers;
 
+    public Power activePower1 = null;
+    public Power activePower2 = null;
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1)) // USE POWER 1
+        {
+            print(activePower1.power.ToString());
+        }
 
+        if (Input.GetKeyDown(KeyCode.Alpha2)) // USE POWER 2
+        {
+            print(activePower2.power.ToString());
+        }
+    }
 }
 
 public enum Powers
@@ -32,6 +45,10 @@ public class Power
     }
 
     public Powers power;
+
+    public PowerStatus powerStatus;
+
+    public int unlockCost;
 
     public string description;
 

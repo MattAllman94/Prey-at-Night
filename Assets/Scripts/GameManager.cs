@@ -13,12 +13,20 @@ public enum CorruptionLevel
 
 public class GameManager : Singleton<GameManager>
 {
-    [Header ("Corruption --------------------------------")]  
+    [Header ("Corruption ")]  
     public float currentCorruption = 0f;
     public float maxCorruption = 100f;
     public float minCorruption = -100f;
 
     public CorruptionLevel corruptionLevel;
+
+    [Header("Blood ")]
+    public int currentBlood = 0;
+    public int maxBlood = 100;
+
+    [Header("Power Points ")]
+    public int powerPoints = 0;
+
 
     void Update()
     {
@@ -40,7 +48,20 @@ public class GameManager : Singleton<GameManager>
             currentCorruption += _amount;
 
             if (currentCorruption > maxCorruption) // Sets the corruption to the max if 
-                currentCorruption = maxCorruption; // it goes over                              
+                currentCorruption = maxCorruption; // it goes over    
+
+            if (currentCorruption > 50)
+            {
+                corruptionLevel = CorruptionLevel.HIGH;
+            }
+            else if (currentCorruption > -50)
+            {
+                corruptionLevel = CorruptionLevel.NORMAL;
+            }
+            else
+            {
+                corruptionLevel = CorruptionLevel.LOW;
+            }
         }
     }
 
@@ -52,9 +73,19 @@ public class GameManager : Singleton<GameManager>
 
             if (currentCorruption < minCorruption) // Sets the corruption to the min if
                 currentCorruption = minCorruption; // it goes under      
-            
 
-
+            if (currentCorruption > 50)
+            {
+                corruptionLevel = CorruptionLevel.HIGH;
+            }
+            else if (currentCorruption > -50)
+            {
+                corruptionLevel = CorruptionLevel.NORMAL;
+            }
+            else
+            {
+                corruptionLevel = CorruptionLevel.LOW;
+            }
         }
     }
 }
