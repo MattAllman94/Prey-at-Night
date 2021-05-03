@@ -23,6 +23,20 @@ public class PowersManager : Singleton<PowersManager>
             print(activePower2.power.ToString());
         }
     }
+
+    /*
+    public void UsePower(Powers _power)
+    {
+        switch (_power)
+        {
+            case (Powers):
+                {
+                    print("YOU USED BLOODDRAIN");
+                    break;
+                }
+        }
+    }
+    */
 }
 
 public enum Powers

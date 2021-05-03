@@ -18,7 +18,7 @@ public class CameraController : Prey
 
     void Update()
     {
-        if(_UI.gamePaused == false)
+        if (_GM.gameState == GameState.INGAME)
         CamControl();
     }
 
