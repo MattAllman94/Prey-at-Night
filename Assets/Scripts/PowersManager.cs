@@ -31,22 +31,23 @@ public enum Powers
     StakeThrow
 }
 
+public enum PowerStatus
+{
+    Locked,
+    Unlocked,
+    Purchased,
+    Active
+}
+
 [System.Serializable]
 public class Power 
 {
     
-
-    public enum PowerStatus
-    {
-        Locked,
-        Unlocked,
-        Purchased,
-        Active
-    }
-
     public Powers power;
 
     public PowerStatus powerStatus;
+
+    public CorruptionLevel myRequirement;
 
     public int unlockCost;
 

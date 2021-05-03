@@ -2,6 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum GameState
+{
+    TITLE,
+    INGAME,
+    PAUSED,
+    POWERMENU,
+    GAMEOVER,
+    WONGAME  
+}
+    
+
 public enum CorruptionLevel
 {
     LOW,
@@ -13,6 +25,8 @@ public enum CorruptionLevel
 
 public class GameManager : Singleton<GameManager>
 {
+    public GameState gameState;
+
     [Header ("Corruption ")]  
     public float currentCorruption = 0f;
     public float maxCorruption = 100f;
@@ -27,17 +41,36 @@ public class GameManager : Singleton<GameManager>
     [Header("Power Points ")]
     public int powerPoints = 0;
 
+    public bool debug = false;
+
+
+    private void Start()
+    {
+        IncreaseCorruption(0);
+    }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Y))  
+        if (debug) // All Debugging checks
         {
-            DecreaseCorruption(4f);           // FOR TESTING CORRUPTION
-        }
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                DecreaseCorruption(4f);           // FOR TESTING CORRUPTION
+            }
 
-        if (Input.GetKeyDown(KeyCode.T))
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                IncreaseCorruption(4f);           // FOR TESTING CORRUPTION
+            }
+        }
+       
+
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            IncreaseCorruption(4f);           // FOR TESTING CORRUPTION
+            if (gameState == GameState.INGAME)
+                ChangeGameState(GameState.POWERMENU);
+            else if (gameState == GameState.POWERMENU)
+                ChangeGameState(GameState.INGAME);
         }
     }
 
@@ -87,5 +120,49 @@ public class GameManager : Singleton<GameManager>
                 corruptionLevel = CorruptionLevel.LOW;
             }
         }
+    }
+
+    void ChangeGameState(GameState _gameState)
+    {
+        gameState = _gameState;
+
+        switch(gameState)
+        {
+            case GameState.TITLE:
+                {
+                    break;
+                }
+            case GameState.INGAME:
+                {
+                    Time.timeScale = 1f;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                    break;
+                }
+            case GameState.PAUSED:
+                {
+                    Time.timeScale = 0;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    break;
+                }
+            case GameState.POWERMENU:
+                {
+                    Time.timeScale = 0;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    break;
+                }
+            case GameState.GAMEOVER:
+                {
+                    break;
+                }
+            case GameState.WONGAME:
+                {
+                    break;
+                }
+        }
+
+        _UI.ChangeGameState(gameState);
     }
 }

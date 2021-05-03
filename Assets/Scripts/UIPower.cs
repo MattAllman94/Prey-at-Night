@@ -24,33 +24,39 @@ public class UIPower : Prey
 
         switch (power.powerStatus)
         {
-            case (Power.PowerStatus.Unlocked):
+            case (PowerStatus.Unlocked):
             {
                     _UI.unlockButton.SetActive(true);
-                    _UI.equipPanel.SetActive(false);
                     _UI.unlockText.text = ("UNLOCK COST: " + power.unlockCost);
                     break;
             }
 
-            case (Power.PowerStatus.Locked):
+            case (PowerStatus.Locked):
             {
-                    _UI.unlockButton.SetActive(true);
-                    _UI.equipPanel.SetActive(false);
-                    _UI.unlockText.text = ("LOCKED");
+                    if (_GM.corruptionLevel == power.myRequirement || power.myRequirement == CorruptionLevel.NORMAL)
+                    {
+                        power.powerStatus = PowerStatus.Unlocked;
+                        _UI.unlockButton.SetActive(true);
+                        _UI.unlockText.text = ("UNLOCK COST: " + power.unlockCost);
+                        break;
+                    }
+                    else
+                    {
+                        _UI.unlockButton.SetActive(true);
+                        _UI.unlockText.text = ("LOCKED");
+                        break;
+                    }                  
+            }
+
+            case (PowerStatus.Purchased):
+            {
+                    _UI.unlockButton.SetActive(false);
                     break;
             }
 
-            case (Power.PowerStatus.Purchased):
+            case (PowerStatus.Active):
             {
                     _UI.unlockButton.SetActive(false);
-                    _UI.equipPanel.SetActive(true);
-                    break;
-            }
-
-            case (Power.PowerStatus.Active):
-            {
-                    _UI.unlockButton.SetActive(false);
-                    _UI.equipPanel.SetActive(true);
                     break;
             }
 
