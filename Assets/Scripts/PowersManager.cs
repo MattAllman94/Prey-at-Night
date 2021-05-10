@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -9,8 +11,16 @@ public class PowersManager : Singleton<PowersManager>
     [Header ("Powers")]
     public List<Power> allPowers;
 
+    public GameObject bloodDrainParticle;
+
     public Power activePower1 = null;
     public Power activePower2 = null;
+
+    [Header ("Casting")]
+    public Transform castPos;
+
+    RaycastHit hit;
+    public int rayRange = 100;
 
     private void Start()
     {
@@ -53,7 +63,15 @@ public class PowersManager : Singleton<PowersManager>
 
     public void UseBloodrain()
     {
-        print("used BLOODRAIN");
+        if(Physics.Raycast(castPos.position, castPos.transform.forward, out hit, rayRange))
+        {
+            if(hit.collider.CompareTag("Enemy"))
+            {
+                //GameObject bloodP = Instantiate(bloodDrainParticle, hit.point, Quaternion.identity);
+                
+                print("Hey!");
+            }
+        }
     }
 
     public void UseStakeThrow()
