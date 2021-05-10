@@ -8,13 +8,14 @@ public class UIManager : Singleton<UIManager>
 {
     public GameObject inGamePanel;
 
-    public bool gamePaused = false;
-
     [Header ("Power Tree")]
     public GameObject powerTreePanel;
     public GameObject powerTextSide;
+    public GameObject warningPanel;
 
     public TextMeshProUGUI powerName;
+    public TextMeshProUGUI equippedText;
+    public TextMeshProUGUI warningText;
     public TextMeshProUGUI powerDesc;
     public TextMeshProUGUI ppText;
 
@@ -25,11 +26,14 @@ public class UIManager : Singleton<UIManager>
 
     public Power selectedPower;
 
+    int warnSlot = 0;
+
     private void Start()
     {
         powerTreePanel.SetActive(false);
         powerTextSide.SetActive(false);
         ppText.text = ("PP: " + _GM.powerPoints.ToString());
+        
     }
 
 
@@ -43,13 +47,12 @@ public class UIManager : Singleton<UIManager>
             ppText.text = ("PP: " + _GM.powerPoints.ToString());
             selectedPower.powerStatus = PowerStatus.Purchased;
             unlockButton.SetActive(false);
-            //<
         }
     }
 
     public void EquipPower(string _EquipKey)
     {
-        if(selectedPower.powerStatus == PowerStatus.Purchased)
+        if(selectedPower.powerStatus == PowerStatus.Purchased || selectedPower.powerStatus == PowerStatus.Active)
         {
             selectedPower.powerStatus = PowerStatus.Active;
 
@@ -57,24 +60,44 @@ public class UIManager : Singleton<UIManager>
             {
                 case ("1"):
                     {
-                        if (_PM.activePower2 == selectedPower) // remove selected power assignment from other keys
+                        if (_PM.activePower1 != selectedPower && _PM.activePower1.power != Powers.NoPower) // checks if theres a power on slot 2
                         {
-                            _PM.activePower2 = null;
+                            //warn Player
+                            DisplayWarning(1);             
                         }
+                        else
+                        {
+                            if (_PM.activePower2 == selectedPower) 
+                            {
+                                _PM.activePower2 = null; // remove selected power assignment from other keys
+                            }
 
-                        _PM.activePower1 = selectedPower;
+                            _PM.activePower1 = selectedPower;
+                            selectedPower.activeSlot = 1;
+                            equippedText.text = "Equipped: Slot 1";                       
+                        }
                         break;
                     }
 
                 case ("2"):
                     {
-                        if (_PM.activePower1 == selectedPower) // remove selected power assignment from other keys
+                        if (_PM.activePower2 != selectedPower && _PM.activePower2.power != Powers.NoPower) // checks if theres a power on slot 2
                         {
-                            _PM.activePower1 = null;
+                            //warn Player
+                            DisplayWarning(2);
                         }
+                        else
+                        {
+                            if (_PM.activePower1 == selectedPower) 
+                            {
+                                _PM.activePower1 = null; // remove selected power assignment from other keys
+                            }
 
-                        _PM.activePower2 = selectedPower;
-                        break;
+                            _PM.activePower2 = selectedPower;
+                            selectedPower.activeSlot = 2;
+                            equippedText.text = "Equipped: Slot 2";
+                        }
+                        break;                     
                     }
             }  
         }
@@ -84,8 +107,66 @@ public class UIManager : Singleton<UIManager>
     {
         powerName.text = "";
         powerDesc.text = "";
+        equippedText.text = "";
         unlockButton.SetActive(false);
         selectedPower = null;
+    }
+
+    public void DisplayWarning(int _slotNum)
+    {
+        warningPanel.SetActive(true);
+        switch (_slotNum)
+        {
+            case (1):
+                {
+                    warnSlot = 1; //< used for overwriting  
+                    warningText.text = ("Overwrite " + _PM.activePower1.power + " with " + selectedPower.power + " in Slot " + _slotNum + "?");
+                    break;
+                }
+            case (2):
+                {
+                    warnSlot = 2; //< used for overwriting
+                    warningText.text = ("Overwrite " + _PM.activePower2.power + " with " + selectedPower.power + " in Slot " + _slotNum + "?");
+                    break;
+                }
+        }        
+    }
+
+    public void Overwrite()
+    {
+        switch (warnSlot)
+        {
+            case (1):
+                {
+                    if (_PM.activePower2 == selectedPower)
+                    {
+                        _PM.activePower2 = null; // remove selected power assignment from other keys
+                    }
+
+                    _PM.activePower1 = selectedPower;
+                    selectedPower.activeSlot = 1;
+                    equippedText.text = "Equipped: Slot 1";
+                    break;
+                }
+            case (2):
+                {
+                    if (_PM.activePower1 == selectedPower)
+                    {
+                        _PM.activePower1 = null; // remove selected power assignment from other keys
+                    }
+
+                    _PM.activePower2 = selectedPower;
+                    selectedPower.activeSlot = 2;
+                    equippedText.text = "Equipped: Slot 2";
+                    break;
+                }
+        }
+        warningPanel.SetActive(false);
+    }
+
+    public void CancelOverwrite()
+    {
+        warningPanel.SetActive(false);
     }
 
     public void ChangeGameState(GameState _gameState)

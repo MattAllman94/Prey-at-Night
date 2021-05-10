@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 public class UIPower : Prey
 {
     public Powers myPower;
@@ -28,6 +29,7 @@ public class UIPower : Prey
             {
                     _UI.unlockButton.SetActive(true);
                     _UI.unlockText.text = ("UNLOCK COST: " + power.unlockCost);
+                    _UI.equippedText.text = "";
                     break;
             }
 
@@ -38,26 +40,32 @@ public class UIPower : Prey
                         power.powerStatus = PowerStatus.Unlocked;
                         _UI.unlockButton.SetActive(true);
                         _UI.unlockText.text = ("UNLOCK COST: " + power.unlockCost);
+                        _UI.equippedText.text = "";
                         break;
                     }
                     else
                     {
                         _UI.unlockButton.SetActive(true);
                         _UI.unlockText.text = ("LOCKED");
+                        _UI.equippedText.text = "";
                         break;
-                    }                  
+                    }
+                     
             }
 
             case (PowerStatus.Purchased):
             {
                     _UI.unlockButton.SetActive(false);
+                    _UI.equippedText.text = "";
                     break;
             }
 
             case (PowerStatus.Active):
             {
                     _UI.unlockButton.SetActive(false);
-                    break;
+
+                    _UI.equippedText.text = ("Equipped: Slot " + power.activeSlot);
+                    break;   
             }
 
         }

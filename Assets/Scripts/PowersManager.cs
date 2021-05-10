@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PowersManager : Singleton<PowersManager>
 {
@@ -11,36 +12,60 @@ public class PowersManager : Singleton<PowersManager>
     public Power activePower1 = null;
     public Power activePower2 = null;
 
+    private void Start()
+    {
+        activePower1.power = Powers.NoPower;
+        activePower2.power = Powers.NoPower;
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Alpha1)) // USE POWER 1
         {
-            print(activePower1.power.ToString());
+            if (activePower1.power != Powers.NoPower)
+            UsePower(activePower1.power);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2)) // USE POWER 2
         {
-            print(activePower2.power.ToString());
+            if (activePower2.power != Powers.NoPower)
+            UsePower(activePower2.power);
         }
     }
 
-    /*
+    
     public void UsePower(Powers _power)
     {
         switch (_power)
         {
-            case (Powers):
+            case (Powers.BloodDrain):
                 {
-                    print("YOU USED BLOODDRAIN");
+                    UseBloodrain();
+                    break;
+                }
+            case (Powers.StakeThrow):
+                {
+                    UseStakeThrow();
                     break;
                 }
         }
     }
-    */
+
+    public void UseBloodrain()
+    {
+        print("used BLOODRAIN");
+    }
+
+    public void UseStakeThrow()
+    {
+        print("used STAKETHROW!");
+    }
+    
 }
 
 public enum Powers
 {
+    NoPower,
     BloodDrain,
     StakeThrow
 }
@@ -62,6 +87,8 @@ public class Power
     public PowerStatus powerStatus;
 
     public CorruptionLevel myRequirement;
+
+    public int activeSlot = 0;
 
     public int unlockCost;
 
