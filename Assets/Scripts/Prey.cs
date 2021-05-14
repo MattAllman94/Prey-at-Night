@@ -10,7 +10,7 @@ public class Prey : MonoBehaviour
 
     protected static PowersManager _PM { get { return PowersManager.INSTANCE; } }
 
-
+    protected static NPCManager _NPC { get { return NPCManager.INSTANCE; } }
 
 
 
@@ -53,7 +53,7 @@ public class Singleton<T> : Prey where T : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }
