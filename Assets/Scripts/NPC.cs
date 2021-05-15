@@ -13,12 +13,14 @@ public class NPC : Prey
     public EnemyType myType;
 
     NavMeshAgent agent;
-
+    int currentWaypoint;
 
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count);
+        agent.SetDestination(_NPC.civilianWaypoints[Random.Range(0, _NPC.civilianWaypoints.Count)].transform.position);
     }
 
     void Update()
@@ -40,14 +42,12 @@ public class NPC : Prey
 
     public void CivilianMovement()
     {
-        int currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
-        agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
-
         float dist = Vector3.Distance(transform.position, _NPC.civilianWaypoints[currentWaypoint].transform.position);
-        if (dist <0.1f)
+        if (dist <= 0.1f)
         {
-            currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
+            currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count);
             agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
+            CivilianMovement();
         }
     }
 
