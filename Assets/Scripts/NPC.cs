@@ -19,8 +19,18 @@ public class NPC : Prey
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count);
-        agent.SetDestination(_NPC.civilianWaypoints[Random.Range(0, _NPC.civilianWaypoints.Count)].transform.position);
+
+        switch(myType)
+        {
+            case EnemyType.Civilian:
+                currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count);
+                agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
+                break;
+            case EnemyType.Criminal:
+                break;
+            case EnemyType.Monster:
+                break;
+        }
     }
 
     void Update()

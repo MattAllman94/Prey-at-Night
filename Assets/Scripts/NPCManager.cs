@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCManager : Prey
+public class NPCManager : Singleton<NPCManager>
 {
-    internal static NPCManager INSTANCE;
     public List<GameObject> civilianWaypoints;
 
     void Start()
