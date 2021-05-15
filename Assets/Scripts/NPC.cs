@@ -9,6 +9,10 @@ public class NPC : Prey
     {
         Civilian, Criminal, Monster
     }
+    public enum State
+    {
+        Idle, Patrol, Detect, Hunt
+    }
 
     public EnemyType myType;
 
@@ -20,13 +24,15 @@ public class NPC : Prey
     {
         agent = GetComponent<NavMeshAgent>();
 
-        switch(myType)
+        switch (myType)
         {
             case EnemyType.Civilian:
-                currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count);
+                currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
                 agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
                 break;
             case EnemyType.Criminal:
+                currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count - 1);
+                agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);
                 break;
             case EnemyType.Monster:
                 break;
@@ -41,8 +47,10 @@ public class NPC : Prey
                 CivilianMovement();
                 break;
             case EnemyType.Criminal:
+                CriminalMovement();
                 break;
             case EnemyType.Monster:
+                MonsterMovement();
                 break;
 
         }
@@ -55,10 +63,26 @@ public class NPC : Prey
         float dist = Vector3.Distance(transform.position, _NPC.civilianWaypoints[currentWaypoint].transform.position);
         if (dist <= 0.1f)
         {
-            currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count);
+            currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
             agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
             CivilianMovement();
         }
+    }
+
+    public void CriminalMovement()
+    {
+        float dist = Vector3.Distance(transform.position, _NPC.criminalWaypoints[currentWaypoint].transform.position);
+        if (dist <= 0.1f)
+        {
+            currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count - 1);
+            agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);
+            CriminalMovement();
+        }
+    }
+
+    public void MonsterMovement()
+    {
+
     }
 
     #endregion
