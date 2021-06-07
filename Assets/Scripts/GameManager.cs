@@ -35,8 +35,8 @@ public class GameManager : Singleton<GameManager>
     public CorruptionLevel corruptionLevel;
 
     [Header("Blood ")]
-    public int currentBlood = 0;
-    public int maxBlood = 100;
+    public float currentBlood = 0;
+    public float maxBlood = 100;
 
     [Header("Power Points ")]
     public int powerPoints = 0;

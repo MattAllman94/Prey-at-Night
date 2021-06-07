@@ -30,6 +30,8 @@ public class PowersManager : Singleton<PowersManager>
 
     private void Update()
     {
+        // < INPUT > // 
+
         if(Input.GetKeyDown(KeyCode.Alpha1)) // USE POWER 1
         {
             if (activePower1.power != Powers.NoPower)
@@ -40,6 +42,19 @@ public class PowersManager : Singleton<PowersManager>
         {
             if (activePower2.power != Powers.NoPower)
             UsePower(activePower2.power);
+        }
+
+
+        if (Input.GetKey(KeyCode.Alpha1) && activePower1.damageType == DamageType.DOT) // HOLD POWER 1 
+        {
+            if (activePower1.power != Powers.NoPower)
+                UsePower(activePower1.power);
+        }
+
+        if (Input.GetKey(KeyCode.Alpha2) && activePower2.damageType == DamageType.DOT) // HOLD POWER 2 
+        {
+            if (activePower2.power != Powers.NoPower)
+                UsePower(activePower2.power);
         }
     }
 
@@ -67,9 +82,15 @@ public class PowersManager : Singleton<PowersManager>
         {
             if(hit.collider.CompareTag("Enemy"))
             {
-                //GameObject bloodP = Instantiate(bloodDrainParticle, hit.point, Quaternion.identity);
+
+                // use blood
+                // damage enemy
+                // add health
+                // add to bloodrain use counter 
                 
-                print("Hey!");
+                //_GM.currentBlood -= Powers.BloodDrain bloodcost
+
+                print("USED BLOODDRAIN");
             }
         }
     }
@@ -96,11 +117,19 @@ public enum PowerStatus
     Active
 }
 
+public enum DamageType
+{
+    Instant,
+    DOT,
+}
+
 [System.Serializable]
 public class Power 
 {
     
     public Powers power;
+
+    public DamageType damageType;
 
     public PowerStatus powerStatus;
 
@@ -114,12 +143,19 @@ public class Power
 
     public float cooldown;
     public float damage;
+    public float range;
 
-    public int bloodCost;
+    public float bloodCost;
 
     public Sprite icon;
 
     public AudioClip castSound;
+
+    // my VFX
+
+    public AnimationClip playerAnimation;
+
+    public AnimationClip enemyAnimation;
 
     public string GetPowerName()
     {
