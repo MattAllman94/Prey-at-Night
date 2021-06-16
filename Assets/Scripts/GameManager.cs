@@ -47,6 +47,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         IncreaseCorruption(0);
+        
     }
 
     void Update()
@@ -120,6 +121,12 @@ public class GameManager : Singleton<GameManager>
                 corruptionLevel = CorruptionLevel.LOW;
             }
         }
+    }
+
+    public void ChangeBlood(float _blood, bool increase = false) // Dont have to put in the bool if increasing blood 
+    {
+        currentBlood = increase ? currentBlood += _blood : currentBlood -= _blood;
+        _UI.UpdateBlood(currentBlood);
     }
 
     void ChangeGameState(GameState _gameState)

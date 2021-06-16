@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : Prey
+public class PlayerController : Singleton<PlayerController>
 {
 
     private float horizontal, vertical;
@@ -14,7 +14,8 @@ public class PlayerController : Prey
     public bool isHidden;
     private CapsuleCollider playerCollider;
 
-    public float health;
+    public float maxHealth = 100f;
+    public float currentHealth = 100f;
 
     void Start()
     {
@@ -62,5 +63,12 @@ public class PlayerController : Prey
             isCrouching = false;
             
         }
+    }
+
+    public void ChangeHealth(float _health, bool increase = false) // Dont have to put in the bool if increasing blood 
+    {
+        currentHealth = increase ? currentHealth += _health : currentHealth -= _health;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        _UI.UpdateHealth(currentHealth);
     }
 }

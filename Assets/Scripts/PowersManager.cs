@@ -32,40 +32,41 @@ public class PowersManager : Singleton<PowersManager>
     {
         // < INPUT > // 
 
-        if(Input.GetKeyDown(KeyCode.Alpha1)) // USE POWER 1
+        if(Input.GetKeyDown(KeyCode.Alpha1) && _GM.currentBlood >= activePower1.bloodCost) // USE POWER 1
         {
             if (activePower1.power != Powers.NoPower)
-            UsePower(activePower1.power);
+            UsePower(activePower1);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2)) // USE POWER 2
+        if (Input.GetKeyDown(KeyCode.Alpha2) && _GM.currentBlood >= activePower2.bloodCost) // USE POWER 2
         {
             if (activePower2.power != Powers.NoPower)
-            UsePower(activePower2.power);
+                UsePower(activePower2);
         }
+       
 
 
-        if (Input.GetKey(KeyCode.Alpha1) && activePower1.damageType == DamageType.DOT) // HOLD POWER 1 
+        if (Input.GetKey(KeyCode.Alpha1) && _GM.currentBlood >= activePower1.bloodCost && activePower1.damageType == DamageType.DOT) // HOLD POWER 1 
         {
             if (activePower1.power != Powers.NoPower)
-                UsePower(activePower1.power);
+                UsePower(activePower1);
         }
 
-        if (Input.GetKey(KeyCode.Alpha2) && activePower2.damageType == DamageType.DOT) // HOLD POWER 2 
+        if (Input.GetKey(KeyCode.Alpha2) && _GM.currentBlood >= activePower2.bloodCost && activePower2.damageType == DamageType.DOT) // HOLD POWER 2 
         {
             if (activePower2.power != Powers.NoPower)
-                UsePower(activePower2.power);
+                UsePower(activePower2);         
         }
     }
 
     
-    public void UsePower(Powers _power)
+    public void UsePower(Power _power)
     {
-        switch (_power)
+        switch (_power.power)
         {
             case (Powers.BloodDrain):
                 {
-                    UseBloodrain();
+                    UseBloodDrain(_power);
                     break;
                 }
             case (Powers.StakeThrow):
@@ -76,21 +77,23 @@ public class PowersManager : Singleton<PowersManager>
         }
     }
 
-    public void UseBloodrain()
+    public void UseBloodDrain(Power _power)
     {
         if(Physics.Raycast(castPos.position, castPos.transform.forward, out hit, rayRange))
         {
-            if(hit.collider.CompareTag("Enemy"))
+            if(hit.collider.CompareTag("NPC"))
             {
+                float modifier = 0.02f;
 
-                // use blood
-                // damage enemy
-                // add health
-                // add to bloodrain use counter 
-                
-                //_GM.currentBlood -= Powers.BloodDrain bloodcost
+                // use blood <
+                // damage enemy 
+                // add health <
+                // add to bloodrain use counter <
+                _GM.ChangeBlood(_power.bloodCost * modifier);
+                _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);
 
-                print("USED BLOODDRAIN");
+
+                //print("USED BLOODDRAIN");
             }
         }
     }

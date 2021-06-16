@@ -6,7 +6,13 @@ using TMPro;
 using System;
 public class UIManager : Singleton<UIManager>
 {
+    [Header("In Game")]
     public GameObject inGamePanel;
+    public TextMeshProUGUI cBloodText;
+    public TextMeshProUGUI cHealthText;
+
+    public Image power1Icon;
+    public Image power2Icon;
 
     [Header ("Power Tree")]
     public GameObject powerTreePanel;
@@ -19,6 +25,10 @@ public class UIManager : Singleton<UIManager>
     public TextMeshProUGUI powerDesc;
     public TextMeshProUGUI ppText;
 
+    public Image slot1Icon;
+    public Image slot2Icon;
+
+
     public GameObject unlockButton;
     public TextMeshProUGUI unlockText;
 
@@ -30,6 +40,8 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
+        UpdateBlood(_GM.currentBlood);
+        UpdateHealth(_P.maxHealth);
         powerTreePanel.SetActive(false);
         powerTextSide.SetActive(false);
         ppText.text = ("PP: " + _GM.powerPoints.ToString());
@@ -69,12 +81,10 @@ public class UIManager : Singleton<UIManager>
                         {
                             if (_PM.activePower2 == selectedPower) 
                             {
-                                _PM.activePower2 = null; // remove selected power assignment from other keys
+                                ClearSlot2();
                             }
 
-                            _PM.activePower1 = selectedPower;
-                            selectedPower.activeSlot = 1;
-                            equippedText.text = "Equipped: Slot 1";                       
+                            UpdateSlot1();                  
                         }
                         break;
                     }
@@ -90,12 +100,10 @@ public class UIManager : Singleton<UIManager>
                         {
                             if (_PM.activePower1 == selectedPower) 
                             {
-                                _PM.activePower1 = null; // remove selected power assignment from other keys
+                                ClearSlot1();
                             }
 
-                            _PM.activePower2 = selectedPower;
-                            selectedPower.activeSlot = 2;
-                            equippedText.text = "Equipped: Slot 2";
+                            UpdateSlot2();
                         }
                         break;                     
                     }
@@ -140,33 +148,71 @@ public class UIManager : Singleton<UIManager>
                 {
                     if (_PM.activePower2 == selectedPower)
                     {
-                        _PM.activePower2 = null; // remove selected power assignment from other keys
+                        ClearSlot2();                 
                     }
 
-                    _PM.activePower1 = selectedPower;
-                    selectedPower.activeSlot = 1;
-                    equippedText.text = "Equipped: Slot 1";
+                    UpdateSlot1();
                     break;
                 }
             case (2):
                 {
                     if (_PM.activePower1 == selectedPower)
                     {
-                        _PM.activePower1 = null; // remove selected power assignment from other keys
+                        ClearSlot1();
                     }
 
-                    _PM.activePower2 = selectedPower;
-                    selectedPower.activeSlot = 2;
-                    equippedText.text = "Equipped: Slot 2";
+                    UpdateSlot2();
                     break;
                 }
         }
         warningPanel.SetActive(false);
     }
 
+    void UpdateSlot1()
+    {
+        _PM.activePower1 = selectedPower;
+        selectedPower.activeSlot = 1;
+        slot1Icon.sprite = selectedPower.icon;
+        power1Icon.sprite = selectedPower.icon;
+        equippedText.text = "Equipped: Slot 1";
+    }
+
+    void UpdateSlot2()
+    {
+        _PM.activePower2 = selectedPower;
+        selectedPower.activeSlot = 2;
+        slot2Icon.sprite = selectedPower.icon;
+        power2Icon.sprite = selectedPower.icon;
+        equippedText.text = "Equipped: Slot 2";
+    }
+
+    void ClearSlot1()
+    {
+        _PM.activePower1 = null; // remove selected power assignment from other keys
+        slot1Icon.sprite = null;
+        power1Icon.sprite = null;
+    }
+
+    void ClearSlot2()
+    {
+        _PM.activePower2 = null; // remove selected power assignment from other keys
+        slot2Icon.sprite = null;
+        power2Icon.sprite = null;
+    }
+
     public void CancelOverwrite()
     {
         warningPanel.SetActive(false);
+    }
+
+    public void UpdateBlood(float _blood)
+    {
+        cBloodText.text = _blood.ToString("f2");
+    }
+
+    public void UpdateHealth(float _health)
+    {
+        cHealthText.text = _health.ToString("f2");
     }
 
     public void ChangeGameState(GameState _gameState)
