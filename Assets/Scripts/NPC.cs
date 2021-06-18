@@ -20,6 +20,8 @@ public class NPC : Prey
     NavMeshAgent agent;
     int currentWaypoint;
 
+    public float health = 100f;
+
     public GameObject player;
     private float timer;
     public float wanderRadius;

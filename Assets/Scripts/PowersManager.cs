@@ -18,6 +18,7 @@ public class PowersManager : Singleton<PowersManager>
 
     [Header ("Casting")]
     public Transform castPos;
+    NPC npcScript;
 
     RaycastHit hit;
     public int rayRange = 100;
@@ -83,17 +84,14 @@ public class PowersManager : Singleton<PowersManager>
         {
             if(hit.collider.CompareTag("NPC"))
             {
-                float modifier = 0.02f;
+                npcScript = hit.collider.gameObject.GetComponent<NPC>();   // get script off npc hit 
 
-                // use blood <
-                // damage enemy 
-                // add health <
-                // add to bloodrain use counter <
-                _GM.ChangeBlood(_power.bloodCost * modifier);
-                _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);
+                float modifier = 0.02f;                                
 
+                _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
+                npcScript.health -= _power.damage;                         // damage enemy
+                _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);  // add health
 
-                //print("USED BLOODDRAIN");
             }
         }
     }
