@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerController : Singleton<PlayerController>
 {
-    [Header("Stats & Movement")]
-    public float maxHealth = 100f;
-    public float currentHealth = 100f;
 
     private float horizontal, vertical;
     public float speed, walkSpeed, sprintSpeed, crouchSpeed;
@@ -17,14 +14,8 @@ public class PlayerController : Singleton<PlayerController>
     public bool isHidden;
     private CapsuleCollider playerCollider;
 
-    [Header("Attacking")]
-    public GameObject atkHitbox;
-    public bool isAttacking;
-    public float atkDamage = 10f;
-    public float atkDuration = 2f;
-    public NPC hitNPC;
-
-    
+    public float maxHealth = 100f;
+    public float currentHealth = 100f;
 
     void Start()
     {
@@ -35,26 +26,6 @@ public class PlayerController : Singleton<PlayerController>
     void Update()
     {
         Movement();
-
-        if (Input.GetButtonDown("Fire1") && isAttacking == false)
-        {
-            StartCoroutine("Attack");
-        }
-    }
-
-   
-    IEnumerator Attack() // Turns the hitbox on and off 
-    {
-        isAttacking = true;
-        atkHitbox.SetActive(true);
-        yield return new WaitForSeconds(atkDuration);
-        atkHitbox.SetActive(false);
-        isAttacking = false;
-    }
-
-    public void HitNPC() // Deals damage
-    {
-        hitNPC.health -= atkDamage;
     }
 
     public void Movement() //Controls the players walk, sprint and crouch
