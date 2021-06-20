@@ -5,15 +5,13 @@ using UnityEngine;
 public class Civilian : NPC
 {
 
-
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void Response()
+    {
+
     }
 }
