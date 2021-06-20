@@ -17,10 +17,14 @@ public class NPC : Prey
     public EnemyType myType;
     public State myState;
 
-    NavMeshAgent agent;
-    int currentWaypoint;
+    public GameObject civilian;
+    public GameObject criminal;
+    public GameObject monster;
 
-    public float health = 100f;
+    NavMeshAgent agent;
+    public int currentWaypoint;
+
+    public float health;
 
     public GameObject player;
     private float timer;
@@ -40,12 +44,15 @@ public class NPC : Prey
             case EnemyType.Civilian:
                 currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
                 agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
+                health = 100f;
                 break;
             case EnemyType.Criminal:
                 currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count - 1);
                 agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);
+                health = 100f;
                 break;
             case EnemyType.Monster:
+                health = 200f;
                 break;
         }
     }
@@ -67,6 +74,10 @@ public class NPC : Prey
         }
         timer += Time.deltaTime;
 
+        if(health <= 0)
+        {
+            Die();
+        }
     }
 
     #region Movement
@@ -177,9 +188,46 @@ public class NPC : Prey
 
     #endregion
         
+    public void Spawn()
+    {
+        if(_NPC.currentCivilians <= _NPC.totalCivilians)
+        {
+            //Vector3 spawn = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
+            //Instantiate(civilian, 
+        }
+    }
+
+    public void Despawn()
+    {
+        Destroy(this.gameObject);
+        if (myType == EnemyType.Civilian)
+        {
+            _NPC.totalCivilians -= 1;
+        }
+        else if (myType == EnemyType.Criminal)
+        {
+            _NPC.totalCriminals -= 1;
+        }
+        else if (myType == EnemyType.Monster)
+        {
+            _NPC.totalMonsters -= 1;
+        }
+    }
 
     public void Die()
     {
-
+        Destroy(this.gameObject);
+        if(myType == EnemyType.Civilian)
+        {
+            _NPC.totalCivilians -= 1;
+        }
+        else if (myType == EnemyType.Criminal)
+        {
+            _NPC.totalCriminals -= 1;
+        }
+        else if (myType == EnemyType.Monster)
+        {
+            _NPC.totalMonsters -= 1;
+        }
     }
 }

@@ -1791,6 +1791,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 1
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -15608,6 +15612,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 0}
   wanderRadius: 0
@@ -15651,6 +15659,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 0}
   wanderRadius: 0
@@ -15694,6 +15706,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 0}
   wanderRadius: 0
@@ -15737,6 +15753,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 0}
   wanderRadius: 0
@@ -15780,6 +15800,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 0}
   wanderRadius: 0
@@ -15823,6 +15847,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 0}
   wanderRadius: 0
@@ -15866,6 +15894,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 0}
   wanderRadius: 0
@@ -15909,6 +15941,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 0}
   wanderRadius: 0
@@ -15952,6 +15988,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 0}
   wanderRadius: 0
@@ -16220,8 +16260,43 @@ Transform:
   m_Children:
   - {fileID: 1815654516}
   - {fileID: 2140376478}
+  - {fileID: 650230619}
   m_Father: {fileID: 0}
   m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &650230618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 650230619}
+  m_Layer: 0
+  m_Name: Flee Waypoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &650230619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650230618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1144973695}
+  - {fileID: 2118330361}
+  - {fileID: 1019595177}
+  - {fileID: 1679277351}
+  m_Father: {fileID: 644323750}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &672245348
 Mesh:
@@ -17222,6 +17297,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 1
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -17822,6 +17901,36 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1019595176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1019595177}
+  m_Layer: 0
+  m_Name: Flee (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1019595177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019595176}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -45, y: 0, z: 243.88}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 650230619}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1021777531
 Mesh:
   m_ObjectHideFlags: 0
@@ -18135,6 +18244,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 1
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -18764,6 +18877,36 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1144973694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1144973695}
+  m_Layer: 0
+  m_Name: Flee
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1144973695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144973694}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.5, y: 0, z: -18.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 650230619}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1156425895
 Mesh:
   m_ObjectHideFlags: 0
@@ -19317,6 +19460,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 2
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 5
@@ -19558,6 +19705,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 1
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -19745,6 +19896,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 1
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -20044,6 +20199,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 2
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 5
@@ -20423,8 +20582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a34e2b41f8b8ed24cac179d8512d6d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
   speed: 0
   walkSpeed: 5
   sprintSpeed: 10
@@ -20432,11 +20589,8 @@ MonoBehaviour:
   isSprinting: 0
   isCrouching: 0
   isHidden: 0
-  atkHitbox: {fileID: 1957791500}
-  isAttacking: 0
-  atkDamage: 10
-  atkDuration: 1
-  hitNPC: {fileID: 0}
+  maxHealth: 100
+  currentHealth: 100
 --- !u!136 &1364753539
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -20955,6 +21109,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 1
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -21456,6 +21614,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ecf5f53e45349948ad32a1ebbde4f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentCivilians: 0
+  currentCriminals: 0
+  currentMonsters: 0
+  totalCivilians: 0
+  totalCriminals: 0
+  totalMonsters: 0
+  civilians: []
+  criminals: []
+  monsters: []
   civilianWaypoints:
   - {fileID: 1989850188}
   - {fileID: 169919583}
@@ -21482,6 +21649,13 @@ MonoBehaviour:
   - {fileID: 679788609}
   - {fileID: 1575457577}
   - {fileID: 912959764}
+  monsterWaypoints: []
+  civilianSpawn:
+  - {fileID: 1144973694}
+  - {fileID: 2118330360}
+  - {fileID: 1019595176}
+  - {fileID: 1679277350}
+  monsterSpawn: []
 --- !u!1 &1519601934
 GameObject:
   m_ObjectHideFlags: 0
@@ -21919,6 +22093,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634038491}
   m_CullTransparentMesh: 1
+--- !u!1 &1679277350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1679277351}
+  m_Layer: 0
+  m_Name: Flee (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1679277351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679277350}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -113.21, y: 0, z: 109.78}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 650230619}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1730864329 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4457990615621190982, guid: eea5f4a45fba6d2489372a92bd5312d1, type: 3}
@@ -22567,6 +22771,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 2
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 5
@@ -24007,6 +24215,36 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &2118330360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2118330361}
+  m_Layer: 0
+  m_Name: Flee (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2118330361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118330360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -62.3, y: 0, z: -9.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 650230619}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2129453136
 GameObject:
   m_ObjectHideFlags: 0
@@ -24312,6 +24550,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -24397,6 +24639,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -24612,6 +24858,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -24839,6 +25089,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -24912,6 +25166,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -24954,6 +25212,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -25307,6 +25569,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -25328,6 +25594,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -25465,6 +25735,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 1
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
@@ -25944,6 +26218,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
   health: 100
   player: {fileID: 1364753537}
   wanderRadius: 0
