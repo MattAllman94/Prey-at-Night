@@ -1,0 +1,146 @@
+Using pre-set license
+Built from '2020.2/release' branch; Version is '2020.2.4f1 (becced5a802b) revision 12504301'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home; OS build 19042.1052; Version 2009; 64bit' Language: 'en' Physical Memory: 16333 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.2.4f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/TechFast Australia/Documents/GitHub/Prey at Night
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+55053
+Successfully changed project path to: C:/Users/TechFast Australia/Documents/GitHub/Prey at Night
+C:/Users/TechFast Australia/Documents/GitHub/Prey at Night
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 92.51 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.2.4f1 (becced5a802b)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/TechFast Australia/Documents/GitHub/Prey at Night/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1660 Ti (ID=0x2182)
+    Vendor:   
+    VRAM:     5991 MB
+    Driver:   27.21.14.5671
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56428
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002893 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 85.66 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.387 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.002002 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 91.32 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.690 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 0.71 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3921 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 191.1 MB.
+System memory in use after: 188.3 MB.
+
+Unloading 174 unused Assets to reduce memory usage. Loaded Objects now: 4329.
+Total: 5.785300 ms (FindLiveObjects: 0.391400 ms CreateObjectMapping: 0.100600 ms MarkObjects: 2.759400 ms  DeleteObjects: 2.532400 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/UI/Icons.psd
+  artifactKey: Guid(1bcb5e43ac167ec42a77e37eed746e5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Icons.psd using Guid(1bcb5e43ac167ec42a77e37eed746e5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b55b1ce2f2303d39fdc221b7576fa19') in 0.210572 seconds
+  Import took 0.218139 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000750 seconds.
+  path: Assets/HDRPDefaultResources/HDRPDefaultSettings.asset
+  artifactKey: Guid(582adbd84082fdb4faf7cd4beb1ccd14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HDRPDefaultResources/HDRPDefaultSettings.asset using Guid(582adbd84082fdb4faf7cd4beb1ccd14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5bff0bdd4dbb8a0341cab6dc163f05f9') in 0.015015 seconds
+  Import took 0.030294 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000221 seconds.
+  path: Assets/Materials/Player_MAT.mat
+  artifactKey: Guid(ebc3f60d69a57124abdb15070d63e13b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Player_MAT.mat using Guid(ebc3f60d69a57124abdb15070d63e13b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '241fa6944ba7a02e61f8a65aacefda4b') in 1.870301 seconds
+  Import took 1.878729 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000210 seconds.
+  path: Assets/HDRPDefaultResources/DefaultHDRISky.exr
+  artifactKey: Guid(54a3a0570aebe8949bec4966f1376581) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HDRPDefaultResources/DefaultHDRISky.exr using Guid(54a3a0570aebe8949bec4966f1376581) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67c923660e57b56f92537088acb53603') in 0.032139 seconds
+  Import took 0.038316 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000160 seconds.
+  path: Assets/Materials/hitbox_mat.mat
+  artifactKey: Guid(96fd512f77d1d4b499a6b121a0e85794) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/hitbox_mat.mat using Guid(96fd512f77d1d4b499a6b121a0e85794) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7560ce2a1c610968ee4a9f503a71129') in 0.032226 seconds
+  Import took 0.039037 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000243 seconds.
+  path: Assets/HDRPDefaultResources/SkyFogSettingsProfile.asset
+  artifactKey: Guid(ea5c25297f0c0a04da0eabb1c26a7509) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HDRPDefaultResources/SkyFogSettingsProfile.asset using Guid(ea5c25297f0c0a04da0eabb1c26a7509) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d99a30f7cca61690a84a703a3d1f92c') in 0.009124 seconds
+  Import took 0.015767 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000211 seconds.
+  path: Assets/Scenes/Prey At Night.unity
+  artifactKey: Guid(2e810099ad0be774e93a95d0573cdac9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Prey At Night.unity using Guid(2e810099ad0be774e93a95d0573cdac9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b2162e80ecbbb2d44d1c6f1367247194') in 0.007540 seconds
+  Import took 0.013667 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000171 seconds.
+  path: Assets/HDRPDefaultResources/DefaultSceneRoot.prefab
+  artifactKey: Guid(2bfa7b9d63fa79e4abdc033f54a868d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HDRPDefaultResources/DefaultSceneRoot.prefab using Guid(2bfa7b9d63fa79e4abdc033f54a868d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b4e436d570034f799914f7370ef2364') in 0.033170 seconds
+  Import took 0.039613 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000169 seconds.
+  path: Assets/Prefabs/human_refs_grp.prefab
+  artifactKey: Guid(d8b7b8c48f377b244a0a22158acc9ec3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/human_refs_grp.prefab using Guid(d8b7b8c48f377b244a0a22158acc9ec3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '987e10f7ed57d6ac115fae775b27478f') in 0.080303 seconds
+  Import took 0.087294 seconds .
+
