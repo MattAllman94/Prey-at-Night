@@ -177,4 +177,9 @@ public class NPC : Prey
 
     #endregion
         
+
+    public void Die()
+    {
+
+    }
 }
