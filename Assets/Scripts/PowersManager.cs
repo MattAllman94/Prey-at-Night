@@ -166,7 +166,7 @@ public class Power
 
     public void PlayMyEffect()
     {
-
+        AudioManager.INSTANCE.PlaySFX(castSound);
     }
 
     public string GetPowerName()
