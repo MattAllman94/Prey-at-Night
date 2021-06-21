@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3041530503642445367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3041530503642445360}
+  - component: {fileID: 3041530503642445361}
+  m_Layer: 0
+  m_Name: Powers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3041530503642445360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3041530503642445367}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3041530503642445361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3041530503642445367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78164e1e28dbf1f4d9d758b036324190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allPowers:
+  - power: 0
+    damageType: 0
+    powerStatus: 0
+    myRequirement: 2
+    activeSlot: 0
+    unlockCost: 4
+    description: null
+    cooldown: 10
+    damage: 50
+    range: 0
+    bloodCost: 80
+    icon: {fileID: 0}
+    castSound: {fileID: 0}
+    playerAnimation: {fileID: 0}
+    enemyAnimation: {fileID: 0}
+  - power: 1
+    damageType: 1
+    powerStatus: 0
+    myRequirement: 1
+    activeSlot: 0
+    unlockCost: 2
+    description: Hold down the key on a target to drain blood and convert it into
+      health.
+    cooldown: 5
+    damage: 0.1
+    range: 10
+    bloodCost: 1
+    icon: {fileID: 1161201145128540330, guid: 1bcb5e43ac167ec42a77e37eed746e5e, type: 3}
+    castSound: {fileID: 0}
+    playerAnimation: {fileID: 0}
+    enemyAnimation: {fileID: 0}
+  - power: 2
+    damageType: 0
+    powerStatus: 0
+    myRequirement: 1
+    activeSlot: 0
+    unlockCost: 4
+    description: Throw a stake for devastating damage
+    cooldown: 10
+    damage: 50
+    range: 0
+    bloodCost: 25
+    icon: {fileID: 2130535880278150251, guid: 1bcb5e43ac167ec42a77e37eed746e5e, type: 3}
+    castSound: {fileID: 0}
+    playerAnimation: {fileID: 0}
+    enemyAnimation: {fileID: 0}
+  bloodDrainParticle: {fileID: 0}
+  activePower1:
+    power: 0
+    damageType: 0
+    powerStatus: 0
+    myRequirement: 0
+    activeSlot: 0
+    unlockCost: 0
+    description: 
+    cooldown: 0
+    damage: 0
+    range: 0
+    bloodCost: 0
+    icon: {fileID: 0}
+    castSound: {fileID: 0}
+    playerAnimation: {fileID: 0}
+    enemyAnimation: {fileID: 0}
+  activePower2:
+    power: 0
+    damageType: 0
+    powerStatus: 0
+    myRequirement: 0
+    activeSlot: 0
+    unlockCost: 0
+    description: 
+    cooldown: 0
+    damage: 0
+    range: 0
+    bloodCost: 0
+    icon: {fileID: 0}
+    castSound: {fileID: 0}
+    playerAnimation: {fileID: 0}
+    enemyAnimation: {fileID: 0}
+  castPos: {fileID: 0}
+  rayRange: 100

@@ -7,12 +7,10 @@ public class Prey : MonoBehaviour
     // All Managers
     protected static GameManager _GM { get { return GameManager.INSTANCE; } }
     protected static UIManager _UI { get { return UIManager.INSTANCE; } }
-
     protected static PowersManager _PM { get { return PowersManager.INSTANCE; } }
-
     protected static NPCManager _NPC { get { return NPCManager.INSTANCE; } }
     protected static PlayerController _P { get { return PlayerController.INSTANCE; } }
-
+    protected static AudioManager _AM { get { return AudioManager.INSTANCE; } }
 
 
 }

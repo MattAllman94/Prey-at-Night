@@ -18,9 +18,10 @@ public class PowersManager : Singleton<PowersManager>
 
     [Header ("Casting")]
     public Transform castPos;
+    NPC npcScript;
 
     RaycastHit hit;
-    public int rayRange = 100;
+    public float rayRange = 100f;
 
     private void Start()
     {
@@ -30,9 +31,8 @@ public class PowersManager : Singleton<PowersManager>
 
     private void Update()
     {
-        // < INPUT > // 
-
-        if(Input.GetKeyDown(KeyCode.Alpha1) && _GM.currentBlood >= activePower1.bloodCost) // USE POWER 1
+        #region INPUT // 
+        if (Input.GetKeyDown(KeyCode.Alpha1) && _GM.currentBlood >= activePower1.bloodCost) // USE POWER 1
         {
             if (activePower1.power != Powers.NoPower)
             UsePower(activePower1);
@@ -57,9 +57,10 @@ public class PowersManager : Singleton<PowersManager>
             if (activePower2.power != Powers.NoPower)
                 UsePower(activePower2);         
         }
+        #endregion
     }
 
-    
+
     public void UsePower(Power _power)
     {
         switch (_power.power)
@@ -79,21 +80,16 @@ public class PowersManager : Singleton<PowersManager>
 
     public void UseBloodDrain(Power _power)
     {
-        if(Physics.Raycast(castPos.position, castPos.transform.forward, out hit, rayRange))
+        if(Physics.Raycast(castPos.position, castPos.transform.forward, out hit, GetRange(_power.range))) //_power.range))
         {
             if(hit.collider.CompareTag("NPC"))
             {
                 float modifier = 0.02f;
+                npcScript = hit.collider.gameObject.GetComponent<NPC>();   // get script off npc hit 
 
-                // use blood <
-                // damage enemy 
-                // add health <
-                // add to bloodrain use counter <
-                _GM.ChangeBlood(_power.bloodCost * modifier);
-                _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);
-
-
-                //print("USED BLOODDRAIN");
+                _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
+                npcScript.health -= _power.damage;                         // damage enemy
+                _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);  // add health
             }
         }
     }
@@ -101,6 +97,21 @@ public class PowersManager : Singleton<PowersManager>
     public void UseStakeThrow()
     {
         print("used STAKETHROW!");
+    }
+
+    float GetRange(Range _range)
+    {
+        switch (_range)
+        {
+            case Range.Short:
+                return 5f;
+            case Range.Medium:
+                return 10f;
+            case Range.Long:
+                return 15f;
+            default:
+                return 10f;
+        }
     }
     
 }
@@ -126,39 +137,37 @@ public enum DamageType
     DOT,
 }
 
+public enum Range
+{
+    Short,
+    Medium,
+    Long
+}
+
 [System.Serializable]
 public class Power 
 {
-    
     public Powers power;
-
-    public DamageType damageType;
-
+    public DamageType damageType;   
     public PowerStatus powerStatus;
-
     public CorruptionLevel myRequirement;
 
     public int activeSlot = 0;
-
     public int unlockCost;
-
     public string description;
-
     public float cooldown;
     public float damage;
-    public float range;
-
+    public Range range;  
     public float bloodCost;
-
     public Sprite icon;
-
     public AudioClip castSound;
-
-    // my VFX
-
     public AnimationClip playerAnimation;
-
     public AnimationClip enemyAnimation;
+
+    public void PlayMyEffect()
+    {
+
+    }
 
     public string GetPowerName()
     {

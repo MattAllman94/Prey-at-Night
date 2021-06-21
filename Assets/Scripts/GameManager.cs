@@ -26,6 +26,7 @@ public enum CorruptionLevel
 public class GameManager : Singleton<GameManager>
 {
     public GameState gameState;
+    public Settings settings;
 
     [Header ("Corruption ")]  
     public float currentCorruption = 0f;
@@ -172,4 +173,12 @@ public class GameManager : Singleton<GameManager>
 
         _UI.ChangeGameState(gameState);
     }
+}
+
+public class Settings
+{
+
+
+    public bool SFX;
+
 }

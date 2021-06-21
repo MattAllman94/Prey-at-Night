@@ -41,7 +41,7 @@ public class UIManager : Singleton<UIManager>
     private void Start()
     {
         UpdateBlood(_GM.currentBlood);
-        UpdateHealth(_P.maxHealth);
+        UpdateHealth(_P.currentHealth);
         powerTreePanel.SetActive(false);
         powerTextSide.SetActive(false);
         ppText.text = ("PP: " + _GM.powerPoints.ToString());
