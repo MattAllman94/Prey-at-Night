@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7165674692696218360}
   - component: {fileID: 7165674692696218365}
   - component: {fileID: 7165674692696218362}
-  - component: {fileID: 7165674692696218363}
   - component: {fileID: 7165674692696218366}
   - component: {fileID: 7165674692696218364}
+  - component: {fileID: 1179374818}
   m_Layer: 0
   m_Name: Monster_ref
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7165674692696218361}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -20.3684, y: 85.80849, z: 28.79168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -57,31 +57,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &7165674692696218363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7165674692696218361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c9416c0d0e81041b6db94f29bcde96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myType: 2
-  myState: 0
-  civilian: {fileID: 0}
-  criminal: {fileID: 0}
-  monster: {fileID: 0}
-  currentWaypoint: 0
-  health: 100
-  player: {fileID: 0}
-  wanderRadius: 5
-  wanderTimer: 2
-  detectDistance: 15
-  undetectTimer: 5
-  chaseDistance: 10
 --- !u!195 &7165674692696218366
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -145,3 +120,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1179374818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165674692696218361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454243190896efc4381e3ef4b2f1e0ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 2
+  myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 7165674692696218361}
+  currentWaypoint: 0
+  health: 200
+  player: {fileID: 0}
+  wanderRadius: 5
+  wanderTimer: 2
+  detectDistance: 15
+  undetectTimer: 5
+  chaseDistance: 10

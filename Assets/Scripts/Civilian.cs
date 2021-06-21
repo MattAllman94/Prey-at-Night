@@ -10,11 +10,25 @@ public class Civilian : NPC
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
+        agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
     }
 
     void Update()
     {
-        
+        CivilianMovement();
+    }
+
+    public void CivilianMovement()
+    {
+        float dist = Vector3.Distance(transform.position, _NPC.civilianWaypoints[currentWaypoint].transform.position);
+        if (dist <= 0.1f)
+        {
+            currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
+            agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
+            CivilianMovement();
+        }
     }
 
     public void Response()
@@ -52,7 +66,7 @@ public class Civilian : NPC
         float distToEscape = Vector3.Distance(transform.position, _NPC.civilianSpawn[currentWaypoint].transform.position);
         if (distToEscape <= 0.01f)
         {
-            Despawn();
+            Die();
         }
     }
 }

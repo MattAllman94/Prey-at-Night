@@ -12,11 +12,24 @@ public class Criminal : NPC
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count - 1);
+        agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);
     }
 
     void Update()
     {
-        
+        CriminalMovement();
+    }
+
+    public void CriminalMovement()
+    {
+        float dist = Vector3.Distance(transform.position, _NPC.criminalWaypoints[currentWaypoint].transform.position);
+        if (dist <= 0.1f)
+        {
+            currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count - 1);
+            agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);
+            CriminalMovement();
+        }
     }
 
     public void OnCollisionStay(Collision collision)
@@ -78,7 +91,7 @@ public class Criminal : NPC
         float distToEscape = Vector3.Distance(transform.position, _NPC.civilianSpawn[currentWaypoint].transform.position);
         if (distToEscape <= 0.01f)
         {
-            Despawn();
+            Die();
         }
     }
 }
