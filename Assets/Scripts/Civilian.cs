@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Civilian : NPC
 {
     NavMeshAgent agent;
+    bool isFleeing = false;
 
     void Start()
     {
@@ -13,11 +14,13 @@ public class Civilian : NPC
 
         currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
         agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
+        health = 100f;
     }
 
     void Update()
     {
         CivilianMovement();
+        Response();
     }
 
     public void CivilianMovement()
@@ -28,6 +31,10 @@ public class Civilian : NPC
             currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
             agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
             CivilianMovement();
+            if(isFleeing)
+            {
+                Response();
+            }
         }
     }
 
@@ -60,11 +67,14 @@ public class Civilian : NPC
 
     public void Flee()
     {
+        isFleeing = true;
+        Debug.Log("Flee");
         currentWaypoint = Random.Range(0, _NPC.civilianSpawn.Count - 1);
         agent.SetDestination(_NPC.civilianSpawn[currentWaypoint].transform.position);
 
         float distToEscape = Vector3.Distance(transform.position, _NPC.civilianSpawn[currentWaypoint].transform.position);
-        if (distToEscape <= 0.01f)
+        //Debug.Log(distToEscape);
+        if (distToEscape <= 0.1f)
         {
             Die();
         }

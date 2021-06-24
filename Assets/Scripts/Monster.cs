@@ -19,7 +19,7 @@ public class Monster : NPC
     {
         agent = GetComponent<NavMeshAgent>();
         timer = wanderTimer;
-
+        health = 200f;
 
     }
 

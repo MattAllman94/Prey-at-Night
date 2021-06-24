@@ -26,23 +26,11 @@ public class NPC : Prey
     public float health;
 
     public GameObject player;
-
+    public Civilian civilianScript;
 
     private void Start()
     {
 
-        switch (myType)
-        {
-            case EnemyType.Civilian:
-                health = 100f;
-                break;
-            case EnemyType.Criminal:
-                health = 100f;
-                break;
-            case EnemyType.Monster:
-                health = 200f;
-                break;
-        }
     }
 
     void Update()
@@ -52,9 +40,11 @@ public class NPC : Prey
             Die();
         }
 
+        //Debug.Log(health);
         if(Input.GetKeyDown(KeyCode.C))
         {
             health -= 10;
+            civilianScript.Flee();
         }
     }
 
@@ -70,6 +60,7 @@ public class NPC : Prey
     public void Die()
     {
         Destroy(this.gameObject);
+        Debug.Log("Die");
         if(myType == EnemyType.Civilian)
         {
             _NPC.totalCivilians -= 1;
@@ -87,4 +78,6 @@ public class NPC : Prey
         }
         
     }
+
+
 }

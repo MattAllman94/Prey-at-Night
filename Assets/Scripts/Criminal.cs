@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public class Criminal : NPC
 {
     NavMeshAgent agent;
-    
+    bool isFleeing = false;
+
     public bool inAlley = false;
 
     void Start()
@@ -14,11 +15,16 @@ public class Criminal : NPC
         agent = GetComponent<NavMeshAgent>();
         currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count - 1);
         agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);
+        health = 100f;
     }
 
     void Update()
     {
-        CriminalMovement();
+        if (!isFleeing)
+        {
+            CriminalMovement();
+        }
+        Response();
     }
 
     public void CriminalMovement()
@@ -85,6 +91,7 @@ public class Criminal : NPC
 
     public void Flee()
     {
+        isFleeing = true;
         currentWaypoint = Random.Range(0, _NPC.civilianSpawn.Count - 1);
         agent.SetDestination(_NPC.civilianSpawn[currentWaypoint].transform.position);
 

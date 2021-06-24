@@ -23,8 +23,7 @@ public class PlayerController : Singleton<PlayerController>
     public float atkDamage = 10f;
     public float atkDuration = 2f;
     public NPC hitNPC;
-
-
+    public Civilian civilianScript;
 
     void Start()
     {
@@ -90,7 +89,9 @@ public class PlayerController : Singleton<PlayerController>
 
     public void HitNPC() // Deals damage
     {
+        //Debug.Log("Hit");
         hitNPC.health -= atkDamage;
+        civilianScript.Flee();
     }
 
     public void ChangeHealth(float _health, bool increase = false) // Dont have to put in the bool if increasing blood 
