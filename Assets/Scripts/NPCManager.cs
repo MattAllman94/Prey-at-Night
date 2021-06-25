@@ -25,16 +25,11 @@ public class NPCManager : Singleton<NPCManager>
     public List<GameObject> civilianSpawn;
     public List<GameObject> monsterSpawn;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if(currentCivilians < totalCivilians || currentCriminals < totalCriminals || currentMonsters < totalMonsters)
         {
-            npcScript.Spawn();
+            //npcScript.Spawn();
         }
     }
 }

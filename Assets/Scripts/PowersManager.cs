@@ -32,16 +32,36 @@ public class PowersManager : Singleton<PowersManager>
     private void Update()
     {
         #region INPUT // 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && _GM.currentBlood >= activePower1.bloodCost) // USE POWER 1
+        if (Input.GetKeyDown(KeyCode.Alpha1) && activePower1.power != Powers.NoPower & _GM.currentBlood >= activePower1.bloodCost) // USE POWER 1
         {
-            if (activePower1.power != Powers.NoPower)
-            UsePower(activePower1);
+            if (activePower1.hasCooldown)
+            {
+                if (Time.time >= activePower1.nextTimeToCast)
+                {
+                    activePower1.nextTimeToCast = Time.time + activePower1.cooldown;
+                    UsePower(activePower1);
+                }
+            }
+            else
+            {
+                UsePower(activePower1);
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && _GM.currentBlood >= activePower2.bloodCost) // USE POWER 2
+        if (Input.GetKeyDown(KeyCode.Alpha2) && activePower2.power != Powers.NoPower && _GM.currentBlood >= activePower2.bloodCost) // USE POWER 2
         {
-            if (activePower2.power != Powers.NoPower)
+            if (activePower2.hasCooldown)
+            {
+                if (Time.time >= activePower2.nextTimeToCast)
+                {
+                    activePower2.nextTimeToCast = Time.time + activePower2.cooldown;
+                    UsePower(activePower2);
+                }
+            }
+            else
+            {
                 UsePower(activePower2);
+            }
         }
        
 
@@ -72,7 +92,7 @@ public class PowersManager : Singleton<PowersManager>
                 }
             case (Powers.StakeThrow):
                 {
-                    UseStakeThrow();
+                    UseStakeThrow(_power);
                     break;
                 }
         }
@@ -80,7 +100,7 @@ public class PowersManager : Singleton<PowersManager>
 
     public void UseBloodDrain(Power _power)
     {
-        if(Physics.Raycast(castPos.position, castPos.transform.forward, out hit, GetRange(_power.range))) //_power.range))
+        if(Physics.Raycast(castPos.position, castPos.transform.forward, out hit, GetRange(_power.range))) 
         {
             if(hit.collider.CompareTag("NPC"))
             {
@@ -94,9 +114,13 @@ public class PowersManager : Singleton<PowersManager>
         }
     }
 
-    public void UseStakeThrow()
-    {
-        print("used STAKETHROW!");
+    public void UseStakeThrow(Power _power)
+    {      
+        GameObject stake = Instantiate(_power.model, castPos.position, castPos.rotation);    // spawn stake
+        stake.GetComponent<Stake>().damage = _power.damage;
+        Destroy(stake, 10f);    
+        // Stake script does the rest 
+        _GM.ChangeBlood(_power.bloodCost);                                                   // use blood
     }
 
     float GetRange(Range _range)
@@ -155,10 +179,13 @@ public class Power
     public int activeSlot = 0;
     public int unlockCost;
     public string description;
+    public bool hasCooldown = true;
     public float cooldown;
+    public float nextTimeToCast; // keep as 0
     public float damage;
     public Range range;  
     public float bloodCost;
+    public GameObject model;
     public Sprite icon;
     public AudioClip castSound;
     public AnimationClip playerAnimation;
