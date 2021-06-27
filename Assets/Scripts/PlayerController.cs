@@ -35,7 +35,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         Movement();
 
-        if (Input.GetButtonDown("Fire1") && isAttacking == false)
+        if (Input.GetButtonDown("Fire1") && isAttacking == false && _GM.gameState == GameState.INGAME)
         {
             StartCoroutine("Attack");
         }

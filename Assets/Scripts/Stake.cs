@@ -26,7 +26,10 @@ public class Stake : Prey
         {          
             gameObject.transform.SetParent(col.gameObject.transform);
             NPC npcScript = col.gameObject.GetComponent<NPC>();
-            npcScript.health -= damage;       
+            npcScript.health -= damage;
+
+            if (npcScript.health <= 0)
+                npcScript.Die();
         }
     }
 

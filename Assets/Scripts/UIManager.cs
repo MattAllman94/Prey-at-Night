@@ -14,6 +14,12 @@ public class UIManager : Singleton<UIManager>
     public Image power1Icon;
     public Image power2Icon;
 
+    [Header("Paused")]
+    public GameObject pausedPanel;
+
+    [Header("Title")]
+    public GameObject titlePanel;
+
     [Header ("Power Tree")]
     public GameObject powerTreePanel;
     public GameObject powerTextSide;
@@ -49,8 +55,23 @@ public class UIManager : Singleton<UIManager>
     }
 
 
-   
-    
+
+    public void Resume()
+    {
+        _GM.ChangeGameState(GameState.INGAME);
+    }
+
+    public void GoToTitle()
+    {
+        _GM.ChangeGameState(GameState.TITLE);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    #region POWER TREE
     public void PurchasePower()
     {
         if (_GM.powerPoints >= selectedPower.unlockCost && selectedPower.powerStatus == PowerStatus.Unlocked)
@@ -109,15 +130,6 @@ public class UIManager : Singleton<UIManager>
                     }
             }  
         }
-    }
-
-    public void ClearUI()
-    {
-        powerName.text = "";
-        powerDesc.text = "";
-        equippedText.text = "";
-        unlockButton.SetActive(false);
-        selectedPower = null;
     }
 
     public void DisplayWarning(int _slotNum)
@@ -205,6 +217,8 @@ public class UIManager : Singleton<UIManager>
         warningPanel.SetActive(false);
     }
 
+    #endregion
+
     public void UpdateBlood(float _blood)
     {
         cBloodText.text = _blood.ToString("f2");
@@ -215,6 +229,15 @@ public class UIManager : Singleton<UIManager>
         cHealthText.text = _health.ToString("f2");
     }
 
+    public void ClearUI()
+    {
+        powerName.text = "";
+        powerDesc.text = "";
+        equippedText.text = "";
+        unlockButton.SetActive(false);
+        selectedPower = null;
+    }
+
     public void ChangeGameState(GameState _gameState)
     {
         switch(_gameState)
@@ -223,12 +246,14 @@ public class UIManager : Singleton<UIManager>
                 {
                     inGamePanel.SetActive(false);
                     powerTreePanel.SetActive(false);
+                    pausedPanel.SetActive(true);
                     break;
                 }
             case GameState.POWERMENU:
                 {
                     inGamePanel.SetActive(false);
                     powerTreePanel.SetActive(true);
+                    pausedPanel.SetActive(false);
                     ppText.text = ("PP: " + _GM.powerPoints.ToString());
                     break;
                 }
@@ -238,6 +263,16 @@ public class UIManager : Singleton<UIManager>
                     inGamePanel.SetActive(true);
                     powerTreePanel.SetActive(false);
                     powerTextSide.SetActive(false);
+                    pausedPanel.SetActive(false);
+                    break;
+                }
+            case GameState.TITLE:
+                {
+                    inGamePanel.SetActive(false);
+                    powerTreePanel.SetActive(false);
+                    powerTextSide.SetActive(false);
+                    pausedPanel.SetActive(false);
+                    titlePanel.SetActive(true);
                     break;
                 }
         }

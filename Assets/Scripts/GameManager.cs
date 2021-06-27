@@ -69,10 +69,18 @@ public class GameManager : Singleton<GameManager>
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (gameState == GameState.INGAME)
-                ChangeGameState(GameState.POWERMENU);
-            else if (gameState == GameState.POWERMENU)
+            if (gameState == GameState.INGAME || gameState == GameState.POWERMENU)
+                ChangeGameState(GameState.PAUSED);                                      // Pause Game
+            else 
                 ChangeGameState(GameState.INGAME);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            if (gameState == GameState.INGAME)
+                ChangeGameState(GameState.POWERMENU);                                       // Open Power Menu 
+            else
+                ChangeGameState(GameState.INGAME);                                    
         }
     }
 
@@ -130,7 +138,7 @@ public class GameManager : Singleton<GameManager>
         _UI.UpdateBlood(currentBlood);
     }
 
-    void ChangeGameState(GameState _gameState)
+    public void ChangeGameState(GameState _gameState)
     {
         gameState = _gameState;
 
@@ -138,6 +146,9 @@ public class GameManager : Singleton<GameManager>
         {
             case GameState.TITLE:
                 {
+                    Time.timeScale = 0;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
                     break;
                 }
             case GameState.INGAME:

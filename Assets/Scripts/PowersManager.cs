@@ -108,8 +108,11 @@ public class PowersManager : Singleton<PowersManager>
                 npcScript = hit.collider.gameObject.GetComponent<NPC>();   // get script off npc hit 
 
                 _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
-                npcScript.health -= _power.damage;                         // damage enemy
                 _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);  // add health
+                npcScript.health -= _power.damage;                         // damage enemy
+                if (npcScript.health <= 0)
+                    npcScript.Die();
+                
             }
         }
     }
