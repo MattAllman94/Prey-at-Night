@@ -15,6 +15,7 @@ public class Civilian : NPC
         currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
         agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
         health = 100f;
+        player = FindObjectOfType<PlayerController>().gameObject;
     }
 
     void Update()

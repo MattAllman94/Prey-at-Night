@@ -46,14 +46,36 @@ public class NPC : Prey
             health -= 10;
             civilianScript.Flee();
         }
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            Spawn();
+        }
     }
 
     public void Spawn()
     {
-        if(_NPC.currentCivilians <= _NPC.totalCivilians)
+        if(_NPC.currentCivilians <= _NPC.totalCivilians - 1)
         {
-            //Vector3 spawn = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
-            //Instantiate(civilian, 
+            Debug.Log("Civilian Spawn");
+            int spawnPos = Random.Range(0, _NPC.civilianSpawn.Count - 1);
+            Instantiate(civilian, _NPC.civilianSpawn[spawnPos].transform.position, transform.rotation);
+            _NPC.currentCivilians += 1;
+        }
+
+        if (_NPC.currentCriminals <= _NPC.totalCriminals - 1)
+        {
+            Debug.Log("Criminal Spawn");
+            int spawnPos = Random.Range(0, _NPC.civilianSpawn.Count - 1);
+            Instantiate(criminal, _NPC.civilianSpawn[spawnPos].transform.position, transform.rotation);
+            _NPC.currentCriminals += 1;
+        }
+
+        if (_NPC.currentMonsters <= _NPC.totalMonsters)
+        {
+            Debug.Log("Monster Spawn");
+            int spawnPos = Random.Range(0, _NPC.monsterWaypoints.Count - 1);
+            Instantiate(monster, _NPC.monsterWaypoints[spawnPos].transform.position, transform.rotation);
+            _NPC.currentMonsters += 1;
         }
     }
 
@@ -76,7 +98,7 @@ public class NPC : Prey
             _NPC.totalMonsters -= 1;
             _NPC.monsters.Remove(this.gameObject);
         }
-        
+        Spawn();
     }
 
 

@@ -16,6 +16,7 @@ public class Criminal : NPC
         currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count - 1);
         agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);
         health = 100f;
+        player = FindObjectOfType<PlayerController>().gameObject;
     }
 
     void Update()

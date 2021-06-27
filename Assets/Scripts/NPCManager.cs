@@ -12,8 +12,6 @@ public class NPCManager : Singleton<NPCManager>
     public int totalCriminals = 10;
     public int totalMonsters = 5;
 
-    NPC npcScript;
-
     public List<GameObject> civilians;
     public List<GameObject> criminals;
     public List<GameObject> monsters;
@@ -23,13 +21,16 @@ public class NPCManager : Singleton<NPCManager>
     public List<GameObject> monsterWaypoints;
 
     public List<GameObject> civilianSpawn;
-    public List<GameObject> monsterSpawn;
 
-    void Update()
+    public void Start()
     {
-        if(currentCivilians < totalCivilians || currentCriminals < totalCriminals || currentMonsters < totalMonsters)
-        {
-            //npcScript.Spawn();
-        }
+        
+    }
+
+    public void Update()
+    {
+        //currentCivilians = civilians.Count;
+        //currentCriminals = criminals.Count;
+        //currentMonsters = monsters.Count;
     }
 }

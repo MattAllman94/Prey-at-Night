@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3055850015970338493}
   - component: {fileID: 3905466086535206033}
   - component: {fileID: 8648955544368754361}
-  - component: {fileID: 2484703390077045051}
+  - component: {fileID: -7539320115378994642}
   m_Layer: 0
   m_Name: Criminal_ref
   m_TagString: NPC
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2484703390077045052}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029504295}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 2.6000004, y: 84.741005, z: -95.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -135,7 +135,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 24
   m_ObstacleAvoidanceType: 4
---- !u!114 &2484703390077045051
+--- !u!114 &-7539320115378994642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,19 +144,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2484703390077045052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c9416c0d0e81041b6db94f29bcde96, type: 3}
+  m_Script: {fileID: 11500000, guid: 884a401f30ee25e45b1620d2e75d5b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myType: 1
+  myType: 0
   myState: 0
   civilian: {fileID: 0}
   criminal: {fileID: 0}
   monster: {fileID: 0}
   currentWaypoint: 0
-  health: 100
+  health: 0
   player: {fileID: 0}
-  wanderRadius: 0
-  wanderTimer: 0
-  detectDistance: 0
-  undetectTimer: 0
-  chaseDistance: 0
+  civilianScript: {fileID: 0}
+  inAlley: 0

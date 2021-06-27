@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 583051149136250559}
   - component: {fileID: 5686568406747778023}
   - component: {fileID: 2225925442685819826}
-  - component: {fileID: 7990373111215664128}
   - component: {fileID: 4913616124385659297}
+  - component: {fileID: 1326453370305127462}
   m_Layer: 0
   m_Name: Civilian_ref
   m_TagString: NPC
@@ -98,31 +98,6 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: -0.008960485, y: 0.88964427, z: -0.014090955}
---- !u!114 &7990373111215664128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5963327348089368390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6c9416c0d0e81041b6db94f29bcde96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myType: 0
-  myState: 0
-  civilian: {fileID: 0}
-  criminal: {fileID: 0}
-  monster: {fileID: 0}
-  currentWaypoint: 0
-  health: 100
-  player: {fileID: 0}
-  wanderRadius: 0
-  wanderTimer: 0
-  detectDistance: 0
-  undetectTimer: 0
-  chaseDistance: 0
 --- !u!195 &4913616124385659297
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -145,3 +120,24 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 8
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1326453370305127462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5963327348089368390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed6127e86b1065c43b2dcfb71dfe15aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0
+  myState: 0
+  civilian: {fileID: 0}
+  criminal: {fileID: 0}
+  monster: {fileID: 0}
+  currentWaypoint: 0
+  health: 0
+  player: {fileID: 0}
+  civilianScript: {fileID: 0}
