@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,8 +48,14 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        settings = _DATA.GetSettings();
         IncreaseCorruption(0);
-        
+        UpdateSettings();
+    }
+
+    public void UpdateSettings()
+    {
+        _DATA.SetSettings(settings);
     }
 
     void Update()
@@ -63,6 +70,12 @@ public class GameManager : Singleton<GameManager>
             if (Input.GetKeyDown(KeyCode.T))
             {
                 IncreaseCorruption(4f);           // FOR TESTING CORRUPTION
+            }
+
+            if(Input.GetKeyDown(KeyCode.L))
+            {
+                INSTANCE.UpdateSettings();        // FOR TESTING SAVING
+                Debug.Log("Saved State");
             }
         }
        
@@ -184,12 +197,28 @@ public class GameManager : Singleton<GameManager>
 
         _UI.ChangeGameState(gameState);
     }
+
+    public GameManager(float _bloodLevel, CorruptionLevel _corruption, int _powerPoints)
+    {
+        currentBlood = _bloodLevel;
+        corruptionLevel = _corruption;
+        powerPoints = _powerPoints;
+
+    }
 }
 
+[Serializable]
 public class Settings
 {
-
-
     public bool SFX;
+    public bool music;
+    public bool vfx;
 
+    public Settings(bool _sounds, bool _music, bool _vfx)
+    {
+        SFX = _sounds;
+        music = _music;
+        vfx = _vfx;
+    }
 }
+

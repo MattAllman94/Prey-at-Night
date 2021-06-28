@@ -11,8 +11,7 @@ public class Prey : MonoBehaviour
     protected static NPCManager _NPC { get { return NPCManager.INSTANCE; } }
     protected static PlayerController _P { get { return PlayerController.INSTANCE; } }
     protected static AudioManager _AM { get { return AudioManager.INSTANCE; } }
-
-
+    protected static GameDataManager _DATA { get { return GameDataManager.INSTANCE; } }
 }
 
 
