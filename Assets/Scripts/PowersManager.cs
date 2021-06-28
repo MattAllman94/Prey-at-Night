@@ -26,7 +26,7 @@ public class PowersManager : Singleton<PowersManager>
     private void Start()
     {
         activePower1.power = Powers.NoPower;
-        activePower2.power = Powers.NoPower;
+        activePower2.power = Powers.NoPower;       
     }
 
     private void Update()

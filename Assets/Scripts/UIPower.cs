@@ -6,14 +6,69 @@ using TMPro;
 public class UIPower : Prey
 {
     public Powers myPower;
+    public Camera uiCamera;
+    public Transform borderTransform;
     Power power;
-
+    
     private void Start()
     {
         power = _PM.allPowers.Find(x => x.power == myPower); // Finds the power in allPowers list that is equal to myPower
-        // set power icon to power.icon
-        // Logic relating to status
+    }
 
+    Vector3 GetMousePos()
+    {
+        var mousePos = uiCamera.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+        return mousePos;
+    }  
+
+    public void BeginDrag()
+    {
+        if (power.powerStatus == PowerStatus.Purchased)
+        {
+            Selected();
+            transform.position = GetMousePos();
+        }                   
+    }
+
+    public void Drag()
+    {
+        if (power.powerStatus == PowerStatus.Purchased)
+        {
+            transform.position = GetMousePos();
+        }           
+    }
+
+    public void EndDrag()
+    {
+        RaycastHit2D hit = (Physics2D.Raycast(transform.position, -Vector2.up));
+
+        if (hit.collider != null)
+        {
+            if (power.powerStatus == PowerStatus.Purchased || power.powerStatus == PowerStatus.Active)
+            {               
+                if (hit.collider.gameObject == _UI.equipSlot1)
+                {
+                    _UI.EquipPower("1");
+                    ResetPosition();
+                }
+
+                if (hit.collider.gameObject == _UI.equipSlot2)
+                {
+                    _UI.EquipPower("2");
+                    ResetPosition();
+                }
+            }
+        }  
+        else
+        {
+            ResetPosition();
+        }
+    }
+
+    public void ResetPosition()
+    {
+        transform.position = borderTransform.position;
     }
 
     public void Selected()

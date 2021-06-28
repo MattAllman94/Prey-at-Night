@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+
 public class UIManager : Singleton<UIManager>
 {
     [Header("In Game")]
@@ -31,7 +32,9 @@ public class UIManager : Singleton<UIManager>
     public TextMeshProUGUI powerDesc;
     public TextMeshProUGUI ppText;
 
+    public GameObject equipSlot1;
     public Image slot1Icon;
+    public GameObject equipSlot2;
     public Image slot2Icon;
 
 
