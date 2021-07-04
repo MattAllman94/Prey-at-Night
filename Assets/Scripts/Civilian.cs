@@ -7,6 +7,8 @@ public class Civilian : NPC
 {
     NavMeshAgent agent;
     bool isFleeing = false;
+    public GameObject male;
+    public GameObject female;
 
     void Start()
     {
@@ -16,6 +18,19 @@ public class Civilian : NPC
         agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
         health = 100f;
         player = FindObjectOfType<PlayerController>().gameObject;
+
+        int rnd = Random.Range(0, 2);
+        if(rnd == 0)
+        {
+            male.SetActive(true);
+            female.SetActive(false);
+        }
+        else if(rnd == 1)
+        {
+            male.SetActive(false);
+            female.SetActive(true);
+        }
+        Debug.Log(rnd);
     }
 
     void Update()

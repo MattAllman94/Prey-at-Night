@@ -9,6 +9,7 @@ public class Criminal : NPC
     bool isFleeing = false;
 
     public bool inAlley = false;
+    public GameObject hitbox;
 
     void Start()
     {
@@ -87,7 +88,7 @@ public class Criminal : NPC
 
     public void Attack()
     {
-
+        hitbox.SetActive(true);
     }
 
     public void Flee()

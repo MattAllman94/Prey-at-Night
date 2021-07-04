@@ -29,8 +29,8 @@ public class NPCManager : Singleton<NPCManager>
 
     public void Update()
     {
-        //currentCivilians = civilians.Count;
-        //currentCriminals = criminals.Count;
-        //currentMonsters = monsters.Count;
+        currentCivilians = civilians.Count;
+        currentCriminals = criminals.Count;
+        currentMonsters = monsters.Count;
     }
 }

@@ -53,7 +53,7 @@ public class Monster : NPC
                 {
                     if (distToPlayer <= detectDistance)
                     {
-                        myState = State.Hunt;
+                        myState = State.Attack;
                         undetectTimer = 5;
                     }
                     else
@@ -62,7 +62,7 @@ public class Monster : NPC
                     }
                 }
                 break;
-            case State.Hunt:
+            case State.Attack:
                 agent.SetDestination(player.transform.position);
                 if (distToPlayer > chaseDistance)
                 {
@@ -77,7 +77,7 @@ public class Monster : NPC
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    if (myState != State.Hunt)
+                    if (myState != State.Attack)
                     {
                         myState = State.Detect;
                     }
@@ -95,7 +95,7 @@ public class Monster : NPC
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    myState = State.Hunt;
+                    myState = State.Attack;
                 }
             }
         }

@@ -11,7 +11,7 @@ public class NPC : Prey
     }
     public enum State
     {
-        Idle, Detect, Hunt
+        Idle, Detect, Attack
     }
 
     public EnemyType myType;
@@ -58,7 +58,8 @@ public class NPC : Prey
         {
             Debug.Log("Civilian Spawn");
             int spawnPos = Random.Range(0, _NPC.civilianSpawn.Count - 1);
-            Instantiate(civilian, _NPC.civilianSpawn[spawnPos].transform.position, transform.rotation);
+            GameObject newCivilian = Instantiate(civilian, _NPC.civilianSpawn[spawnPos].transform.position, transform.rotation);
+            _NPC.civilians.Add(newCivilian);
             _NPC.currentCivilians += 1;
         }
 
@@ -66,7 +67,8 @@ public class NPC : Prey
         {
             Debug.Log("Criminal Spawn");
             int spawnPos = Random.Range(0, _NPC.civilianSpawn.Count - 1);
-            Instantiate(criminal, _NPC.civilianSpawn[spawnPos].transform.position, transform.rotation);
+            GameObject newCriminal = Instantiate(criminal, _NPC.civilianSpawn[spawnPos].transform.position, transform.rotation);
+            _NPC.criminals.Add(newCriminal);
             _NPC.currentCriminals += 1;
         }
 
@@ -74,7 +76,8 @@ public class NPC : Prey
         {
             Debug.Log("Monster Spawn");
             int spawnPos = Random.Range(0, _NPC.monsterWaypoints.Count - 1);
-            Instantiate(monster, _NPC.monsterWaypoints[spawnPos].transform.position, transform.rotation);
+            GameObject newMonster = Instantiate(monster, _NPC.monsterWaypoints[spawnPos].transform.position, transform.rotation);
+            _NPC.monsters.Add(newMonster);
             _NPC.currentMonsters += 1;
         }
     }
