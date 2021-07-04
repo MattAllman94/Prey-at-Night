@@ -9,6 +9,9 @@ public class Criminal : NPC
     bool isFleeing = false;
 
     public bool inAlley = false;
+    public GameObject hitbox;
+    public bool isAttacking = false;
+    public float delay;
 
     void Start()
     {
@@ -17,6 +20,7 @@ public class Criminal : NPC
         agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);
         health = 100f;
         player = FindObjectOfType<PlayerController>().gameObject;
+        damage = 10;
     }
 
     void Update()
@@ -59,14 +63,14 @@ public class Criminal : NPC
         {
             if (distToPlayer <= 4f)
             {
-                Attack();
+                StartCoroutine("Attack");
             }
         }
         else
         {
             if (inAlley == true && distToPlayer <= 4f)
             {
-                Attack();
+                StartCoroutine("Attack");
             }
             else
             {
@@ -85,9 +89,19 @@ public class Criminal : NPC
 
     }
 
-    public void Attack()
+    IEnumerator Attack()
     {
+        float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
+        agent.SetDestination(player.transform.position);
+        if (distToPlayer < 0.2f)
+        {
+            isAttacking = true;
+            hitbox.SetActive(true);
+            yield return new WaitForSeconds(delay);
+            hitbox.SetActive(false);
+            isAttacking = false;
+        }
     }
 
     public void Flee()

@@ -91,7 +91,10 @@ public class PlayerController : Singleton<PlayerController>
     {
         //Debug.Log("Hit");
         hitNPC.health -= atkDamage;
-        civilianScript.Flee();
+        if(hitNPC.myType == NPC.EnemyType.Civilian)
+        {
+            civilianScript.Flee();
+        }
     }
 
     public void ChangeHealth(float _health, bool increase = false) // Dont have to put in the bool if increasing blood 
