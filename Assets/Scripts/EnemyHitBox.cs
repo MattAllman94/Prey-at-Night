@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyHitBox : Prey
 {
-
+    public NPC npc;
 
     private void OnTriggerEnter(Collider other)
     {
-        _P.currentHealth -= 10;
+        npc.HitPlayer();
     }
 }

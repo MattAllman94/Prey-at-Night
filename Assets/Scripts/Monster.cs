@@ -15,12 +15,17 @@ public class Monster : NPC
     public float undetectTimer;
     public float chaseDistance;
 
+    public GameObject hitbox;
+    public bool isAttacking = false;
+    public float delay;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         timer = wanderTimer;
         health = 200f;
         player = FindObjectOfType<PlayerController>().gameObject;
+        damage = 20;
     }
 
 
@@ -104,6 +109,22 @@ public class Monster : NPC
             myState = State.Idle;
         }
     }
+
+    IEnumerator Attack()
+    {
+        float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+        agent.SetDestination(player.transform.position);
+        if (distToPlayer < 0.2f)
+        {
+            isAttacking = true;
+            hitbox.SetActive(true);
+            yield return new WaitForSeconds(delay);
+            hitbox.SetActive(false);
+            isAttacking = false;
+        }
+    }
+
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
         Vector3 randDirection = Random.insideUnitSphere * dist;

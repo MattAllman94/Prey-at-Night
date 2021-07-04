@@ -24,6 +24,7 @@ public class NPC : Prey
     public int currentWaypoint;
 
     public float health;
+    public int damage;
 
     public GameObject player;
     public Civilian civilianScript;
@@ -80,6 +81,11 @@ public class NPC : Prey
             _NPC.monsters.Add(newMonster);
             _NPC.currentMonsters += 1;
         }
+    }
+
+    public void HitPlayer()
+    {
+        _P.currentHealth -= damage;
     }
 
     public void Die()
