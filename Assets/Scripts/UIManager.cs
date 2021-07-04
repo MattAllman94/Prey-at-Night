@@ -96,7 +96,7 @@ public class UIManager : Singleton<UIManager>
             {
                 case ("1"):
                     {
-                        if (_PM.activePower1 != selectedPower && _PM.activePower1.power != Powers.NoPower) // checks if theres a power on slot 2
+                        if (_PM.activePower1 != selectedPower && _PM.activePower1.power != Powers.NoPower) // checks if theres a power on slot 1
                         {
                             //warn Player
                             DisplayWarning(1);             

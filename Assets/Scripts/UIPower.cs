@@ -24,7 +24,7 @@ public class UIPower : Prey
 
     public void BeginDrag()
     {
-        if (power.powerStatus == PowerStatus.Purchased)
+        if (power.powerStatus == PowerStatus.Purchased || power.powerStatus == PowerStatus.Active)
         {
             Selected();
             transform.position = GetMousePos();
@@ -33,7 +33,7 @@ public class UIPower : Prey
 
     public void Drag()
     {
-        if (power.powerStatus == PowerStatus.Purchased)
+        if (power.powerStatus == PowerStatus.Purchased || power.powerStatus == PowerStatus.Active)
         {
             transform.position = GetMousePos();
         }           
@@ -52,8 +52,7 @@ public class UIPower : Prey
                     _UI.EquipPower("1");
                     ResetPosition();
                 }
-
-                if (hit.collider.gameObject == _UI.equipSlot2)
+                else if (hit.collider.gameObject == _UI.equipSlot2)
                 {
                     _UI.EquipPower("2");
                     ResetPosition();
