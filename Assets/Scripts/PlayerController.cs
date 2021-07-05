@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PlayerController : Singleton<PlayerController>
 {
-    [Header("Stats & Movement")]
+    [Header("Stats")]
     public float maxHealth = 100f;
     public float currentHealth = 100f;
 
+    [Header("Movement")]
     private float horizontal, vertical;
     public float speed, walkSpeed, sprintSpeed, crouchSpeed;
-   
     public bool isSprinting;
-
     public bool isCrouching;
     public bool isHidden;
     private CapsuleCollider playerCollider;
@@ -62,8 +61,8 @@ public class PlayerController : Singleton<PlayerController>
         {
             speed = crouchSpeed;
             playerCollider.height = 1;
-            //playerCollider.center = new Vector3(playerCollider.center.x, -0.5f, playerCollider.center.z); //Add back once crouch animations are included
-            transform.localScale = new Vector3(1, 0.5f, 1); //Remove once crouching animation is included
+            playerCollider.center = new Vector3(playerCollider.center.x, -0.5f, playerCollider.center.z); //Add back once crouch animations are included
+            //transform.localScale = new Vector3(1, 0.5f, 1); //Remove once crouching animation is included
             isCrouching = true;
             
         }
@@ -71,8 +70,8 @@ public class PlayerController : Singleton<PlayerController>
         {
             speed = walkSpeed;
             playerCollider.height = 2;
-            //playerCollider.center = new Vector3(playerCollider.center.x, 0f, playerCollider.center.z); //Add back once crouch animations are included
-            transform.localScale = new Vector3(1, 1, 1); //Remove once crouching animation is included
+            playerCollider.center = new Vector3(playerCollider.center.x, 0f, playerCollider.center.z); //Add back once crouch animations are included
+            //transform.localScale = new Vector3(1, 1, 1); //Remove once crouching animation is included
             isCrouching = false;
             
         }

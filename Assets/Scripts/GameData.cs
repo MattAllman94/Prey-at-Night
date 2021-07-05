@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public abstract class GameData : MonoBehaviour
+public abstract class GameData : Prey
 {
     //Date format we want to use
     public static string dateFormat = "yyyy-MM-dd HH:mm:ss zzz";
