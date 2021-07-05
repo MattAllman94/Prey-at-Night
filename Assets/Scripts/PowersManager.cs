@@ -11,10 +11,8 @@ public class PowersManager : Singleton<PowersManager>
     [Header ("Powers")]
     public List<Power> allPowers;
 
-    public GameObject bloodDrainParticle;
-
-    public Power activePower1 = null;
-    public Power activePower2 = null;
+    public Power activePower1;
+    public Power activePower2;
 
     [Header ("Casting")]
     public Transform castPos;
@@ -106,6 +104,8 @@ public class PowersManager : Singleton<PowersManager>
             {
                 float modifier = 0.02f;
                 npcScript = hit.collider.gameObject.GetComponent<NPC>();   // get script off npc hit 
+
+
 
                 _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
                 _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);  // add health

@@ -57,6 +57,15 @@ public class UIManager : Singleton<UIManager>
         
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            print(_PM.activePower1.power);
+            print(_PM.activePower2.power);
+            print(selectedPower.power);
+        }
+    }
 
 
     public void Resume()
@@ -87,7 +96,7 @@ public class UIManager : Singleton<UIManager>
     }
 
     public void EquipPower(string _EquipKey)
-    {
+    {       
         if(selectedPower.powerStatus == PowerStatus.Purchased || selectedPower.powerStatus == PowerStatus.Active)
         {
             selectedPower.powerStatus = PowerStatus.Active;
@@ -96,43 +105,51 @@ public class UIManager : Singleton<UIManager>
             {
                 case ("1"):
                     {
-                        if (_PM.activePower1 != selectedPower && _PM.activePower1.power != Powers.NoPower) // checks if theres a power on slot 1
+                        if(_PM.activePower1 != null)
                         {
-                            //warn Player
-                            DisplayWarning(1);             
-                        }
-                        else
-                        {
-                            if (_PM.activePower2 == selectedPower) 
+                            if (_PM.activePower1 != selectedPower && _PM.activePower1.power != Powers.NoPower) // checks if theres a power on slot 1
                             {
-                                ClearSlot2();
+                                //warn Player
+                                DisplayWarning(1);
                             }
+                            else
+                            {
+                                if (_PM.activePower2 == selectedPower)
+                                {
+                                    ClearSlot2();
+                                }
 
-                            UpdateSlot1();                  
+                                UpdateSlot1();
+                            }
+                          
                         }
                         break;
                     }
 
                 case ("2"):
                     {
-                        if (_PM.activePower2 != selectedPower && _PM.activePower2.power != Powers.NoPower) // checks if theres a power on slot 2
+                        if (_PM.activePower2 != null)
                         {
-                            //warn Player
-                            DisplayWarning(2);
-                        }
-                        else
-                        {
-                            if (_PM.activePower1 == selectedPower) 
+                            if (_PM.activePower2 != selectedPower && _PM.activePower2.power != Powers.NoPower) // checks if theres a power on slot 2
                             {
-                                ClearSlot1();
+                                //warn Player
+                                DisplayWarning(2);
                             }
+                            else
+                            {
+                                if (_PM.activePower1 == selectedPower)
+                                {
+                                    ClearSlot1();
+                                }
 
-                            UpdateSlot2();
+                                UpdateSlot2();
+                            }
                         }
                         break;                     
                     }
             }  
         }
+        
     }
 
     public void DisplayWarning(int _slotNum)
@@ -194,6 +211,7 @@ public class UIManager : Singleton<UIManager>
 
     void UpdateSlot2()
     {
+
         _PM.activePower2 = selectedPower;
         selectedPower.activeSlot = 2;
         slot2Icon.sprite = selectedPower.icon;
@@ -203,14 +221,16 @@ public class UIManager : Singleton<UIManager>
 
     void ClearSlot1()
     {
-        _PM.activePower1 = null; // remove selected power assignment from other keys
+        _PM.activePower1.activeSlot = 0;
+        _PM.activePower1 = null; // remove selected power assignment from other keys 
         slot1Icon.sprite = null;
         power1Icon.sprite = null;
     }
 
     void ClearSlot2()
-    {
-        _PM.activePower2 = null; // remove selected power assignment from other keys
+    {   
+        _PM.activePower2.activeSlot = 0;
+        _PM.activePower2 = null; // remove selected power assignment from other keys  
         slot2Icon.sprite = null;
         power2Icon.sprite = null;
     }
@@ -219,6 +239,14 @@ public class UIManager : Singleton<UIManager>
     {
         warningPanel.SetActive(false);
     }
+
+    public void UpdateRightPanel(bool _unlockButton, string _unlockText, string _equipText)
+    {
+        unlockButton.SetActive(_unlockButton);
+        unlockText.text = (_unlockText);
+        equippedText.text = _equipText;
+    }
+
 
     #endregion
 

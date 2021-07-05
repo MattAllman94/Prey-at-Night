@@ -81,9 +81,7 @@ public class UIPower : Prey
         {
             case (PowerStatus.Unlocked):
             {
-                    _UI.unlockButton.SetActive(true);
-                    _UI.unlockText.text = ("UNLOCK COST: " + power.unlockCost);
-                    _UI.equippedText.text = "";
+                    _UI.UpdateRightPanel(true, "UNLOCK COST: " + power.unlockCost, "");
                     break;
             }
 
@@ -92,16 +90,12 @@ public class UIPower : Prey
                     if (_GM.corruptionLevel == power.myRequirement || power.myRequirement == CorruptionLevel.NORMAL)
                     {
                         power.powerStatus = PowerStatus.Unlocked;
-                        _UI.unlockButton.SetActive(true);
-                        _UI.unlockText.text = ("UNLOCK COST: " + power.unlockCost);
-                        _UI.equippedText.text = "";
+                        _UI.UpdateRightPanel(true, "UNLOCK COST: " + power.unlockCost, "");
                         break;
                     }
                     else
                     {
-                        _UI.unlockButton.SetActive(true);
-                        _UI.unlockText.text = ("LOCKED");
-                        _UI.equippedText.text = "";
+                        _UI.UpdateRightPanel(true, "LOCKED", "");
                         break;
                     }
                      
@@ -109,16 +103,14 @@ public class UIPower : Prey
 
             case (PowerStatus.Purchased):
             {
-                    _UI.unlockButton.SetActive(false);
-                    _UI.equippedText.text = "";
+                    _UI.UpdateRightPanel(false, "", "");
                     break;
             }
 
             case (PowerStatus.Active):
-            {
-                    _UI.unlockButton.SetActive(false);
-
-                    _UI.equippedText.text = ("Equipped: Slot " + power.activeSlot);
+            {                           
+                    _UI.UpdateRightPanel(false, "", "Equipped: Slot " + power.activeSlot);
+                    
                     break;   
             }
 
