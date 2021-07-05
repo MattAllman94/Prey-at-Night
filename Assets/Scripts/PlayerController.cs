@@ -9,12 +9,18 @@ public class PlayerController : Singleton<PlayerController>
     public float currentHealth = 100f;
 
     [Header("Movement")]
-    private float horizontal, vertical;
-    public float speed, walkSpeed, sprintSpeed, crouchSpeed;
-    public bool isSprinting;
-    public bool isCrouching;
-    public bool isHidden;
-    private CapsuleCollider playerCollider;
+    public CharacterController controller;
+    public Transform cam;
+    public float speed = 6f;
+    public float turnSmoothTime = 0.1f;
+    float turnSmoothVelocity;
+
+    //private float horizontal, vertical;
+    //public float speed, walkSpeed, sprintSpeed, crouchSpeed;
+    //public bool isSprinting;
+    //public bool isCrouching;
+    //public bool isHidden;
+    //private CapsuleCollider playerCollider;
 
     [Header("Attacking")]
     public GameObject atkHitbox;
@@ -26,7 +32,7 @@ public class PlayerController : Singleton<PlayerController>
 
     void Start()
     {
-        playerCollider = GetComponent<CapsuleCollider>();
+        //playerCollider = GetComponent<CapsuleCollider>();
     }
 
  
@@ -42,39 +48,53 @@ public class PlayerController : Singleton<PlayerController>
 
     public void Movement() //Controls the players walk, sprint and crouch
     {
-        horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        vertical = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-        transform.Translate(horizontal, 0, vertical);
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        if(Input.GetKey(KeyCode.LeftShift) && !isCrouching)
+        if(direction.magnitude >= 0.1f)
         {
-            speed = sprintSpeed;
-            isSprinting = true;
-        }
-        else
-        {
-            speed = walkSpeed;
-            isSprinting = false;
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
 
-        if(Input.GetKey(KeyCode.LeftControl) && !isSprinting)
-        {
-            speed = crouchSpeed;
-            playerCollider.height = 1;
-            playerCollider.center = new Vector3(playerCollider.center.x, -0.5f, playerCollider.center.z); //Add back once crouch animations are included
-            //transform.localScale = new Vector3(1, 0.5f, 1); //Remove once crouching animation is included
-            isCrouching = true;
+        //horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        //vertical = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        //transform.Translate(horizontal, 0, vertical);
+
+        //if(Input.GetKey(KeyCode.LeftShift) && !isCrouching)
+        //{
+        //    speed = sprintSpeed;
+        //    isSprinting = true;
+        //}
+        //else
+        //{
+        //    speed = walkSpeed;
+        //    isSprinting = false;
+        //}
+
+        //if(Input.GetKey(KeyCode.LeftControl) && !isSprinting)
+        //{
+        //    speed = crouchSpeed;
+        //    playerCollider.height = 1;
+        //    playerCollider.center = new Vector3(playerCollider.center.x, -0.5f, playerCollider.center.z); //Add back once crouch animations are included
+        //    //transform.localScale = new Vector3(1, 0.5f, 1); //Remove once crouching animation is included
+        //    isCrouching = true;
             
-        }
-        else
-        {
-            speed = walkSpeed;
-            playerCollider.height = 2;
-            playerCollider.center = new Vector3(playerCollider.center.x, 0f, playerCollider.center.z); //Add back once crouch animations are included
-            //transform.localScale = new Vector3(1, 1, 1); //Remove once crouching animation is included
-            isCrouching = false;
+        //}
+        //else
+        //{
+        //    speed = walkSpeed;
+        //    playerCollider.height = 2;
+        //    playerCollider.center = new Vector3(playerCollider.center.x, 0f, playerCollider.center.z); //Add back once crouch animations are included
+        //    //transform.localScale = new Vector3(1, 1, 1); //Remove once crouching animation is included
+        //    isCrouching = false;
             
-        }
+        //}
     }
 
     IEnumerator Attack() // Turns the hitbox on and off 
