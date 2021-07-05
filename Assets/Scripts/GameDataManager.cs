@@ -8,7 +8,7 @@ using UnityEngine;
 public class GameSettingData
 {
     public float bloodLevel;
-    public CorruptionLevel corruptionLevel;
+    public float corruptionLevel;
     public int powerPoints;
 }
 
@@ -100,12 +100,13 @@ public class GameDataManager : GameData
         timeOfLastSave = DateTime.Now;
     }
 
-    #region Setting Data
-    public void SetGameData(GameManager _gamedata)
+    #region Setting Data 
+    //Can all be combined when referencing singletons
+    public void SetGameData(float _currentBlood, float _currentCorruption, int _powerPoints)
     {
-        data.gameData.bloodLevel = _gamedata.currentBlood;
-        data.gameData.corruptionLevel = _gamedata.corruptionLevel;
-        data.gameData.powerPoints = _gamedata.powerPoints;
+        data.gameData.bloodLevel = _currentBlood;
+        data.gameData.corruptionLevel = _currentCorruption;
+        data.gameData.powerPoints = _powerPoints;
     }
     
     public void SetSettings(Settings _settings)
@@ -115,22 +116,42 @@ public class GameDataManager : GameData
         data.settingData.vfx = _settings.vfx;
     }
 
-    public void SetPlayerData(PlayerController _player)
+    public void SetPlayerData()
     {
-        data.playerData.playerHealth = _player.currentHealth;
-        data.playerData.lastPosition = _player.transform.position;
+        data.playerData.playerHealth = _P.currentHealth;
+        data.playerData.lastPosition = _P.transform.position;
     }
 
     #endregion
 
-    public GameManager GetGameManager()
+    public float GetBloodLevel()
     {
-        return new GameManager(data.gameData.bloodLevel, data.gameData.corruptionLevel, data.gameData.powerPoints);
+        return data.gameData.bloodLevel;
     }
-    
+
+    public float GetCorruptionLevel()
+    {
+        return data.gameData.corruptionLevel;
+    }
+
+    public int GetPowerPoints()
+    {
+        return data.gameData.powerPoints;
+    }
+
     public Settings GetSettings()
     {
         return new Settings(data.settingData.sounds, data.settingData.music, data.settingData.vfx);
+    }
+
+    public float GetCurrentHealth()
+    {
+        return data.playerData.playerHealth;
+    }
+
+    public Vector3 GetLastPosition()
+    {
+        return data.playerData.lastPosition;
     }
 
     public override void SaveData()

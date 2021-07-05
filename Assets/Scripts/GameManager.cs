@@ -48,14 +48,25 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        settings = _DATA.GetSettings();
+        LoadData();
         IncreaseCorruption(0);
-        UpdateSettings();
     }
 
-    public void UpdateSettings()
+    public void SaveData()
     {
         _DATA.SetSettings(settings);
+        _DATA.SetGameData(currentBlood, currentCorruption, powerPoints);
+        _DATA.SetPlayerData();
+    }
+
+    public void LoadData()
+    {
+        settings = _DATA.GetSettings();
+        currentBlood = _DATA.GetBloodLevel();
+        currentCorruption = _DATA.GetCorruptionLevel();
+        powerPoints = _DATA.GetPowerPoints();
+        _P.currentHealth = _DATA.GetCurrentHealth();
+        _P.transform.position = _DATA.GetLastPosition();
     }
 
     void Update()
@@ -74,7 +85,7 @@ public class GameManager : Singleton<GameManager>
 
             if(Input.GetKeyDown(KeyCode.L))
             {
-                INSTANCE.UpdateSettings();        // FOR TESTING SAVING
+                SaveData();        // FOR TESTING SAVING
                 Debug.Log("Saved State");
             }
         }
@@ -198,13 +209,7 @@ public class GameManager : Singleton<GameManager>
         _UI.ChangeGameState(gameState);
     }
 
-    public GameManager(float _bloodLevel, CorruptionLevel _corruption, int _powerPoints)
-    {
-        currentBlood = _bloodLevel;
-        corruptionLevel = _corruption;
-        powerPoints = _powerPoints;
-
-    }
+   
 }
 
 [Serializable]
