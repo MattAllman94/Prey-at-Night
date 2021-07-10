@@ -29,6 +29,9 @@ public class GameManager : Singleton<GameManager>
     public GameState gameState;
     public Settings settings;
 
+    public GameObject titleCamera;
+    public GameObject inGameCamera;
+
     [Header ("Corruption ")]  
     public float currentCorruption = 0f;
     public float maxCorruption = 100f;
@@ -50,7 +53,10 @@ public class GameManager : Singleton<GameManager>
     {
         LoadData();
         IncreaseCorruption(0);
+        ChangeBlood(0);
         ChangeGameState(GameState.TITLE);
+
+        
     }
 
     public void SaveData()
@@ -78,6 +84,16 @@ public class GameManager : Singleton<GameManager>
             {
                 SaveData();        // FOR TESTING SAVING
                 Debug.Log("Saved State");
+            }
+
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                ChangePowerPoints(5, true);        // Testing Power Points
+            }
+
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                ChangeBlood(25f, true);        // Testing Power Points
             }
         }
        
@@ -147,10 +163,20 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void ChangeBlood(float _blood, bool increase = false) // Dont have to put in the bool if increasing blood 
+    public void ChangeBlood(float _blood, bool increase = false) // Dont have to put in the bool if decreasing blood 
     {
         currentBlood = increase ? currentBlood += _blood : currentBlood -= _blood;
+        if (currentBlood > maxBlood)
+            currentBlood = maxBlood;
         _UI.UpdateBlood(currentBlood);
+    }
+
+    public void ChangePowerPoints(int _points, bool increase = false) // Dont have to put in the bool if decreasing pp
+    {
+        powerPoints = increase ? powerPoints += _points : powerPoints -= _points;
+        if (powerPoints < 0)
+            powerPoints = 0;
+        _UI.UpdatePowerPoints(powerPoints);
     }
 
     public void ChangeGameState(GameState _gameState)
@@ -163,6 +189,8 @@ public class GameManager : Singleton<GameManager>
                 {
                     Time.timeScale = 0;
                     Cursor.lockState = CursorLockMode.None;
+                    titleCamera.SetActive(true);
+                    inGameCamera.SetActive(false);
                     Cursor.visible = true;
                     break;
                 }
@@ -170,6 +198,8 @@ public class GameManager : Singleton<GameManager>
                 {
                     Time.timeScale = 1f;
                     Cursor.lockState = CursorLockMode.Locked;
+                    titleCamera.SetActive(false);
+                    inGameCamera.SetActive(true);
                     Cursor.visible = false;
                     break;
                 }

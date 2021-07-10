@@ -29,7 +29,7 @@ public class PowersManager : Singleton<PowersManager>
 
     private void Update()
     {
-        if (_GM.gameState == GameState.TITLE)
+        if (_GM.gameState != GameState.TITLE)
         {
             #region INPUT // 
             if (Input.GetKeyDown(KeyCode.Alpha1) && activePower1.power != Powers.NoPower & _GM.currentBlood >= activePower1.bloodCost) // USE POWER 1

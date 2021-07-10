@@ -51,9 +51,10 @@ public class UIManager : Singleton<UIManager>
     {
         UpdateBlood(_GM.currentBlood);
         UpdateHealth(_P.currentHealth);
+        UpdatePowerPoints(_GM.powerPoints);
         powerTreePanel.SetActive(false);
         powerTextSide.SetActive(false);
-        ppText.text = ("PP: " + _GM.powerPoints.ToString());
+        
         
     }
 
@@ -82,9 +83,9 @@ public class UIManager : Singleton<UIManager>
     public void PurchasePower()
     {
         if (_GM.powerPoints >= selectedPower.unlockCost && selectedPower.powerStatus == PowerStatus.Unlocked)
-        {
-            _GM.powerPoints -= selectedPower.unlockCost;
-            ppText.text = ("PP: " + _GM.powerPoints.ToString());
+        {           
+            _GM.ChangePowerPoints(selectedPower.unlockCost);
+            UpdatePowerPoints(_GM.powerPoints);
             selectedPower.powerStatus = PowerStatus.Purchased;
             unlockButton.SetActive(false);
         }
@@ -252,6 +253,11 @@ public class UIManager : Singleton<UIManager>
     public void UpdateHealth(float _health)
     {
         cHealthText.text = _health.ToString("f2");
+    }
+
+    public void UpdatePowerPoints(int _points)
+    {
+        ppText.text = ("PP: " + _points.ToString());
     }
 
     public void ClearUI()
