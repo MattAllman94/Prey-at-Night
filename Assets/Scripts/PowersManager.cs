@@ -16,7 +16,7 @@ public class PowersManager : Singleton<PowersManager>
 
     [Header ("Casting")]
     public Transform castPos;
-    NPC npcScript;
+    AudioSource castAudioSource;
 
     RaycastHit hit;
     public float rayRange = 100f;
@@ -24,7 +24,8 @@ public class PowersManager : Singleton<PowersManager>
     private void Start()
     {
         activePower1.power = Powers.NoPower;
-        activePower2.power = Powers.NoPower;       
+        activePower2.power = Powers.NoPower;
+        castAudioSource = castPos.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -103,19 +104,38 @@ public class PowersManager : Singleton<PowersManager>
     {
         if(Physics.Raycast(castPos.position, castPos.transform.forward, out hit, GetRange(_power.range))) 
         {
-            if(hit.collider.CompareTag("NPC"))
-            {
+            if(hit.collider.CompareTag("Civilian"))
+            {                
+                Civilian npcScript = hit.collider.GetComponent<Civilian>();
+
                 float modifier = 0.02f;
-                npcScript = hit.collider.gameObject.GetComponent<NPC>();   // get script off npc hit 
-
-
-
                 _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
                 _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);  // add health
                 npcScript.health -= _power.damage;                         // damage enemy
-                //if (npcScript.health <= 0)
-                //    npcScript.Die();
-                
+                if (npcScript.health <= 0)
+                    npcScript.Die();              
+            }
+            else if (hit.collider.CompareTag("Criminal"))
+            {
+                Criminal npcScript = hit.collider.GetComponent<Criminal>();
+
+                float modifier = 0.02f;
+                _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
+                _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);  // add health
+                npcScript.health -= _power.damage;                         // damage enemy
+                if (npcScript.health <= 0)
+                    npcScript.Die();
+            }
+            else if (hit.collider.CompareTag("Monster"))
+            {
+                Monster npcScript = hit.collider.GetComponent<Monster>();
+
+                float modifier = 0.02f;
+                _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
+                _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);  // add health
+                npcScript.health -= _power.damage;                         // damage enemy
+                if (npcScript.health <= 0)
+                    npcScript.Die();
             }
         }
     }
@@ -127,6 +147,10 @@ public class PowersManager : Singleton<PowersManager>
         Destroy(stake, 10f);    
         // Stake script does the rest 
         _GM.ChangeBlood(_power.bloodCost);                                                   // use blood
+
+        castAudioSource.clip = _power.castSound;
+        castAudioSource.pitch = Random.Range(0.8f, 1f);
+        castAudioSource.Play();
     }
 
     float GetRange(Range _range)

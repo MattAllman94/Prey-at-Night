@@ -8,11 +8,12 @@ public class Stake : Prey
     CapsuleCollider collider;
     public float thrust = 500f;
     public float damage;
-
+    public AudioSource audioSource;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<CapsuleCollider>();
+        audioSource = GetComponent<AudioSource>();
  
         rb.AddForce(transform.forward * thrust, ForceMode.Impulse);
     }
@@ -22,14 +23,51 @@ public class Stake : Prey
         rb.isKinematic = true;
         collider.enabled = false;
 
-        if (col.gameObject.CompareTag("NPC"))
+        if (col.gameObject.CompareTag("Civilian"))
         {          
             gameObject.transform.SetParent(col.gameObject.transform);
-            NPC npcScript = col.gameObject.GetComponent<NPC>();
+            Civilian npcScript = col.gameObject.GetComponent<Civilian>();
             npcScript.health -= damage;
+
+            audioSource.clip = _AM.powerSFX[0];
+            audioSource.pitch = Random.Range(0.8f, 1f);
+            audioSource.Play();
+
+            if (npcScript.health <= 0)
+                npcScript.Die();           
+        }
+        else if (col.gameObject.CompareTag("Criminal"))
+        {
+            gameObject.transform.SetParent(col.gameObject.transform);
+            Criminal npcScript = col.gameObject.GetComponent<Criminal>();
+            npcScript.health -= damage;
+
+            audioSource.clip = _AM.powerSFX[0];
+            audioSource.pitch = Random.Range(0.8f, 1f);
+            audioSource.Play();
 
             if (npcScript.health <= 0)
                 npcScript.Die();
+        }
+        else if (col.gameObject.CompareTag("Monster"))
+        {
+            gameObject.transform.SetParent(col.gameObject.transform);
+            Monster npcScript = col.gameObject.GetComponent<Monster>();
+            npcScript.health -= damage;
+
+            audioSource.clip = _AM.powerSFX[0];
+            audioSource.pitch = Random.Range(0.8f, 1f);
+            audioSource.Play();
+
+            if (npcScript.health <= 0)
+                npcScript.Die();
+        }
+        else
+        {
+            audioSource.clip = _AM.powerSFX[0];
+            audioSource.pitch = Random.Range(0.8f, 1f);
+            audioSource.Play();
+            // play sound impact sound
         }
     }
 

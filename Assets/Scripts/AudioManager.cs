@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AudioManager : Singleton<AudioManager>
 {
@@ -10,7 +11,11 @@ public class AudioManager : Singleton<AudioManager>
     public List<AudioClip> uiSFX;
     public List<AudioClip> music;
 
-    int currentSource = 0; 
+    int currentSource = 0;
+
+    public AudioSource rainSource;
+
+
     public void PlaySFX(AudioClip _clip)
     {
         if (!_GM.settings.SFX)   // exits function if SFX == false
@@ -21,5 +26,10 @@ public class AudioManager : Singleton<AudioManager>
 
         sourcesPool[currentSource].clip = _clip;
         sourcesPool[currentSource].Play();
+    }
+
+    public void ChangeBackgroundVolume(float _volume)
+    {
+        rainSource.volume = _volume;
     }
 }

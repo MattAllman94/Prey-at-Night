@@ -58,7 +58,7 @@ public class GameManager : Singleton<GameManager>
 
         
     }
-
+    
     public void SaveData()
     {
         _DATA.SetSettings(settings);
@@ -191,6 +191,7 @@ public class GameManager : Singleton<GameManager>
                     Cursor.lockState = CursorLockMode.None;
                     titleCamera.SetActive(true);
                     inGameCamera.SetActive(false);
+                    _AM.ChangeBackgroundVolume(0.25f);
                     Cursor.visible = true;
                     break;
                 }
@@ -200,6 +201,7 @@ public class GameManager : Singleton<GameManager>
                     Cursor.lockState = CursorLockMode.Locked;
                     titleCamera.SetActive(false);
                     inGameCamera.SetActive(true);
+                    _AM.ChangeBackgroundVolume(0.4f);
                     Cursor.visible = false;
                     break;
                 }
