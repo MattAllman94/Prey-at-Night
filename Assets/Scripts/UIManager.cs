@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using DG.Tweening;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -20,6 +21,7 @@ public class UIManager : Singleton<UIManager>
 
     [Header("Title")]
     public GameObject titlePanel;
+    public CanvasGroup fadePanelGroup;
 
     [Header ("Power Tree")]
     public GameObject powerTreePanel;
@@ -53,15 +55,15 @@ public class UIManager : Singleton<UIManager>
         UpdateHealth(_P.currentHealth);
         UpdatePowerPoints(_GM.powerPoints);
         powerTreePanel.SetActive(false);
-        powerTextSide.SetActive(false);
-        
-        
+        powerTextSide.SetActive(false);        
+       
     }
 
 
     public void PlayGame()
     {
         _GM.ChangeGameState(GameState.INGAME);
+        FadePanelOut();
     }
 
     public void Resume()
@@ -267,6 +269,16 @@ public class UIManager : Singleton<UIManager>
         equippedText.text = "";
         unlockButton.SetActive(false);
         selectedPower = null;
+    }
+
+    public void FadePanelIn()
+    {
+        fadePanelGroup.DOFade(1f, 2f); //.OnComplete(PlayGame);      
+    }
+
+    public void FadePanelOut()
+    {
+        fadePanelGroup.DOFade(0f, 2f);
     }
 
     public void ChangeGameState(GameState _gameState)
