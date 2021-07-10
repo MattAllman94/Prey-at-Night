@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
+
 
 public class AudioManager : Singleton<AudioManager>
 {
@@ -30,6 +30,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public void ChangeBackgroundVolume(float _volume)
     {
-        rainSource.volume = _volume;
+        if (rainSource != null)
+            rainSource.volume = _volume;
     }
 }

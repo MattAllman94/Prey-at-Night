@@ -9,6 +9,9 @@ public class Stake : Prey
     public float thrust = 500f;
     public float damage;
     public AudioSource audioSource;
+    public AudioClip npcHitSound;
+    public AudioClip enviroHitSound;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -29,7 +32,7 @@ public class Stake : Prey
             Civilian npcScript = col.gameObject.GetComponent<Civilian>();
             npcScript.health -= damage;
 
-            audioSource.clip = _AM.powerSFX[0];
+            audioSource.clip = npcHitSound;
             audioSource.pitch = Random.Range(0.8f, 1f);
             audioSource.Play();
 
@@ -42,7 +45,7 @@ public class Stake : Prey
             Criminal npcScript = col.gameObject.GetComponent<Criminal>();
             npcScript.health -= damage;
 
-            audioSource.clip = _AM.powerSFX[0];
+            audioSource.clip = npcHitSound;
             audioSource.pitch = Random.Range(0.8f, 1f);
             audioSource.Play();
 
@@ -55,7 +58,7 @@ public class Stake : Prey
             Monster npcScript = col.gameObject.GetComponent<Monster>();
             npcScript.health -= damage;
 
-            audioSource.clip = _AM.powerSFX[0];
+            audioSource.clip = npcHitSound;
             audioSource.pitch = Random.Range(0.8f, 1f);
             audioSource.Play();
 
@@ -64,10 +67,10 @@ public class Stake : Prey
         }
         else
         {
-            audioSource.clip = _AM.powerSFX[0];
+            audioSource.clip = enviroHitSound;
             audioSource.pitch = Random.Range(0.8f, 1f);
             audioSource.Play();
-            // play sound impact sound
+            // play environment impact sound
         }
     }
 
