@@ -113,8 +113,8 @@ public class PowersManager : Singleton<PowersManager>
                 _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
                 _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);  // add health
                 npcScript.health -= _power.damage;                         // damage enemy
-                if (npcScript.health <= 0)
-                    npcScript.Die();
+                //if (npcScript.health <= 0)
+                //    npcScript.Die();
                 
             }
         }
