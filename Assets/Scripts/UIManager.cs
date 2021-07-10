@@ -57,16 +57,11 @@ public class UIManager : Singleton<UIManager>
         
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            print(_PM.activePower1.power);
-            print(_PM.activePower2.power);
-            print(selectedPower.power);
-        }
-    }
 
+    public void PlayGame()
+    {
+        _GM.ChangeGameState(GameState.INGAME);
+    }
 
     public void Resume()
     {
@@ -247,7 +242,6 @@ public class UIManager : Singleton<UIManager>
         equippedText.text = _equipText;
     }
 
-
     #endregion
 
     public void UpdateBlood(float _blood)
@@ -295,6 +289,7 @@ public class UIManager : Singleton<UIManager>
                     powerTreePanel.SetActive(false);
                     powerTextSide.SetActive(false);
                     pausedPanel.SetActive(false);
+                    titlePanel.SetActive(false);
                     break;
                 }
             case GameState.TITLE:

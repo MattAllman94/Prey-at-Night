@@ -50,6 +50,7 @@ public class GameManager : Singleton<GameManager>
     {
         LoadData();
         IncreaseCorruption(0);
+        ChangeGameState(GameState.TITLE);
     }
 
     public void SaveData()
@@ -72,17 +73,7 @@ public class GameManager : Singleton<GameManager>
     void Update()
     {
         if (debug) // All Debugging checks
-        {
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                DecreaseCorruption(4f);           // FOR TESTING CORRUPTION
-            }
-
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                IncreaseCorruption(4f);           // FOR TESTING CORRUPTION
-            }
-
+        {            
             if(Input.GetKeyDown(KeyCode.L))
             {
                 SaveData();        // FOR TESTING SAVING

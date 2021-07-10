@@ -29,53 +29,56 @@ public class PowersManager : Singleton<PowersManager>
 
     private void Update()
     {
-        #region INPUT // 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && activePower1.power != Powers.NoPower & _GM.currentBlood >= activePower1.bloodCost) // USE POWER 1
+        if (_GM.gameState == GameState.TITLE)
         {
-            if (activePower1.hasCooldown)
+            #region INPUT // 
+            if (Input.GetKeyDown(KeyCode.Alpha1) && activePower1.power != Powers.NoPower & _GM.currentBlood >= activePower1.bloodCost) // USE POWER 1
             {
-                if (Time.time >= activePower1.nextTimeToCast)
+                if (activePower1.hasCooldown)
                 {
-                    activePower1.nextTimeToCast = Time.time + activePower1.cooldown;
+                    if (Time.time >= activePower1.nextTimeToCast)
+                    {
+                        activePower1.nextTimeToCast = Time.time + activePower1.cooldown;
+                        UsePower(activePower1);
+                    }
+                }
+                else
+                {
                     UsePower(activePower1);
                 }
             }
-            else
-            {
-                UsePower(activePower1);
-            }
-        }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && activePower2.power != Powers.NoPower && _GM.currentBlood >= activePower2.bloodCost) // USE POWER 2
-        {
-            if (activePower2.hasCooldown)
+            if (Input.GetKeyDown(KeyCode.Alpha2) && activePower2.power != Powers.NoPower && _GM.currentBlood >= activePower2.bloodCost) // USE POWER 2
             {
-                if (Time.time >= activePower2.nextTimeToCast)
+                if (activePower2.hasCooldown)
                 {
-                    activePower2.nextTimeToCast = Time.time + activePower2.cooldown;
+                    if (Time.time >= activePower2.nextTimeToCast)
+                    {
+                        activePower2.nextTimeToCast = Time.time + activePower2.cooldown;
+                        UsePower(activePower2);
+                    }
+                }
+                else
+                {
                     UsePower(activePower2);
                 }
             }
-            else
+
+
+
+            if (Input.GetKey(KeyCode.Alpha1) && _GM.currentBlood >= activePower1.bloodCost && activePower1.damageType == DamageType.DOT) // HOLD POWER 1 
             {
-                UsePower(activePower2);
+                if (activePower1.power != Powers.NoPower)
+                    UsePower(activePower1);
             }
-        }
-       
 
-
-        if (Input.GetKey(KeyCode.Alpha1) && _GM.currentBlood >= activePower1.bloodCost && activePower1.damageType == DamageType.DOT) // HOLD POWER 1 
-        {
-            if (activePower1.power != Powers.NoPower)
-                UsePower(activePower1);
+            if (Input.GetKey(KeyCode.Alpha2) && _GM.currentBlood >= activePower2.bloodCost && activePower2.damageType == DamageType.DOT) // HOLD POWER 2 
+            {
+                if (activePower2.power != Powers.NoPower)
+                    UsePower(activePower2);
+            }
+            #endregion
         }
-
-        if (Input.GetKey(KeyCode.Alpha2) && _GM.currentBlood >= activePower2.bloodCost && activePower2.damageType == DamageType.DOT) // HOLD POWER 2 
-        {
-            if (activePower2.power != Powers.NoPower)
-                UsePower(activePower2);         
-        }
-        #endregion
     }
 
 
