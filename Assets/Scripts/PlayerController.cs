@@ -14,6 +14,7 @@ public class PlayerController : Singleton<PlayerController>
     public float speed = 6f;
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+    Vector3 moveDir;
 
     //private float horizontal, vertical;
     //public float speed, walkSpeed, sprintSpeed, crouchSpeed;
@@ -54,15 +55,23 @@ public class PlayerController : Singleton<PlayerController>
         Vector3 direction = new Vector3(horizontal, 0f , vertical).normalized;
 
 
-        if(direction.magnitude >= 0.1f)
+        if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
+
+        if (!controller.isGrounded)
+        {
+            moveDir += Physics.gravity;
+            controller.Move(moveDir * Time.deltaTime);
+        }
+
 
         //horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         //vertical = Input.GetAxis("Vertical") * speed * Time.deltaTime;
@@ -86,7 +95,7 @@ public class PlayerController : Singleton<PlayerController>
         //    playerCollider.center = new Vector3(playerCollider.center.x, -0.5f, playerCollider.center.z); //Add back once crouch animations are included
         //    //transform.localScale = new Vector3(1, 0.5f, 1); //Remove once crouching animation is included
         //    isCrouching = true;
-            
+
         //}
         //else
         //{
@@ -95,7 +104,7 @@ public class PlayerController : Singleton<PlayerController>
         //    playerCollider.center = new Vector3(playerCollider.center.x, 0f, playerCollider.center.z); //Add back once crouch animations are included
         //    //transform.localScale = new Vector3(1, 1, 1); //Remove once crouching animation is included
         //    isCrouching = false;
-            
+
         //}
     }
 
