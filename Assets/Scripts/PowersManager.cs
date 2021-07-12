@@ -16,7 +16,7 @@ public class PowersManager : Singleton<PowersManager>
 
     [Header ("Casting")]
     public Transform castPos;
-    AudioSource castAudioSource;
+    
 
     RaycastHit hit;
     public float rayRange = 100f;
@@ -25,7 +25,6 @@ public class PowersManager : Singleton<PowersManager>
     {
         activePower1.power = Powers.NoPower;
         activePower2.power = Powers.NoPower;
-        castAudioSource = castPos.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -148,9 +147,7 @@ public class PowersManager : Singleton<PowersManager>
         // Stake script does the rest 
         _GM.ChangeBlood(_power.bloodCost);                                                   // use blood
 
-        castAudioSource.clip = _power.castSound;
-        castAudioSource.pitch = Random.Range(0.8f, 1f);
-        castAudioSource.Play();
+        _AM.PlayCastSound(_power.castSound);
     }
 
     float GetRange(Range _range)
@@ -221,10 +218,11 @@ public class Power
     public AnimationClip playerAnimation;
     public AnimationClip enemyAnimation;
 
+    /*
     public void PlayMyEffect()
     {
         AudioManager.INSTANCE.PlaySFX(castSound);
-    }
+    }*/
 
     public string GetPowerName()
     {

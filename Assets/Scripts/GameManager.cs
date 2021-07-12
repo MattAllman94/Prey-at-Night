@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,6 +50,7 @@ public class GameManager : Singleton<GameManager>
     public bool debug = false;
 
 
+
     private void Start()
     {
         LoadData();
@@ -56,7 +58,6 @@ public class GameManager : Singleton<GameManager>
         ChangeBlood(0);
         ChangeGameState(GameState.TITLE);
 
-        
     }
     
     public void SaveData()
@@ -98,7 +99,7 @@ public class GameManager : Singleton<GameManager>
         }
        
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && gameState != GameState.TITLE)
         {
             if (gameState == GameState.INGAME || gameState == GameState.POWERMENU)
                 ChangeGameState(GameState.PAUSED);                                      // Pause Game
@@ -106,7 +107,7 @@ public class GameManager : Singleton<GameManager>
                 ChangeGameState(GameState.INGAME);
         }
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Q) && gameState != GameState.TITLE)
         {
             if (gameState == GameState.INGAME)
                 ChangeGameState(GameState.POWERMENU);                                       // Open Power Menu 
@@ -201,7 +202,7 @@ public class GameManager : Singleton<GameManager>
                     Cursor.lockState = CursorLockMode.Locked;
                     titleCamera.SetActive(false);
                     inGameCamera.SetActive(true);
-                    _AM.ChangeBackgroundVolume(0.4f);
+                    _AM.ChangeBackgroundVolume(0.1f);
                     Cursor.visible = false;
                     break;
                 }

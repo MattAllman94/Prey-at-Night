@@ -110,5 +110,11 @@ public class NPC : Prey
         Spawn();
     }
 
+    public void TakeDamage(float _damage)
+    {
+        health -= _damage;
 
+        if (health <= 0)
+            Die();
+    }
 }

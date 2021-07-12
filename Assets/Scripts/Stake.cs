@@ -8,9 +8,9 @@ public class Stake : Prey
     CapsuleCollider collider;
     public float thrust = 500f;
     public float damage;
-    public AudioSource audioSource;
-    public AudioClip npcHitSound;
-    public AudioClip enviroHitSound;
+
+    AudioSource audioSource;
+
 
     void Start()
     {
@@ -30,48 +30,30 @@ public class Stake : Prey
         {          
             gameObject.transform.SetParent(col.gameObject.transform);
             Civilian npcScript = col.gameObject.GetComponent<Civilian>();
-            npcScript.health -= damage;
-
-            audioSource.clip = npcHitSound;
-            audioSource.pitch = Random.Range(0.8f, 1f);
-            audioSource.Play();
-
-            if (npcScript.health <= 0)
-                npcScript.Die();           
+            _AM.PlaySFX(_AM.stakeHitNpc, transform.position);
+            npcScript.TakeDamage(damage);
         }
         else if (col.gameObject.CompareTag("Criminal"))
         {
             gameObject.transform.SetParent(col.gameObject.transform);
             Criminal npcScript = col.gameObject.GetComponent<Criminal>();
-            npcScript.health -= damage;
-
-            audioSource.clip = npcHitSound;
-            audioSource.pitch = Random.Range(0.8f, 1f);
-            audioSource.Play();
-
-            if (npcScript.health <= 0)
-                npcScript.Die();
+            _AM.PlaySFX(_AM.stakeHitNpc, transform.position);
+            npcScript.TakeDamage(damage);       
         }
         else if (col.gameObject.CompareTag("Monster"))
         {
             gameObject.transform.SetParent(col.gameObject.transform);
             Monster npcScript = col.gameObject.GetComponent<Monster>();
-            npcScript.health -= damage;
-
-            audioSource.clip = npcHitSound;
-            audioSource.pitch = Random.Range(0.8f, 1f);
-            audioSource.Play();
-
-            if (npcScript.health <= 0)
-                npcScript.Die();
+            _AM.PlaySFX(_AM.stakeHitNpc, transform.position);
+            npcScript.TakeDamage(damage);
         }
         else
         {
-            audioSource.clip = enviroHitSound;
-            audioSource.pitch = Random.Range(0.8f, 1f);
-            audioSource.Play();
+            _AM.PlaySFX(_AM.stakeHitEnviro, transform.position);
             // play environment impact sound
         }
     }
+
+ 
 
 }

@@ -22,6 +22,7 @@ public class UIManager : Singleton<UIManager>
     [Header("Title")]
     public GameObject titlePanel;
     public CanvasGroup fadePanelGroup;
+    public float cvFadeTime = 2f;
 
     [Header ("Power Tree")]
     public GameObject powerTreePanel;
@@ -62,9 +63,10 @@ public class UIManager : Singleton<UIManager>
 
     public void PlayGame()
     {
-        _GM.ChangeGameState(GameState.INGAME);
-        FadePanelOut();
+        _GM.ChangeGameState(GameState.INGAME);       
     }
+
+    
 
     public void Resume()
     {
@@ -271,14 +273,39 @@ public class UIManager : Singleton<UIManager>
         selectedPower = null;
     }
 
-    public void FadePanelIn()
+    IEnumerator StartSequence()
     {
-        fadePanelGroup.DOFade(1f, 2f); //.OnComplete(PlayGame);      
+        print("starting sequence");
+        StartCoroutine(FadePanelIn(fadePanelGroup));
+        yield return new WaitUntil(()=> fadePanelGroup.alpha >= 1f);
+        print("entering INGAME");
+        _GM.ChangeGameState(GameState.INGAME);
+        StartCoroutine(FadePanelOut(fadePanelGroup));
+        yield return null;
     }
 
-    public void FadePanelOut()
+    public IEnumerator FadePanelIn(CanvasGroup _cg)
     {
-        fadePanelGroup.DOFade(0f, 2f);
+        //_cg.DOFade(1, cvFadeTime);
+
+        while (_cg.alpha < 1)
+        {
+            _cg.alpha += 0.1f;
+            yield return null;
+        }
+        
+    }
+
+    public IEnumerator FadePanelOut(CanvasGroup _cg)
+    {
+        //_cg.DOFade(0f, cvFadeTime);
+
+        while (_cg.alpha > 0)
+        {
+            _cg.alpha -= 0.1f;
+            yield return null;
+        }
+        
     }
 
     public void ChangeGameState(GameState _gameState)
