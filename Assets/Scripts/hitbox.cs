@@ -12,7 +12,7 @@ public class hitbox : Prey
             _P.hitNPC = col.GetComponent<Civilian>();
             _P.civilianScript = col.GetComponent<Civilian>();
             _P.HitNPC();
-            Debug.Log("Hit");
+            //Debug.Log("Hit");
         }
 
         if (col.CompareTag("Criminal"))
@@ -20,7 +20,7 @@ public class hitbox : Prey
             _P.hitNPC = col.GetComponent<Criminal>();
             _P.criminalScript = col.GetComponent<Criminal>();
             _P.HitNPC();
-            Debug.Log("Hit");
+            //Debug.Log("Hit");
         }
 
         if (col.CompareTag("Monster"))
@@ -28,7 +28,7 @@ public class hitbox : Prey
             _P.hitNPC = col.GetComponent<Monster>();
             _P.monsterScript = col.GetComponent<Monster>();
             _P.HitNPC();
-            Debug.Log("Hit");
+            //Debug.Log("Hit");
         }
     }
 }

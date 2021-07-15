@@ -9,7 +9,6 @@ public class Criminal : NPC
     bool isFleeing = false;
 
     public bool inAlley = false;
-    public bool isAttacking = false;
     public float delay;
 
     public bool isDraining;
@@ -93,6 +92,7 @@ public class Criminal : NPC
 
     IEnumerator Attack()
     {
+        Debug.Log("Is Attacking");
         float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
         agent.SetDestination(player.transform.position);
@@ -100,7 +100,7 @@ public class Criminal : NPC
         {
             _P.currentHealth -= damage;
             yield return new WaitForSeconds(delay);
-            Attack();
+            StartCoroutine("Attack");
         }
     }
 

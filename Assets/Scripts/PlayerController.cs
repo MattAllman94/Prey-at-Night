@@ -150,6 +150,14 @@ public class PlayerController : Singleton<PlayerController>
         {
             civilianScript.Flee();
         }
+        if(hitNPC.myType == NPC.EnemyType.Criminal)
+        {
+            criminalScript.StartCoroutine("Attack");
+        }
+        if (hitNPC.myType == NPC.EnemyType.Monster)
+        {
+            monsterScript.StartCoroutine("Attack");
+        }
     }
 
     public void DrainCivilian() //Drains Blood from civilian

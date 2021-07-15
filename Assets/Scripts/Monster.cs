@@ -117,7 +117,7 @@ public class Monster : NPC
         {
             _P.currentHealth -= damage;
             yield return new WaitForSeconds(delay);
-            Attack();
+            StartCoroutine("Attack");
         }
     }
 

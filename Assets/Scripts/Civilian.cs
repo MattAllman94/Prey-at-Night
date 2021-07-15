@@ -44,10 +44,6 @@ public class Civilian : NPC
         
         Response();
         
-        if(isFleeing)
-        {
-            Flee();
-        }
     }
 
     public void CivilianMovement()
@@ -58,10 +54,6 @@ public class Civilian : NPC
             currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
             agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
             CivilianMovement();
-            if(isFleeing)
-            {
-                Response();
-            }
         }
     }
 
@@ -73,7 +65,7 @@ public class Civilian : NPC
             float distToMonster = Vector3.Distance(transform.position, i.transform.position);
             if(distToMonster < 5f)
             {
-                isFleeing = true;
+                Flee();
             }
         }
 
@@ -83,7 +75,7 @@ public class Civilian : NPC
 
             if(distToPlayer <= 4f)
             {
-                isFleeing = true;
+                Flee();
             }
         }
         else
@@ -95,7 +87,7 @@ public class Civilian : NPC
     public void Flee()
     {
         isFleeing = true;
-        Debug.Log("Flee");
+        //Debug.Log("Flee");
         currentWaypoint = Random.Range(0, _NPC.civilianSpawn.Count - 1);
         agent.SetDestination(_NPC.civilianSpawn[currentWaypoint].transform.position);
 
