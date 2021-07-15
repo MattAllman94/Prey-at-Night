@@ -16,12 +16,6 @@ public class PlayerController : Singleton<PlayerController>
     float turnSmoothVelocity;
     Vector3 moveDir;
 
-    //private float horizontal, vertical;
-    //public float speed, walkSpeed, sprintSpeed, crouchSpeed;
-    //public bool isSprinting;
-    //public bool isCrouching;
-    //public bool isHidden;
-    //private CapsuleCollider playerCollider;
 
     [Header("Enemy Scripts")]
     public Civilian civilianScript;
@@ -44,7 +38,6 @@ public class PlayerController : Singleton<PlayerController>
 
     void Start()
     {
-        //playerCollider = GetComponent<CapsuleCollider>();
     }
 
  
@@ -96,41 +89,6 @@ public class PlayerController : Singleton<PlayerController>
             moveDir += Physics.gravity;
             controller.Move(moveDir * Time.deltaTime);
         }
-
-
-        //horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        //vertical = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-        //transform.Translate(horizontal, 0, vertical);
-
-        //if(Input.GetKey(KeyCode.LeftShift) && !isCrouching)
-        //{
-        //    speed = sprintSpeed;
-        //    isSprinting = true;
-        //}
-        //else
-        //{
-        //    speed = walkSpeed;
-        //    isSprinting = false;
-        //}
-
-        //if(Input.GetKey(KeyCode.LeftControl) && !isSprinting)
-        //{
-        //    speed = crouchSpeed;
-        //    playerCollider.height = 1;
-        //    playerCollider.center = new Vector3(playerCollider.center.x, -0.5f, playerCollider.center.z); //Add back once crouch animations are included
-        //    //transform.localScale = new Vector3(1, 0.5f, 1); //Remove once crouching animation is included
-        //    isCrouching = true;
-
-        //}
-        //else
-        //{
-        //    speed = walkSpeed;
-        //    playerCollider.height = 2;
-        //    playerCollider.center = new Vector3(playerCollider.center.x, 0f, playerCollider.center.z); //Add back once crouch animations are included
-        //    //transform.localScale = new Vector3(1, 1, 1); //Remove once crouching animation is included
-        //    isCrouching = false;
-
-        //}
     }
 
     IEnumerator Attack() // Turns the hitbox on and off 
@@ -146,15 +104,15 @@ public class PlayerController : Singleton<PlayerController>
     {
         //Debug.Log("Hit");
         hitNPC.health -= atkDamage;
-        if(hitNPC.myType == NPC.EnemyType.Civilian)
+        if(hitNPC.myType == EnemyType.Civilian)
         {
-            civilianScript.Flee();
+            civilianScript.ChangeState(State.Flee);
         }
-        if(hitNPC.myType == NPC.EnemyType.Criminal)
+        if(hitNPC.myType == EnemyType.Criminal)
         {
             criminalScript.StartCoroutine("Attack");
         }
-        if (hitNPC.myType == NPC.EnemyType.Monster)
+        if (hitNPC.myType == EnemyType.Monster)
         {
             monsterScript.StartCoroutine("Attack");
         }
@@ -162,7 +120,7 @@ public class PlayerController : Singleton<PlayerController>
 
     public void DrainCivilian() //Drains Blood from civilian
     {
-        civilianScript.health -= drainDamage * Time.deltaTime;
+        civilianScript.TakeDamage(drainDamage, true);
         if (_GM.currentBlood < 100f)
         {
             _GM.currentBlood += drainDamage / 2 * Time.deltaTime;

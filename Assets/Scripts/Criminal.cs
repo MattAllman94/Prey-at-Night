@@ -113,7 +113,7 @@ public class Criminal : NPC
         float distToEscape = Vector3.Distance(transform.position, _NPC.civilianSpawn[currentWaypoint].transform.position);
         if (distToEscape <= 0.01f)
         {
-            Die();
+            Die(true);
         }
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class Civilian : NPC
 {
     NavMeshAgent agent;
-    bool isFleeing = false;
     public GameObject male;
     public GameObject female;
 
@@ -21,6 +20,8 @@ public class Civilian : NPC
         health = 100f;
         player = FindObjectOfType<PlayerController>().gameObject;
 
+        ChangeState(State.Idle);
+
         int rnd = Random.Range(0, 2);
         if(rnd == 0)
         {
@@ -32,40 +33,75 @@ public class Civilian : NPC
             male.SetActive(false);
             female.SetActive(true);
         }
-        Debug.Log(rnd);
+        //Debug.Log(rnd);
     }
 
     void Update()
-    {
-        if(!isDraining || !isFleeing)
+    {     
+        Response();
+
+        if(ReachedWaypoint(_NPC.civilianWaypoints[currentWaypoint]))
         {
             CivilianMovement();
         }
-        
-        Response();
-        
+        if (myState == State.Flee)
+        {
+            if (ReachedWaypoint(_NPC.civilianSpawn[currentWaypoint]))
+            {
+                Debug.Log(ReachedWaypoint(_NPC.civilianSpawn[currentWaypoint]));
+                Die(true);
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            ChangeState(State.Flee);
+        }
+    }
+
+    public void ChangeState(State _state)
+    {
+        myState = _state;
+
+        switch(myState)
+        {
+            case State.Idle:
+                CivilianMovement();
+                agent.isStopped = false;
+                break;
+            case State.Drained:
+                agent.isStopped = true;
+                break;
+            case State.Flee:
+                Flee();
+                agent.isStopped = false;
+                break;
+        }
     }
 
     public void CivilianMovement()
     {
-        float dist = Vector3.Distance(transform.position, _NPC.civilianWaypoints[currentWaypoint].transform.position);
-        if (dist <= 0.1f)
-        {
-            currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
-            agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
-            CivilianMovement();
-        }
+        currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
+        agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
+    }
+
+    bool ReachedWaypoint(GameObject _waypoint)
+    {
+        float dist = Vector3.Distance(transform.position, _waypoint.transform.position);
+        return dist <= 1f;
     }
 
     public void Response()
     {
-        
+        if (myState == State.Flee)
+            return;
+
         foreach(GameObject i in _NPC.monsters)
         {
             float distToMonster = Vector3.Distance(transform.position, i.transform.position);
             if(distToMonster < 5f)
             {
-                Flee();
+                myState = State.Flee;
             }
         }
 
@@ -75,28 +111,17 @@ public class Civilian : NPC
 
             if(distToPlayer <= 4f)
             {
-                Flee();
+                myState = State.Flee;
             }
-        }
-        else
-        {
-            CivilianMovement();
         }
     }
 
     public void Flee()
     {
-        isFleeing = true;
         //Debug.Log("Flee");
         currentWaypoint = Random.Range(0, _NPC.civilianSpawn.Count - 1);
         agent.SetDestination(_NPC.civilianSpawn[currentWaypoint].transform.position);
 
-        float distToEscape = Vector3.Distance(transform.position, _NPC.civilianSpawn[currentWaypoint].transform.position);
-        //Debug.Log(distToEscape);
-        if (distToEscape <= 0.1f)
-        {
-            Die();
-        }
     }
 
     
