@@ -32,11 +32,6 @@ public class Criminal : NPC
         }
 
         Response();
-
-        if(isFleeing)
-        {
-            Flee();
-        }
     }
 
     public void CriminalMovement()
@@ -90,7 +85,7 @@ public class Criminal : NPC
             float distToMonster = Vector3.Distance(transform.position, i.transform.position);
             if (distToMonster < 5f)
             {
-                isFleeing = true;
+                Flee();
             }
         }
 
