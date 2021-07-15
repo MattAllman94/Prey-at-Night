@@ -9,9 +9,10 @@ public class Criminal : NPC
     bool isFleeing = false;
 
     public bool inAlley = false;
-    public GameObject hitbox;
     public bool isAttacking = false;
     public float delay;
+
+    public bool isDraining;
 
     void Start()
     {
@@ -25,11 +26,17 @@ public class Criminal : NPC
 
     void Update()
     {
-        if (!isFleeing)
+        if (!isFleeing || !isDraining)
         {
             CriminalMovement();
         }
+
         Response();
+
+        if(isFleeing)
+        {
+            Flee();
+        }
     }
 
     public void CriminalMovement()
@@ -83,7 +90,7 @@ public class Criminal : NPC
             float distToMonster = Vector3.Distance(transform.position, i.transform.position);
             if (distToMonster < 5f)
             {
-                Flee();
+                isFleeing = true;
             }
         }
 
@@ -96,11 +103,9 @@ public class Criminal : NPC
         agent.SetDestination(player.transform.position);
         if (distToPlayer < 0.2f)
         {
-            isAttacking = true;
-            hitbox.SetActive(true);
+            _P.currentHealth -= damage;
             yield return new WaitForSeconds(delay);
-            hitbox.SetActive(false);
-            isAttacking = false;
+            Attack();
         }
     }
 

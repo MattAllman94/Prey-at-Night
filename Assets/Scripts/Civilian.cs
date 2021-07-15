@@ -10,6 +10,8 @@ public class Civilian : NPC
     public GameObject male;
     public GameObject female;
 
+    public bool isDraining;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -35,8 +37,17 @@ public class Civilian : NPC
 
     void Update()
     {
-        CivilianMovement();
+        if(!isDraining || !isFleeing)
+        {
+            CivilianMovement();
+        }
+        
         Response();
+        
+        if(isFleeing)
+        {
+            Flee();
+        }
     }
 
     public void CivilianMovement()
@@ -62,7 +73,7 @@ public class Civilian : NPC
             float distToMonster = Vector3.Distance(transform.position, i.transform.position);
             if(distToMonster < 5f)
             {
-                Flee();
+                isFleeing = true;
             }
         }
 
@@ -72,7 +83,7 @@ public class Civilian : NPC
 
             if(distToPlayer <= 4f)
             {
-                Flee();
+                isFleeing = true;
             }
         }
         else

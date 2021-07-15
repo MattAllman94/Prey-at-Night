@@ -23,13 +23,23 @@ public class PlayerController : Singleton<PlayerController>
     //public bool isHidden;
     //private CapsuleCollider playerCollider;
 
+    [Header("Enemy Scripts")]
+    public Civilian civilianScript;
+    public Criminal criminalScript;
+    public Monster monsterScript;
+
     [Header("Attacking")]
     public GameObject atkHitbox;
     public bool isAttacking;
     public float atkDamage = 10f;
     public float atkDuration = 2f;
     public NPC hitNPC;
-    public Civilian civilianScript;
+
+
+
+    [Header("Drain")]
+    public GameObject drainHitbox;
+    public float drainDamage = 5f;
     public bool isDrinking;
 
     void Start()
@@ -40,12 +50,27 @@ public class PlayerController : Singleton<PlayerController>
  
     void Update()
     {
-        Movement();
+        if(!isDrinking)
+        {
+            Movement();
+        }
 
         if (Input.GetButtonDown("Fire1") && isAttacking == false && _GM.gameState == GameState.INGAME)
         {
             StartCoroutine("Attack");
         }
+        if(Input.GetKey(KeyCode.Q))
+        {
+            isDrinking = true;
+            drainHitbox.SetActive(true);
+        }
+        else
+        {
+            isDrinking = false;
+            drainHitbox.SetActive(false);
+        }
+
+        //Debug.Log(currentHealth);
     }
 
     public void Movement() //Controls the players walk, sprint and crouch
@@ -124,6 +149,32 @@ public class PlayerController : Singleton<PlayerController>
         if(hitNPC.myType == NPC.EnemyType.Civilian)
         {
             civilianScript.Flee();
+        }
+    }
+
+    public void DrainCivilian() //Drains Blood from civilian
+    {
+        civilianScript.health -= drainDamage * Time.deltaTime;
+        if (_GM.currentBlood < 100f)
+        {
+            _GM.currentBlood += drainDamage / 2 * Time.deltaTime;
+        }
+        if (currentHealth < 100f)
+        {
+            currentHealth += drainDamage / 3 * Time.deltaTime;
+        }
+    }
+
+    public void DrainCriminal() //Drains Blood from criminal
+    {
+        criminalScript.health -= drainDamage * Time.deltaTime;
+        if (_GM.currentBlood < 100f)
+        {
+            _GM.currentBlood += drainDamage / 4 * Time.deltaTime;
+        }
+        if (currentHealth < 100f)
+        {
+            currentHealth += drainDamage / 3 * Time.deltaTime;
         }
     }
 

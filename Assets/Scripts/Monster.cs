@@ -15,8 +15,6 @@ public class Monster : NPC
     public float undetectTimer;
     public float chaseDistance;
 
-    public GameObject hitbox;
-    public bool isAttacking = false;
     public float delay;
 
     void Start()
@@ -117,11 +115,9 @@ public class Monster : NPC
         agent.SetDestination(player.transform.position);
         if (distToPlayer < 0.2f)
         {
-            isAttacking = true;
-            hitbox.SetActive(true);
+            _P.currentHealth -= damage;
             yield return new WaitForSeconds(delay);
-            hitbox.SetActive(false);
-            isAttacking = false;
+            Attack();
         }
     }
 

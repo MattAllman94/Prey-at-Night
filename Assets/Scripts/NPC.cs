@@ -95,11 +95,13 @@ public class NPC : Prey
         if(myType == EnemyType.Civilian)
         {
             _NPC.totalCivilians -= 1;
+            _GM.currentCorruption += 10;
             _NPC.civilians.Remove(this.gameObject);
         }
         else if (myType == EnemyType.Criminal)
         {
             _NPC.totalCriminals -= 1;
+            _GM.currentCorruption -= 10;
             _NPC.criminals.Remove(this.gameObject);
         }
         else if (myType == EnemyType.Monster)

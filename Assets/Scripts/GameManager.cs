@@ -92,14 +92,14 @@ public class GameManager : Singleton<GameManager>
                 ChangePowerPoints(5, true);        // Testing Power Points
             }
 
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                ChangeBlood(25f, true);        // Testing Power Points
-            }
+            //if (Input.GetKeyDown(KeyCode.B))
+            //{
+            //    ChangeBlood(25f, true);        // Testing Power Points
+            //}
         }
        
 
-        if (Input.GetKeyDown(KeyCode.P) && gameState != GameState.TITLE)
+        if (Input.GetKeyDown(KeyCode.Escape) && gameState != GameState.TITLE)
         {
             if (gameState == GameState.INGAME || gameState == GameState.POWERMENU)
                 ChangeGameState(GameState.PAUSED);                                      // Pause Game
@@ -107,7 +107,7 @@ public class GameManager : Singleton<GameManager>
                 ChangeGameState(GameState.INGAME);
         }
 
-        if(Input.GetKeyDown(KeyCode.Q) && gameState != GameState.TITLE)
+        if(Input.GetKeyDown(KeyCode.Tab) && gameState != GameState.TITLE)
         {
             if (gameState == GameState.INGAME)
                 ChangeGameState(GameState.POWERMENU);                                       // Open Power Menu 
