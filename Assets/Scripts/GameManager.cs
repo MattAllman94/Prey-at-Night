@@ -96,6 +96,11 @@ public class GameManager : Singleton<GameManager>
             //{
             //    ChangeBlood(25f, true);        // Testing Power Points
             //}
+
+            if(Input.GetKeyDown(KeyCode.K))
+            {
+                _NPC.currentMonsters -= 1;
+            }
         }
        
 
