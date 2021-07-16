@@ -19,6 +19,7 @@ public class UIManager : Singleton<UIManager>
     [Header("Testing")]
     public TextMeshProUGUI monstersDefeated;
     public GameObject controlPanel;
+    public TextMeshProUGUI bossSpawn;
 
     [Header("Paused")]
     public GameObject pausedPanel;
@@ -57,7 +58,8 @@ public class UIManager : Singleton<UIManager>
     private void Start()
     {
         powerTreePanel.SetActive(false);
-        powerTextSide.SetActive(false);        
+        powerTextSide.SetActive(false);
+        bossSpawn.text = " ";
     }
 
     public void Update()
@@ -287,6 +289,13 @@ public class UIManager : Singleton<UIManager>
     public void UpdateMonstersDefeated(int _number)
     {
         monstersDefeated.text = _number.ToString() + " / 5";
+    }
+
+    public IEnumerator UpdateBossSpawn()
+    {
+        bossSpawn.text = "A roar can be heard from the cathedral.\nI should check it out";
+        yield return new WaitForSeconds(5f);
+        bossSpawn.text = " ";
     }
 
     public void ClearUI()

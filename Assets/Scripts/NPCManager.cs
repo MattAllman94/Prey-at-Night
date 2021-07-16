@@ -46,6 +46,7 @@ public class NPCManager : Singleton<NPCManager>
         {
             //Debug.Log("Boss Spawned");
             boss.SetActive(true);
+            _UI.StartCoroutine("UpdateBossSpawn");
         }
     }
 
