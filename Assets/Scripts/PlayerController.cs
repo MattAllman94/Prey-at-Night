@@ -110,7 +110,7 @@ public class PlayerController : Singleton<PlayerController>
         }
         if(hitNPC.myType == EnemyType.Criminal)
         {
-            criminalScript.StartCoroutine("Attack");
+            criminalScript.ChangeState(State.Attack);
         }
         if (hitNPC.myType == EnemyType.Monster)
         {
@@ -133,7 +133,7 @@ public class PlayerController : Singleton<PlayerController>
 
     public void DrainCriminal() //Drains Blood from criminal
     {
-        criminalScript.health -= drainDamage * Time.deltaTime;
+        criminalScript.TakeDamage(drainDamage, true);
         if (_GM.currentBlood < 100f)
         {
             _GM.currentBlood += drainDamage / 4 * Time.deltaTime;

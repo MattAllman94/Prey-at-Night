@@ -14,11 +14,12 @@ public class Civilian : NPC
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        player = FindObjectOfType<PlayerController>().gameObject;
 
         currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
         agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
+        
         health = 100f;
-        player = FindObjectOfType<PlayerController>().gameObject;
 
         ChangeState(State.Idle);
 
@@ -48,14 +49,14 @@ public class Civilian : NPC
         {
             if (ReachedWaypoint(_NPC.civilianSpawn[currentWaypoint]))
             {
-                Debug.Log(ReachedWaypoint(_NPC.civilianSpawn[currentWaypoint]));
+                //Debug.Log(ReachedWaypoint(_NPC.civilianSpawn[currentWaypoint]));
                 Die(true);
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.U))
+        if(health <= 0)
         {
-            ChangeState(State.Flee);
+            Die(false);
         }
     }
 
@@ -83,12 +84,6 @@ public class Civilian : NPC
     {
         currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
         agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
-    }
-
-    bool ReachedWaypoint(GameObject _waypoint)
-    {
-        float dist = Vector3.Distance(transform.position, _waypoint.transform.position);
-        return dist <= 1f;
     }
 
     public void Response()

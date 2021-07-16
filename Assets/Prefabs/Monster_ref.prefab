@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1179374818}
   m_Layer: 0
   m_Name: Monster_ref
-  m_TagString: NPC
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,8 +134,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 2
   myState: 0
-  civilian: {fileID: 0}
-  criminal: {fileID: 0}
+  civilian: {fileID: 7858592156999755519, guid: 957e013cdc5a9d644bebaf312a6a696e, type: 3}
+  criminal: {fileID: 5963327348089368390, guid: c5b1f8d59bd443843b74d41991a43193, type: 3}
   monster: {fileID: 7165674692696218361}
   currentWaypoint: 0
   health: 200

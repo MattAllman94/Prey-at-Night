@@ -14289,9 +14289,10 @@ GameObject:
   - component: {fileID: 2389931646000550411}
   - component: {fileID: 8934585969483087896}
   - component: {fileID: 3289368259630017951}
+  - component: {fileID: 1608908362}
   m_Layer: 0
   m_Name: Civilian_ref 1
-  m_TagString: NPC
+  m_TagString: Civilian
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14412,14 +14413,32 @@ MonoBehaviour:
   myType: 0
   myState: 0
   civilian: {fileID: 7858592156999755519}
-  criminal: {fileID: 0}
-  monster: {fileID: 0}
+  criminal: {fileID: 5963327348089368390, guid: c5b1f8d59bd443843b74d41991a43193, type: 3}
+  monster: {fileID: 7165674692696218361, guid: 2a275ba7643ba8444a3ccd449ee3b596, type: 3}
   currentWaypoint: 0
   health: 100
+  damage: 0
   player: {fileID: 0}
   civilianScript: {fileID: 3289368259630017951}
   male: {fileID: 2357672837326581943}
   female: {fileID: 3112911827769383436}
+  isDraining: 0
+--- !u!54 &1608908362
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7858592156999755519}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 10
+  m_CollisionDetection: 0
 --- !u!1 &7864734968382195549
 GameObject:
   m_ObjectHideFlags: 0

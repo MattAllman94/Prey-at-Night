@@ -16,32 +16,67 @@ public class Criminal : NPC
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        player = FindObjectOfType<PlayerController>().gameObject;
+
         currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count - 1);
         agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);
+        
         health = 100f;
-        player = FindObjectOfType<PlayerController>().gameObject;
         damage = 10;
+
+        ChangeState(State.Idle);
     }
 
     void Update()
     {
-        if (!isFleeing || !isDraining)
+        Response();
+
+        if(ReachedWaypoint(_NPC.criminalWaypoints[currentWaypoint]))
         {
             CriminalMovement();
         }
+        if(myState == State.Flee)
+        {
+            if(ReachedWaypoint(_NPC.civilianSpawn[currentWaypoint]))
+            {
+                Die(true);
+            }
+        }
 
-        Response();
+        if (health <= 0)
+        {
+            Die(false);
+        }
+    }
+
+    public void ChangeState(State _state)
+    {
+        myState = _state;
+
+        switch(myState)
+        {
+            case State.Idle:
+                CriminalMovement();
+                agent.isStopped = false;
+                break;
+            case State.Drained:
+                agent.isStopped = true;
+                break;
+            case State.Attack:
+                StartCoroutine("Attack");
+                agent.isStopped = false;
+                break;
+            case State.Flee:
+                Flee();
+                agent.isStopped = false;
+                break;
+        }
     }
 
     public void CriminalMovement()
     {
-        float dist = Vector3.Distance(transform.position, _NPC.criminalWaypoints[currentWaypoint].transform.position);
-        if (dist <= 0.1f)
-        {
             currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count - 1);
             agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);
-            CriminalMovement();
-        }
     }
 
     public void OnCollisionStay(Collision collision)
@@ -64,19 +99,15 @@ public class Criminal : NPC
         {
             if (distToPlayer <= 4f)
             {
-                StartCoroutine("Attack");
+                myState = State.Attack;
             }
         }
         else
         {
             if (inAlley == true && distToPlayer <= 4f)
             {
-                StartCoroutine("Attack");
-            }
-            else
-            {
-                CriminalMovement();
-            }    
+                myState = State.Attack;
+            }  
         }
 
         foreach (GameObject i in _NPC.monsters)
@@ -84,7 +115,7 @@ public class Criminal : NPC
             float distToMonster = Vector3.Distance(transform.position, i.transform.position);
             if (distToMonster < 5f)
             {
-                Flee();
+                myState = State.Flee;
             }
         }
 
@@ -93,12 +124,14 @@ public class Criminal : NPC
     IEnumerator Attack()
     {
         Debug.Log("Is Attacking");
+        
         float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
-
         agent.SetDestination(player.transform.position);
-        if (distToPlayer < 0.2f)
+        
+        if (distToPlayer < 0.5f)
         {
-            _P.currentHealth -= damage;
+            Debug.Log("Attack");
+            _P.ChangeHealth(damage, false);
             yield return new WaitForSeconds(delay);
             StartCoroutine("Attack");
         }
@@ -106,14 +139,7 @@ public class Criminal : NPC
 
     public void Flee()
     {
-        isFleeing = true;
         currentWaypoint = Random.Range(0, _NPC.civilianSpawn.Count - 1);
         agent.SetDestination(_NPC.civilianSpawn[currentWaypoint].transform.position);
-
-        float distToEscape = Vector3.Distance(transform.position, _NPC.civilianSpawn[currentWaypoint].transform.position);
-        if (distToEscape <= 0.01f)
-        {
-            Die(true);
-        }
     }
 }
