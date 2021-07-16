@@ -81,16 +81,16 @@ public class GameManager : Singleton<GameManager>
     {
         if (debug) // All Debugging checks
         {            
-            if(Input.GetKeyDown(KeyCode.L))
-            {
-                SaveData();        // FOR TESTING SAVING
-                Debug.Log("Saved State");
-            }
+            //if(Input.GetKeyDown(KeyCode.L))
+            //{
+            //    SaveData();        // FOR TESTING SAVING
+            //    Debug.Log("Saved State");
+            //}
 
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                ChangePowerPoints(5, true);        // Testing Power Points
-            }
+            //if (Input.GetKeyDown(KeyCode.J))
+            //{
+            //    ChangePowerPoints(5, true);        // Testing Power Points
+            //}
 
             //if (Input.GetKeyDown(KeyCode.B))
             //{

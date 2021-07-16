@@ -88,12 +88,14 @@ public class NPC : Prey
             _NPC.totalCivilians -= 1;
             _NPC.civilians.Remove(this.gameObject);
             _GM.currentCorruption += _despawn ? 0 : 10;
+            _GM.powerPoints += _despawn ? 0 : 1;
         }
         else if (myType == EnemyType.Criminal)
         {
             _NPC.totalCriminals -= 1;
             _NPC.criminals.Remove(this.gameObject);
             _GM.currentCorruption -= _despawn ? 0 : 10;
+            _GM.powerPoints += _despawn ? 0 : 1;
         }
         else if (myType == EnemyType.Monster)
         {

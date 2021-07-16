@@ -52,6 +52,7 @@ public class PlayerController : Singleton<PlayerController>
         {
             StartCoroutine("Attack");
         }
+
         if(Input.GetKey(KeyCode.Q))
         {
             isDrinking = true;
@@ -102,8 +103,8 @@ public class PlayerController : Singleton<PlayerController>
 
     public void HitNPC() // Deals damage
     {
-        //Debug.Log("Hit");
-        hitNPC.health -= atkDamage;
+        Debug.Log("Hit");
+        hitNPC.TakeDamage(atkDamage);
         if(hitNPC.myType == EnemyType.Civilian)
         {
             civilianScript.ChangeState(State.Flee);

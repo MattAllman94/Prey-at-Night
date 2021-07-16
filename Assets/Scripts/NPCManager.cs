@@ -29,7 +29,7 @@ public class NPCManager : Singleton<NPCManager>
 
     public void Start()
     {
-        //boss.SetActive(false);
+        boss.SetActive(false);
     }
 
     public void Update()
