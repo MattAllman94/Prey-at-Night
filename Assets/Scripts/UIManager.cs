@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using System;
 using DG.Tweening;
@@ -20,6 +21,10 @@ public class UIManager : Singleton<UIManager>
     public TextMeshProUGUI monstersDefeated;
     public GameObject controlPanel;
     public TextMeshProUGUI bossSpawn;
+
+    [Header("End State")]
+    public GameObject winPanel;
+    public GameObject losePanel;
 
     [Header("Paused")]
     public GameObject pausedPanel;
@@ -59,6 +64,10 @@ public class UIManager : Singleton<UIManager>
     {
         powerTreePanel.SetActive(false);
         powerTextSide.SetActive(false);
+
+        winPanel.SetActive(false);
+        losePanel.SetActive(false);
+
         bossSpawn.text = " ";
     }
 

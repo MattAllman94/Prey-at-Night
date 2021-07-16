@@ -227,10 +227,16 @@ public class GameManager : Singleton<GameManager>
                 }
             case GameState.GAMEOVER:
                 {
+                    Time.timeScale = 0;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
                     break;
                 }
             case GameState.WONGAME:
                 {
+                    Time.timeScale = 0;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
                     break;
                 }
         }
