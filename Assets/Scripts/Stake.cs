@@ -5,12 +5,11 @@ using UnityEngine;
 public class Stake : Prey
 {
     Rigidbody rb;
-    CapsuleCollider collider;
+    new CapsuleCollider collider;
     public float thrust = 500f;
     public float damage;
 
     AudioSource audioSource;
-
 
     void Start()
     {

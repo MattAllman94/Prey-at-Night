@@ -23,7 +23,7 @@ public class Monster : NPC
     {
         player = FindObjectOfType<PlayerController>().gameObject;
         agent = GetComponent<NavMeshAgent>();
-        timer = wanderTimer;
+        timer = 0;
         
         health = 200f;
         damage = 20;
@@ -39,7 +39,10 @@ public class Monster : NPC
 
         if(myState == State.Flee)
         {
-            MonsterFlee();
+            if(ReachedWaypoint(waypoint))
+            {
+                ChangeState(State.Idle);
+            }
         }
 
         if(health <= 0)
@@ -111,8 +114,8 @@ public class Monster : NPC
     {
         Vector3 randDirection = Random.insideUnitSphere * dist;
         randDirection += origin;
-        UnityEngine.AI.NavMeshHit navHit;
-        UnityEngine.AI.NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+        NavMeshHit navHit;
+        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
         return navHit.position;
     }
 
@@ -143,6 +146,7 @@ public class Monster : NPC
     {
         float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
         agent.SetDestination(player.transform.position);
+        Debug.Log("Begin Attack");
         
         if(distToPlayer <= 0.5f)
         {
@@ -158,6 +162,7 @@ public class Monster : NPC
     IEnumerator Attack()
     {
         _P.ChangeHealth(damage, false);
+        Debug.Log("Hit");
         yield return new WaitForSeconds(delay);
         StartCoroutine("Attack");
     }
@@ -166,12 +171,6 @@ public class Monster : NPC
     {
         float dist = Vector3.Distance(transform.position, waypoint.transform.position);
         agent.SetDestination(waypoint.transform.position);
-        Debug.Log("Flee");
-
-        if(dist <= 1)
-        {
-            Debug.Log("At Waypoint");
-            ChangeState(State.Idle);
-        }
+        //.Log("Flee");
     }
 }

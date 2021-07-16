@@ -110,9 +110,7 @@ public class PowersManager : Singleton<PowersManager>
                 float modifier = 0.02f;
                 _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
                 _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);  // add health
-                npcScript.health -= _power.damage;                         // damage enemy
-                if (npcScript.health <= 0)
-                    npcScript.Die();              
+                npcScript.TakeDamage(_power.damage);                         // damage enemy              
             }
             else if (hit.collider.CompareTag("Criminal"))
             {
@@ -121,9 +119,7 @@ public class PowersManager : Singleton<PowersManager>
                 float modifier = 0.02f;
                 _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
                 _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);  // add health
-                npcScript.health -= _power.damage;                         // damage enemy
-                if (npcScript.health <= 0)
-                    npcScript.Die();
+                npcScript.TakeDamage(_power.damage);                           // damage enemy
             }
             else if (hit.collider.CompareTag("Monster"))
             {
@@ -132,9 +128,7 @@ public class PowersManager : Singleton<PowersManager>
                 float modifier = 0.02f;
                 _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
                 _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);  // add health
-                npcScript.health -= _power.damage;                         // damage enemy
-                if (npcScript.health <= 0)
-                    npcScript.Die();
+                npcScript.TakeDamage(_power.damage);                           // damage enemy
             }
         }
     }
