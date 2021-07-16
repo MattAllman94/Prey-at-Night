@@ -5,7 +5,7 @@ using UnityEngine;
 public class Drain : Prey
 {
     Civilian civilian;
-    //Criminal criminal;
+    Criminal criminal;
 
     private void OnTriggerStay(Collider other)
     {
@@ -20,8 +20,10 @@ public class Drain : Prey
 
         if (other.CompareTag("Criminal"))
         {
-            other.GetComponent<Criminal>().isDraining = true;
+            criminal = other.GetComponent<Criminal>();
+            criminal.ChangeState(State.Drained);
             _P.criminalScript = other.GetComponent<Criminal>();
+
             _P.DrainCriminal();
         }
 
@@ -33,6 +35,9 @@ public class Drain : Prey
         {
             civilian.ChangeState(State.Flee);
         }
-        //criminal.ChangeState(State.Attack);
+        if (criminal != null)
+        {
+            criminal.ChangeState(State.Attack);
+        }
     }
 }

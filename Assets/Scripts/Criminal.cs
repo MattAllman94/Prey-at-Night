@@ -6,12 +6,10 @@ using UnityEngine.AI;
 public class Criminal : NPC
 {
     NavMeshAgent agent;
-    bool isFleeing = false;
 
     public bool inAlley = false;
     public float delay;
 
-    public bool isDraining;
 
     void Start()
     {

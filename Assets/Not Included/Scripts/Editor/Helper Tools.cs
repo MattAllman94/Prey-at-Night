@@ -81,7 +81,9 @@ public class UnsetAssetStoreCookie
                 ModelImporter mi = (ModelImporter) AssetImporter.GetAtPath(assetPath);
                 mi.importNormals = ModelImporterNormals.Import;
                 mi.importTangents = ModelImporterTangents.Import;
+#pragma warning disable CS0618 // Type or member is obsolete
                 mi.optimizeMesh = false;
+#pragma warning restore CS0618 // Type or member is obsolete
                 mi.importBlendShapeNormals = ModelImporterNormals.Import;
                 mi.weldVertices = false;
                 mi.isReadable = true;
@@ -130,7 +132,9 @@ public class UnsetAssetStoreCookie
                 ModelImporter mi = (ModelImporter)AssetImporter.GetAtPath(assetPath);
                 mi.importNormals = ModelImporterNormals.Import;
                 mi.importTangents = ModelImporterTangents.Import;
+#pragma warning disable CS0618 // Type or member is obsolete
                 mi.optimizeMesh = false;
+#pragma warning restore CS0618 // Type or member is obsolete
                 mi.importBlendShapeNormals = ModelImporterNormals.Import;
                 mi.weldVertices = false;
                 mi.isReadable = true;

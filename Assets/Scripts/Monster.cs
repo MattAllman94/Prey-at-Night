@@ -87,17 +87,6 @@ public class Monster : NPC
         {
             ChangeState(State.Idle);
         }
-
-        //if (distToPlayer >= chaseDistance)
-        //{
-        //    if (Physics.Linecast(transform.position, player.transform.position, out RaycastHit hit))
-        //    {
-        //        if (hit.collider.CompareTag("Player"))
-        //        {
-        //            ChangeState(State.Attack);
-        //        }
-        //    }
-        //}
     }
 
     public void MonsterMovement()
@@ -169,7 +158,6 @@ public class Monster : NPC
 
     public void MonsterFlee()
     {
-        float dist = Vector3.Distance(transform.position, waypoint.transform.position);
         agent.SetDestination(waypoint.transform.position);
         //.Log("Flee");
     }

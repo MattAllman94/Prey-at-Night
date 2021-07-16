@@ -114,7 +114,7 @@ public class PlayerController : Singleton<PlayerController>
         }
         if (hitNPC.myType == EnemyType.Monster)
         {
-            monsterScript.StartCoroutine("Attack");
+            monsterScript.ChangeState(State.Attack);
         }
     }
 
