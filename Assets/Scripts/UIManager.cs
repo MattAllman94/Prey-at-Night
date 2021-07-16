@@ -16,6 +16,10 @@ public class UIManager : Singleton<UIManager>
     public Image power1Icon;
     public Image power2Icon;
 
+    [Header("Testing")]
+    public TextMeshProUGUI monstersDefeated;
+    public GameObject controlPanel;
+
     [Header("Paused")]
     public GameObject pausedPanel;
 
@@ -52,21 +56,31 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
+        powerTreePanel.SetActive(false);
+        powerTextSide.SetActive(false);        
+    }
+
+    public void Update()
+    {
         UpdateBlood(_GM.currentBlood);
         UpdateHealth(_P.currentHealth);
         UpdatePowerPoints(_GM.powerPoints);
-        powerTreePanel.SetActive(false);
-        powerTextSide.SetActive(false);        
-       
-    }
+        UpdateMonstersDefeated(_NPC.currentMonsters);
 
+        if(Input.GetKey(KeyCode.P))
+        {
+            controlPanel.SetActive(true);
+        }
+        else
+        {
+            controlPanel.SetActive(false);
+        }
+    }
 
     public void PlayGame()
     {
         _GM.ChangeGameState(GameState.INGAME);       
     }
-
-    
 
     public void Resume()
     {
@@ -268,6 +282,11 @@ public class UIManager : Singleton<UIManager>
     public void UpdatePowerPoints(int _points)
     {
         ppText.text = ("PP: " + _points.ToString());
+    }
+
+    public void UpdateMonstersDefeated(int _number)
+    {
+        monstersDefeated.text = _number.ToString() + " / 5";
     }
 
     public void ClearUI()

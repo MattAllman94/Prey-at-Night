@@ -99,7 +99,7 @@ public class NPC : Prey
         }
         else if (myType == EnemyType.Monster)
         {
-            _NPC.totalMonsters -= 1;
+            _NPC.totalMonsters += 1;
             _NPC.monsters.Remove(this.gameObject);
         }
 

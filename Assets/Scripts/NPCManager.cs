@@ -38,14 +38,13 @@ public class NPCManager : Singleton<NPCManager>
 
         currentCivilians = civilians.Count;
         currentCriminals = criminals.Count;
-        currentMonsters = monsters.Count;
     }
 
     void CheckForBoss()
     {
-        if(currentMonsters <= 0)
+        if(currentMonsters >= 5)
         {
-            Debug.Log("Boss Spawned");
+            //Debug.Log("Boss Spawned");
             boss.SetActive(true);
         }
     }
