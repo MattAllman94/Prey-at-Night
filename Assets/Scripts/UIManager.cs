@@ -73,6 +73,12 @@ public class UIManager : Singleton<UIManager>
         _GM.ChangeGameState(GameState.INGAME);
     }
 
+    public void SaveGame()
+    {
+        _GM.SaveData();
+        Debug.Log("Saved Game");
+    }
+
     public void GoToTitle()
     {
         _GM.ChangeGameState(GameState.TITLE);
