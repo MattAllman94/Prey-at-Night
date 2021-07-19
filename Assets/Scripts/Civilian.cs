@@ -96,7 +96,7 @@ public class Civilian : NPC
             float distToMonster = Vector3.Distance(transform.position, i.transform.position);
             if(distToMonster < 5f)
             {
-                myState = State.Flee;
+                ChangeState(State.Flee);
             }
         }
 
@@ -106,7 +106,7 @@ public class Civilian : NPC
 
             if(distToPlayer <= 4f)
             {
-                myState = State.Flee;
+                ChangeState(State.Flee);
             }
         }
     }

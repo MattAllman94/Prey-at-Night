@@ -34,19 +34,19 @@ public class NPCManager : Singleton<NPCManager>
 
     public void Update()
     {
-        CheckForBoss();
+        //CheckForBoss();
 
         currentCivilians = civilians.Count;
         currentCriminals = criminals.Count;
     }
 
-    void CheckForBoss()
+    public void CheckForBoss()
     {
         if(currentMonsters >= 5)
         {
             //Debug.Log("Boss Spawned");
             boss.SetActive(true);
-            _UI.StartCoroutine("UpdateBossSpawn");
+            StartCoroutine(_UI.UpdateBossSpawn());
         }
     }
 

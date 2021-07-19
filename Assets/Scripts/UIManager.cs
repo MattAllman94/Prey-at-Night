@@ -60,6 +60,14 @@ public class UIManager : Singleton<UIManager>
 
     int warnSlot = 0;
 
+    string[] messages = new string[]
+    {
+        "1", //0
+        "2", //1
+        "Make Game", //2
+        "Get 100 marks" //3
+    };
+
     private void Start()
     {
         powerTreePanel.SetActive(false);
@@ -76,7 +84,6 @@ public class UIManager : Singleton<UIManager>
         UpdateBlood(_GM.currentBlood);
         UpdateHealth(_P.currentHealth);
         UpdatePowerPoints(_GM.powerPoints);
-        UpdateMonstersDefeated(_NPC.currentMonsters);
 
         if(Input.GetKey(KeyCode.P))
         {

@@ -65,15 +65,15 @@ public class GameDataManager : GameData
     public static GameDataManager INSTANCE;
     private void Awake()
     {
-        //Load Game data
-        data = LoadDataObject<GameDataObject>();
-
         if (INSTANCE != null)
         {
             Debug.Log("GameDataManager already instanced");
             return;
         }
         INSTANCE = this;
+
+        //Load Game data
+        data = LoadDataObject<GameDataObject>();
 
         //if data doesnt exist
         if(data == null)
@@ -84,9 +84,14 @@ public class GameDataManager : GameData
 
             //Initialize game setting dictionary
             data.gameData = new GameSettingData();
+            data.gameData.bloodLevel = 0;
+            data.gameData.corruptionLevel = 0;
+            data.gameData.powerPoints = 0;
 
             //Initialize Player Data dictionary
             data.playerData = new PlayerData();
+            data.playerData.playerHealth = 100;
+            data.playerData.lastPosition = new Vector3(-38, -3.8f, 63);
 
             //create time info if none
             data.playTime = new PlayTimeData();

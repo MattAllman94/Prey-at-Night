@@ -25,7 +25,7 @@ public class PlayerController : Singleton<PlayerController>
     [Header("Attacking")]
     public GameObject atkHitbox;
     public bool isAttacking;
-    public float atkDamage = 10f;
+    public float atkDamage = 20f;
     public float atkDuration = 2f;
     public NPC hitNPC;
 
@@ -38,6 +38,7 @@ public class PlayerController : Singleton<PlayerController>
 
     void Start()
     {
+        currentHealth = 100f;
     }
 
  
@@ -64,7 +65,8 @@ public class PlayerController : Singleton<PlayerController>
             drainHitbox.SetActive(false);
         }
 
-        //Debug.Log(currentHealth);
+        Debug.Log(currentHealth);
+
         if(currentHealth <= 0)
         {
             Die();

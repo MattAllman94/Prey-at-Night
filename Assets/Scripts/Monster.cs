@@ -44,11 +44,6 @@ public class Monster : NPC
                 ChangeState(State.Idle);
             }
         }
-
-        if(health <= 0)
-        {
-            Die(false);
-        }
     }
 
     public void ChangeState(State _state)

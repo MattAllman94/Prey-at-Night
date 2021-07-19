@@ -9,16 +9,23 @@ public class Criminal : NPC
 
     public bool inAlley = false;
     public float delay;
-
+    bool attacking = false;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = FindObjectOfType<PlayerController>().gameObject;
 
-        currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count - 1);
+        ResetNPC();
+    }
+
+    public override void ResetNPC()
+    {
+        //base.ResetNPC();
+
+        currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count);
         agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);
-        
+
         health = 100f;
         damage = 10;
 
@@ -28,11 +35,7 @@ public class Criminal : NPC
     void Update()
     {
         Response();
-
-        if(ReachedWaypoint(_NPC.criminalWaypoints[currentWaypoint]))
-        {
-            CriminalMovement();
-        }
+        
         if(myState == State.Flee)
         {
             if(ReachedWaypoint(_NPC.civilianSpawn[currentWaypoint]))
@@ -40,11 +43,29 @@ public class Criminal : NPC
                 Die(true);
             }
         }
-
-        if (health <= 0)
+        
+        if (myState == State.Idle)
         {
-            Die(false);
+            if (ReachedWaypoint(_NPC.criminalWaypoints[currentWaypoint]))
+            {
+                CriminalMovement();
+            }
         }
+
+        if(myState == State.Attack)
+        {
+            //Debug.Log(DistToPlayer);
+            if (DistToPlayer < 1.5f && !attacking)
+            {
+                Debug.Log("Reached Player");
+                StartCoroutine(Attack());
+            }    
+            if(DistToPlayer > 5)
+            {
+                ChangeState(State.Flee);
+            }
+        }
+
     }
 
     public void ChangeState(State _state)
@@ -61,7 +82,7 @@ public class Criminal : NPC
                 agent.isStopped = true;
                 break;
             case State.Attack:
-                StartCoroutine("Attack");
+                agent.SetDestination(_P.transform.position);
                 agent.isStopped = false;
                 break;
             case State.Flee:
@@ -73,7 +94,7 @@ public class Criminal : NPC
 
     public void CriminalMovement()
     {
-            currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count - 1);
+            currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count);
             agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);
     }
 
@@ -91,20 +112,18 @@ public class Criminal : NPC
 
     public void Response()
     {
-        float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
-
         if (_GM.currentCorruption >= 50f)
         {
-            if (distToPlayer <= 4f)
+            if (DistToPlayer <= 4f)
             {
-                myState = State.Attack;
+                ChangeState(State.Attack);
             }
         }
         else
         {
-            if (inAlley == true && distToPlayer <= 4f)
+            if (inAlley == true && DistToPlayer <= 4f)
             {
-                myState = State.Attack;
+                ChangeState(State.Attack);
             }  
         }
 
@@ -113,7 +132,7 @@ public class Criminal : NPC
             float distToMonster = Vector3.Distance(transform.position, i.transform.position);
             if (distToMonster < 5f)
             {
-                myState = State.Flee;
+                ChangeState(State.Flee);
             }
         }
 
@@ -122,22 +141,17 @@ public class Criminal : NPC
     IEnumerator Attack()
     {
         Debug.Log("Is Attacking");
-        
-        float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        agent.SetDestination(player.transform.position);
-        
-        if (distToPlayer < 0.5f)
-        {
-            Debug.Log("Attack");
-            _P.ChangeHealth(damage, false);
-            yield return new WaitForSeconds(delay);
-            StartCoroutine("Attack");
-        }
+        attacking = true;
+        Debug.Log("Attack");
+        _P.ChangeHealth(damage, false);
+        yield return new WaitForSeconds(delay);
+        attacking = false;
     }
 
     public void Flee()
     {
-        currentWaypoint = Random.Range(0, _NPC.civilianSpawn.Count - 1);
+        currentWaypoint = Random.Range(0, _NPC.civilianSpawn.Count);
+        Debug.Log(currentWaypoint);
         agent.SetDestination(_NPC.civilianSpawn[currentWaypoint].transform.position);
     }
 }

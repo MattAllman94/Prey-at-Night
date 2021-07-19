@@ -40,6 +40,8 @@ public class NPC : Prey
         return dist <= 1f;
     }
 
+    public float DistToPlayer { get { return Vector3.Distance(transform.position, _P.transform.position); } }
+
     public void HitPlayer()
     {
         _P.ChangeHealth(damage, false);
@@ -50,22 +52,20 @@ public class NPC : Prey
         //Debug.Log("Die");
         if(myType == EnemyType.Civilian)
         {
-            _NPC.totalCivilians -= 1;
-            _NPC.civilians.Remove(this.gameObject);
             _GM.currentCorruption += _despawn ? 0 : 10;
             _GM.powerPoints += _despawn ? 0 : 1;
         }
         else if (myType == EnemyType.Criminal)
         {
-            _NPC.totalCriminals -= 1;
-            _NPC.criminals.Remove(this.gameObject);
             _GM.currentCorruption -= _despawn ? 0 : 10;
             _GM.powerPoints += _despawn ? 0 : 1;
         }
         else if (myType == EnemyType.Monster)
         {
-            _NPC.totalMonsters += 1;
+            _NPC.currentMonsters += 1;
             _NPC.monsters.Remove(this.gameObject);
+            _UI.UpdateMonstersDefeated(_NPC.currentMonsters);
+            _NPC.CheckForBoss();
         }
         else if(myType == EnemyType.Boss)
         {
@@ -73,12 +73,24 @@ public class NPC : Prey
             _UI.winPanel.SetActive(true);
         }
 
-        Destroy(this.gameObject);
-        _NPC.Spawn();
+        //TODO
+        //Ensure that waypoint selected is not close/visible to the player
+        transform.position = _NPC.civilianSpawn[Random.Range(0, _NPC.civilianSpawn.Count)].transform.position;
+        ResetNPC();
+    }
+
+    public virtual void ResetNPC()
+    {
+        Debug.Log("NPC base reset");
     }
 
     public void TakeDamage(float _damage, bool _dot = false)
     {
         health -= _dot ? _damage * Time.deltaTime : _damage;
+
+        if (health <= 0)
+        {
+            Die(false);
+        }
     }
 }
