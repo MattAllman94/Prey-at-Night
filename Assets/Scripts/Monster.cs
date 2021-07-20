@@ -18,6 +18,7 @@ public class Monster : NPC
     public GameObject waypoint;
 
     public float delay;
+    bool attacking = false;
 
     void Start()
     {
@@ -37,12 +38,26 @@ public class Monster : NPC
         timer += Time.deltaTime;
         MonsterReact();
 
-        if(myState == State.Flee)
+        switch (myState)
         {
-            if(ReachedWaypoint(waypoint))
-            {
-                ChangeState(State.Idle);
-            }
+            case State.Flee:
+                if (ReachedWaypoint(waypoint))
+                {
+                    ChangeState(State.Idle);
+                }
+                break;
+            case State.Attack:
+                //Debug.Log(DistToPlayer);
+                if (DistToPlayer < 1.5f && !attacking)
+                {
+                    //Debug.Log("Reached Player");
+                    StartCoroutine(Attack());
+                }
+                if (DistToPlayer > 5)
+                {
+                    ChangeState(State.Flee);
+                }
+                break;
         }
     }
 
@@ -56,7 +71,7 @@ public class Monster : NPC
                 MonsterMovement();
                 break;
             case State.Attack:
-                MonsterAttack();
+                agent.SetDestination(_P.transform.position);
                 break;
             case State.Flee:
                 MonsterFlee();
@@ -103,52 +118,14 @@ public class Monster : NPC
         return navHit.position;
     }
 
-    //public void MonsterDetect()
-    //{
-    //    float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
-    //    agent.SetDestination(transform.position);
-    //    transform.LookAt(player.transform.position);
-    //    undetectTimer -= Time.deltaTime;
-        
-    //    if (undetectTimer <= 0)
-    //    {
-    //        if (distToPlayer >= detectDistance)
-    //        {
-    //            ChangeState(State.Idle);
-    //            undetectTimer = 5;
-    //        }
-    //    }
-
-    //    if (distToPlayer <= detectDistance)
-    //    {
-    //        ChangeState(State.Attack);
-    //        undetectTimer = 5;
-    //    }
-    //}
-
-    public void MonsterAttack()
-    {
-        float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        agent.SetDestination(player.transform.position);
-        Debug.Log("Begin Attack");
-        
-        if(distToPlayer <= 0.5f)
-        {
-            StartCoroutine("Attack");
-        }
-        
-        if (distToPlayer > chaseDistance)
-        {
-            ChangeState(State.Flee);
-        }
-    }
-
     IEnumerator Attack()
     {
+        //Debug.Log("Is Attacking");
+        attacking = true;
+        //Debug.Log("Attack");
         _P.ChangeHealth(damage, false);
-        Debug.Log("Hit");
         yield return new WaitForSeconds(delay);
-        StartCoroutine("Attack");
+        attacking = false;
     }
 
     public void MonsterFlee()

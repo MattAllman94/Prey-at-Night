@@ -62,19 +62,22 @@ public class UIManager : Singleton<UIManager>
 
     string[] messages = new string[]
     {
-        "1", //0
-        "2", //1
-        "Make Game", //2
-        "Get 100 marks" //3
+        "There is a monster up ahead!! \n I need to get stronger if I am to fight this", //0
+        "Maybe I should hunt some of the inhabitants of this town?", //1
+        "Press 'Left Mouse' to attack", //2
+        "Press 'Q' to drain blood from humans", //3
+        "This felt wrong, but I feel so much stronger", //4
+        "Although I am not getting strong fast, I feel like I am doing a service to this town", //5
+        "Press 'Tab' to open power menu", //6
+        "Press '1' to use your powers", //7
+        "There was a rumble when I killed the gargoyle. \n I must be doing something right!", //8
+        "What was that roar? It came from the Cathedral! \n I should check it out" //9
     };
 
     private void Start()
     {
         powerTreePanel.SetActive(false);
         powerTextSide.SetActive(false);
-
-        winPanel.SetActive(false);
-        losePanel.SetActive(false);
 
         bossSpawn.text = " ";
     }
@@ -95,8 +98,10 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    #region Button Functions
     public void PlayGame()
     {
+        _GM.LoadData();
         _GM.ChangeGameState(GameState.INGAME);       
     }
 
@@ -108,7 +113,7 @@ public class UIManager : Singleton<UIManager>
     public void SaveGame()
     {
         _GM.SaveData();
-        Debug.Log("Saved Game");
+        //Debug.Log("Saved Game");
     }
 
     public void GoToTitle()
@@ -116,10 +121,17 @@ public class UIManager : Singleton<UIManager>
         _GM.ChangeGameState(GameState.TITLE);
     }
 
+    public void Load()
+    {
+        _GM.ChangeGameState(GameState.INGAME);
+        _GM.LoadData();
+    }
+
     public void QuitGame()
     {
         Application.Quit();
     }
+    #endregion
 
     #region POWER TREE
     public void PurchasePower()
@@ -367,6 +379,8 @@ public class UIManager : Singleton<UIManager>
                     inGamePanel.SetActive(false);
                     powerTreePanel.SetActive(false);
                     pausedPanel.SetActive(true);
+                    losePanel.SetActive(false);
+                    winPanel.SetActive(false);
                     break;
                 }
             case GameState.POWERMENU:
@@ -374,6 +388,8 @@ public class UIManager : Singleton<UIManager>
                     inGamePanel.SetActive(false);
                     powerTreePanel.SetActive(true);
                     pausedPanel.SetActive(false);
+                    losePanel.SetActive(false);
+                    winPanel.SetActive(false);
                     ppText.text = ("PP: " + _GM.powerPoints.ToString());
                     break;
                 }
@@ -385,6 +401,8 @@ public class UIManager : Singleton<UIManager>
                     powerTextSide.SetActive(false);
                     pausedPanel.SetActive(false);
                     titlePanel.SetActive(false);
+                    losePanel.SetActive(false);
+                    winPanel.SetActive(false);
                     break;
                 }
             case GameState.TITLE:
@@ -394,6 +412,8 @@ public class UIManager : Singleton<UIManager>
                     powerTextSide.SetActive(false);
                     pausedPanel.SetActive(false);
                     titlePanel.SetActive(true);
+                    losePanel.SetActive(false);
+                    winPanel.SetActive(false);
                     break;
                 }
         }

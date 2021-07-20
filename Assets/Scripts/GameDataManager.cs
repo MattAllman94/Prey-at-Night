@@ -129,6 +129,7 @@ public class GameDataManager : GameData
 
     #endregion
 
+    #region Retrieve Settings
     public float GetBloodLevel()
     {
         return data.gameData.bloodLevel;
@@ -158,7 +159,9 @@ public class GameDataManager : GameData
     {
         return data.playerData.lastPosition;
     }
+    #endregion
 
+    #region Functions
     public override void SaveData()
     {
         //SaveTimePlayed();
@@ -169,4 +172,5 @@ public class GameDataManager : GameData
     {
         DeleteDataObject();
     }
+    #endregion
 }

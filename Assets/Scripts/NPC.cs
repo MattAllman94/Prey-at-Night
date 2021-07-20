@@ -42,11 +42,6 @@ public class NPC : Prey
 
     public float DistToPlayer { get { return Vector3.Distance(transform.position, _P.transform.position); } }
 
-    public void HitPlayer()
-    {
-        _P.ChangeHealth(damage, false);
-    }
-
     public void Die(bool _despawn = false)
     {
         //Debug.Log("Die");

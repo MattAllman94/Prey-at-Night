@@ -35,37 +35,34 @@ public class Criminal : NPC
     void Update()
     {
         Response();
-        
-        if(myState == State.Flee)
-        {
-            if(ReachedWaypoint(_NPC.civilianSpawn[currentWaypoint]))
-            {
-                Die(true);
-            }
-        }
-        
-        if (myState == State.Idle)
-        {
-            if (ReachedWaypoint(_NPC.criminalWaypoints[currentWaypoint]))
-            {
-                CriminalMovement();
-            }
-        }
 
-        if(myState == State.Attack)
+        switch(myState)
         {
-            //Debug.Log(DistToPlayer);
-            if (DistToPlayer < 1.5f && !attacking)
-            {
-                Debug.Log("Reached Player");
-                StartCoroutine(Attack());
-            }    
-            if(DistToPlayer > 5)
-            {
-                ChangeState(State.Flee);
-            }
+            case State.Idle:
+                if (ReachedWaypoint(_NPC.criminalWaypoints[currentWaypoint]))
+                {
+                    CriminalMovement();
+                }
+                break;
+            case State.Flee:
+                if (ReachedWaypoint(_NPC.civilianSpawn[currentWaypoint]))
+                {
+                    Die(true);
+                }
+                break;
+            case State.Attack:
+                //Debug.Log(DistToPlayer);
+                if (DistToPlayer < 1.5f && !attacking)
+                {
+                    //Debug.Log("Reached Player");
+                    StartCoroutine(Attack());
+                }
+                if (DistToPlayer > 5)
+                {
+                    ChangeState(State.Flee);
+                }
+                break;
         }
-
     }
 
     public void ChangeState(State _state)
@@ -112,7 +109,7 @@ public class Criminal : NPC
 
     public void Response()
     {
-        if (_GM.currentCorruption >= 50f)
+        if (_GM.corruptionLevel == CorruptionLevel.HIGH)
         {
             if (DistToPlayer <= 4f)
             {
@@ -140,9 +137,9 @@ public class Criminal : NPC
 
     IEnumerator Attack()
     {
-        Debug.Log("Is Attacking");
+        //Debug.Log("Is Attacking");
         attacking = true;
-        Debug.Log("Attack");
+        //Debug.Log("Attack");
         _P.ChangeHealth(damage, false);
         yield return new WaitForSeconds(delay);
         attacking = false;
@@ -151,7 +148,7 @@ public class Criminal : NPC
     public void Flee()
     {
         currentWaypoint = Random.Range(0, _NPC.civilianSpawn.Count);
-        Debug.Log(currentWaypoint);
+        //Debug.Log(currentWaypoint);
         agent.SetDestination(_NPC.civilianSpawn[currentWaypoint].transform.position);
     }
 }

@@ -65,12 +65,7 @@ public class PlayerController : Singleton<PlayerController>
             drainHitbox.SetActive(false);
         }
 
-        Debug.Log(currentHealth);
-
-        if(currentHealth <= 0)
-        {
-            Die();
-        }
+        //Debug.Log(currentHealth);
     }
 
     public void Movement() //Controls the players walk, sprint and crouch
@@ -156,6 +151,11 @@ public class PlayerController : Singleton<PlayerController>
         currentHealth = increase ? currentHealth += _health : currentHealth -= _health;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         _UI.UpdateHealth(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
     }
 
     public void Die()

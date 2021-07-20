@@ -16,25 +16,32 @@ public class Civilian : NPC
         agent = GetComponent<NavMeshAgent>();
         player = FindObjectOfType<PlayerController>().gameObject;
 
+        ResetNPC();
+        //Debug.Log(rnd);
+    }
+
+    public override void ResetNPC()
+    {
+        //base.ResetNPC();
         currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
         agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
-        
+
         health = 100f;
 
         ChangeState(State.Idle);
 
         int rnd = Random.Range(0, 2);
-        if(rnd == 0)
+        if (rnd == 0)
         {
             male.SetActive(true);
             female.SetActive(false);
         }
-        else if(rnd == 1)
+        else if (rnd == 1)
         {
             male.SetActive(false);
             female.SetActive(true);
         }
-        //Debug.Log(rnd);
+
     }
 
     void Update()
@@ -45,6 +52,7 @@ public class Civilian : NPC
         {
             CivilianMovement();
         }
+
         if (myState == State.Flee)
         {
             if (ReachedWaypoint(_NPC.civilianSpawn[currentWaypoint]))
@@ -52,11 +60,6 @@ public class Civilian : NPC
                 //Debug.Log(ReachedWaypoint(_NPC.civilianSpawn[currentWaypoint]));
                 Die(true);
             }
-        }
-
-        if(health <= 0)
-        {
-            Die(false);
         }
     }
 
@@ -100,7 +103,7 @@ public class Civilian : NPC
             }
         }
 
-        if(_GM.currentCorruption >= 50f)
+        if(_GM.corruptionLevel == CorruptionLevel.HIGH)
         {
             float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
