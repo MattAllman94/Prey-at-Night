@@ -68,12 +68,13 @@ public class UIManager : Singleton<UIManager>
         "Maybe I should hunt some of the inhabitants of this town?", //1
         "Press 'Left Mouse' to attack", //2
         "Press 'Q' to drain blood from humans", //3
-        "This felt wrong, but I feel so much stronger", //4
-        "Although I am not getting strong fast, I feel like I am doing a service to this town", //5
+        "I feel a lot stronger already, but I feel my humanity slipping away", //4
+        "I feel slightly stronger, but I am containing my humanity", //5
         "Press 'Tab' to open power menu", //6
         "Press '1' to use your powers", //7
         "There was a rumble when I killed the gargoyle. \n I must be doing something right!", //8
-        "What was that roar? It came from the Cathedral! \n I should check it out" //9
+        "What was that roar? It came from the Cathedral! \n I should check it out", //9
+        "I feel powerful... But at what cost?" //10
     };
 
     private void Start()

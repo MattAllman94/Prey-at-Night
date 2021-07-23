@@ -16,7 +16,6 @@ public class PlayerController : Singleton<PlayerController>
     float turnSmoothVelocity;
     Vector3 moveDir;
 
-
     [Header("Enemy Scripts")]
     public Civilian civilianScript;
     public Criminal criminalScript;
@@ -29,15 +28,20 @@ public class PlayerController : Singleton<PlayerController>
     public float atkDuration = 2f;
     public NPC hitNPC;
 
-
-
     [Header("Drain")]
     public GameObject drainHitbox;
     public float drainDamage = 5f;
     public bool isDrinking;
 
+    [Header("Corruption")]
+    public GameObject normalModel;
+    public GameObject corruptModel;
+
     void Start()
     {
+        normalModel.SetActive(true);
+        corruptModel.SetActive(false);
+
         currentHealth = 100f;
     }
 

@@ -121,6 +121,28 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void ChangeState(CorruptionLevel _corrupt)
+    {
+        corruptionLevel = _corrupt;
+
+        switch (corruptionLevel)
+        {
+            case CorruptionLevel.LOW:
+                _P.normalModel.SetActive(true);
+                _P.corruptModel.SetActive(false);
+                break;
+            case CorruptionLevel.NORMAL:
+                _P.normalModel.SetActive(true);
+                _P.corruptModel.SetActive(false);
+                break;
+            case CorruptionLevel.HIGH:
+                _PROMPT.ChangeState(PromptState.Ten);
+                _P.normalModel.SetActive(false);
+                _P.corruptModel.SetActive(true);
+                break;
+        }
+    }
+
     public void IncreaseCorruption(float _amount)
     {
         if (currentCorruption < maxCorruption)
@@ -132,15 +154,15 @@ public class GameManager : Singleton<GameManager>
 
             if (currentCorruption > 50)
             {
-                corruptionLevel = CorruptionLevel.HIGH;
+                ChangeState(CorruptionLevel.HIGH);
             }
             else if (currentCorruption > -50)
             {
-                corruptionLevel = CorruptionLevel.NORMAL;
+                ChangeState(CorruptionLevel.LOW);
             }
             else
             {
-                corruptionLevel = CorruptionLevel.LOW;
+                ChangeState(CorruptionLevel.NORMAL);
             }
         }
     }
@@ -156,15 +178,15 @@ public class GameManager : Singleton<GameManager>
 
             if (currentCorruption > 50)
             {
-                corruptionLevel = CorruptionLevel.HIGH;
+                ChangeState(CorruptionLevel.HIGH);
             }
             else if (currentCorruption > -50)
             {
-                corruptionLevel = CorruptionLevel.NORMAL;
+                ChangeState(CorruptionLevel.LOW);
             }
             else
             {
-                corruptionLevel = CorruptionLevel.LOW;
+                ChangeState(CorruptionLevel.NORMAL);
             }
         }
     }

@@ -52,7 +52,7 @@ public class Criminal : NPC
                 break;
             case State.Attack:
                 //Debug.Log(DistToPlayer);
-                if (DistToPlayer < 1.5f && !attacking)
+                if (DistToPlayer < 2f && !attacking)
                 {
                     //Debug.Log("Reached Player");
                     StartCoroutine(Attack());

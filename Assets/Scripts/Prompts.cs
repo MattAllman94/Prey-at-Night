@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum PromptState
 {
-    Blank, Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine
+    Blank, Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
 }
 
 public class Prompts : Singleton<Prompts>
@@ -64,6 +64,9 @@ public class Prompts : Singleton<Prompts>
                 break;
             case PromptState.Nine:
                 StartCoroutine(MessageNine());
+                break;
+            case PromptState.Ten:
+                StartCoroutine(MessageTen());
                 break;
         }
     }
@@ -172,6 +175,14 @@ public class Prompts : Singleton<Prompts>
     {
         _UI.promptPanel.SetActive(true);
         _UI.prompts.text = _UI.messages[9];
+        yield return new WaitForSeconds(delay);
+        _UI.promptPanel.SetActive(false);
+        ChangeState(PromptState.Blank);
+    }
+    IEnumerator MessageTen()
+    {
+        _UI.promptPanel.SetActive(true);
+        _UI.prompts.text = _UI.messages[10];
         yield return new WaitForSeconds(delay);
         _UI.promptPanel.SetActive(false);
         ChangeState(PromptState.Blank);
