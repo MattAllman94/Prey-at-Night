@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class NPCManager : Singleton<NPCManager>
 {
-    public int currentCivilians;
-    public int currentCriminals;
-    public int currentMonsters;
+    public int civiliansKilled;
+    public int criminalsKilled;
+    public int monstersKilled;
 
     public int totalCivilians = 15;
     public int totalCriminals = 10;
@@ -35,18 +35,15 @@ public class NPCManager : Singleton<NPCManager>
     public void Update()
     {
         //CheckForBoss();
-
-        currentCivilians = civilians.Count;
-        currentCriminals = criminals.Count;
     }
 
     public void CheckForBoss()
     {
-        if(currentMonsters >= 5)
+        if(monstersKilled >= 5)
         {
             //Debug.Log("Boss Spawned");
             boss.SetActive(true);
-            StartCoroutine(_UI.UpdateBossSpawn());
+            _PROMPT.ChangeState(PromptState.Nine);
         }
     }
 }

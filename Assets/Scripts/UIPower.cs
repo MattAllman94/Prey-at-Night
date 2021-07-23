@@ -9,7 +9,9 @@ public class UIPower : Prey
     public Camera uiCamera;
     public Transform borderTransform;
     Power power;
-    
+
+    bool powerPrompt = false;
+
     private void Start()
     {
         power = _PM.allPowers.Find(x => x.power == myPower); // Finds the power in allPowers list that is equal to myPower
@@ -110,7 +112,11 @@ public class UIPower : Prey
             case (PowerStatus.Active):
             {                           
                     _UI.UpdateRightPanel(false, "", "Equipped: Slot " + power.activeSlot);
-                    
+                    if(!powerPrompt)
+                    {
+                        _PROMPT.ChangeState(PromptState.Seven);
+                        powerPrompt = true;
+                    }
                     break;   
             }
 

@@ -61,6 +61,12 @@ public class Monster : NPC
         }
     }
 
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawSphere(waypoint.transform.position, wanderRadius);
+    //}
+
     public void ChangeState(State _state)
     {
         myState = _state;
@@ -103,7 +109,7 @@ public class Monster : NPC
     {
         if (timer >= wanderTimer)
         {
-            Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
+            Vector3 newPos = RandomNavSphere(waypoint.transform.position, wanderRadius, -1);
             agent.SetDestination(newPos);
             timer = 0;
         }       

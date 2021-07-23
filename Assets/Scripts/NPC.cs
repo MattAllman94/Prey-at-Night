@@ -22,6 +22,7 @@ public class NPC : Prey
 
     public GameObject player;
 
+
     private void Start()
     {
 
@@ -48,19 +49,33 @@ public class NPC : Prey
         if(myType == EnemyType.Civilian)
         {
             _GM.currentCorruption += _despawn ? 0 : 10;
-            _GM.powerPoints += _despawn ? 0 : 1;
+            _GM.powerPoints += _despawn ? 0 : 2;
+            _NPC.civiliansKilled += _despawn ? 0 : 1;
+            if(_NPC.civiliansKilled == 1 && _despawn == false)
+            {
+                _PROMPT.ChangeState(PromptState.Four);
+            }
         }
         else if (myType == EnemyType.Criminal)
         {
             _GM.currentCorruption -= _despawn ? 0 : 10;
             _GM.powerPoints += _despawn ? 0 : 1;
+            _NPC.criminalsKilled += _despawn ? 0 : 1;
+            if(_NPC.criminalsKilled == 1 && _despawn == false)
+            {
+                _PROMPT.ChangeState(PromptState.Five);
+            }
         }
         else if (myType == EnemyType.Monster)
         {
-            _NPC.currentMonsters += 1;
+            _NPC.monstersKilled += 1;
             _NPC.monsters.Remove(this.gameObject);
-            _UI.UpdateMonstersDefeated(_NPC.currentMonsters);
+            _UI.UpdateMonstersDefeated(_NPC.monstersKilled);
             _NPC.CheckForBoss();
+            if(_NPC.monstersKilled == 1)
+            {
+                _PROMPT.ChangeState(PromptState.Eight);
+            }
         }
         else if(myType == EnemyType.Boss)
         {

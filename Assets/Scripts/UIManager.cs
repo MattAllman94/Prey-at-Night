@@ -13,6 +13,8 @@ public class UIManager : Singleton<UIManager>
     public GameObject inGamePanel;
     public TextMeshProUGUI cBloodText;
     public TextMeshProUGUI cHealthText;
+    public TextMeshProUGUI prompts;
+    public GameObject promptPanel;
 
     public Image power1Icon;
     public Image power2Icon;
@@ -20,7 +22,7 @@ public class UIManager : Singleton<UIManager>
     [Header("Testing")]
     public TextMeshProUGUI monstersDefeated;
     public GameObject controlPanel;
-    public TextMeshProUGUI bossSpawn;
+
 
     [Header("End State")]
     public GameObject winPanel;
@@ -60,7 +62,7 @@ public class UIManager : Singleton<UIManager>
 
     int warnSlot = 0;
 
-    string[] messages = new string[]
+    public string[] messages = new string[]
     {
         "There is a monster up ahead!! \n I need to get stronger if I am to fight this", //0
         "Maybe I should hunt some of the inhabitants of this town?", //1
@@ -78,8 +80,6 @@ public class UIManager : Singleton<UIManager>
     {
         powerTreePanel.SetActive(false);
         powerTextSide.SetActive(false);
-
-        bossSpawn.text = " ";
     }
 
     public void Update()
@@ -317,13 +317,6 @@ public class UIManager : Singleton<UIManager>
     public void UpdateMonstersDefeated(int _number)
     {
         monstersDefeated.text = _number.ToString() + " / 5";
-    }
-
-    public IEnumerator UpdateBossSpawn()
-    {
-        bossSpawn.text = "A roar can be heard from the cathedral.\nI should check it out";
-        yield return new WaitForSeconds(5f);
-        bossSpawn.text = " ";
     }
 
     public void ClearUI()
