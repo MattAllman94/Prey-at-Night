@@ -22,7 +22,7 @@ public class Prompts : Singleton<Prompts>
 
     public void Update()
     {
-        Debug.Log(myState);
+        //Debug.Log(myState);
     }
 
     public void ChangeState(PromptState _state)

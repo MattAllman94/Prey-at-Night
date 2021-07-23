@@ -2930,7 +2930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3824628999548673207
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4859,11 +4859,12 @@ MonoBehaviour:
   inGamePanel: {fileID: 2875968595180520988}
   cBloodText: {fileID: 2875968595270147707}
   cHealthText: {fileID: 2875968596296026575}
+  prompts: {fileID: 1924461686}
+  promptPanel: {fileID: 1538127546161381238}
   power1Icon: {fileID: 2875968595148645098}
   power2Icon: {fileID: 2875968596301309639}
   monstersDefeated: {fileID: 1330356769}
   controlPanel: {fileID: 872758791}
-  prompts: {fileID: 1924461686}
   winPanel: {fileID: 1534999822}
   losePanel: {fileID: 966782155}
   pausedPanel: {fileID: 5569376618263073219}
