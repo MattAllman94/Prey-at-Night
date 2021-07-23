@@ -658,7 +658,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39477888}
-  m_LocalRotation: {x: -0.00030914726, y: 0.9982527, z: 0.058855943, w: 0.005243431}
+  m_LocalRotation: {x: -0.0003091473, y: 0.9982527, z: 0.058855947, w: 0.005243431}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12968,7 +12968,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566698652}
-  m_LocalRotation: {x: -2.5204935e-10, y: 0.99989283, z: 0.014641452, w: 0.000000017212935}
+  m_LocalRotation: {x: -2.5204938e-10, y: 0.99989283, z: 0.014641452, w: 0.000000017212937}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -17201,7 +17201,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 643369567}
-  m_LocalRotation: {x: 3.746506e-10, y: 0.9997648, z: -0.021689253, w: 0.0000000172695}
+  m_LocalRotation: {x: -3.7246636e-10, y: 0.9997648, z: -0.021689273, w: -0.0000000171688}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -61565,13 +61565,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2173346002444109306, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2875968595356438771, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
       propertyPath: m_Name
       value: UICamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875968595356438780, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
+      propertyPath: orthographic size
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2875968595356438783, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
       propertyPath: m_RootOrder
@@ -61616,6 +61616,18 @@ PrefabInstance:
     - target: {fileID: 2875968595356438783, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875968596014658631, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288683943756767843, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
+      propertyPath: messages.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288683943756767843, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
+      propertyPath: messages.Array.data[10]
+      value: I feel powerful... But at what cost?
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}

@@ -70,11 +70,12 @@ public class UIManager : Singleton<UIManager>
         "Press 'Q' to drain blood from humans", //3
         "I feel a lot stronger already, but I feel my humanity slipping away", //4
         "I feel slightly stronger, but I am containing my humanity", //5
-        "Press 'Tab' to open power menu", //6
+        "Press 'Tab' to open the power menu", //6
         "Press '1' to use your powers", //7
         "There was a rumble when I killed the gargoyle. \n I must be doing something right!", //8
         "What was that roar? It came from the Cathedral! \n I should check it out", //9
         "I feel powerful... But at what cost?" //10
+
     };
 
     private void Start()
@@ -302,12 +303,12 @@ public class UIManager : Singleton<UIManager>
 
     public void UpdateBlood(float _blood)
     {
-        cBloodText.text = _blood.ToString("f2");
+        cBloodText.text = _blood.ToString("f0");
     }
 
     public void UpdateHealth(float _health)
     {
-        cHealthText.text = _health.ToString("f2");
+        cHealthText.text = _health.ToString("f0");
     }
 
     public void UpdatePowerPoints(int _points)

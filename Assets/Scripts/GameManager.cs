@@ -101,6 +101,17 @@ public class GameManager : Singleton<GameManager>
             //{
             //    _NPC.currentMonsters += 1;
             //}
+
+            if(Input.GetKeyDown(KeyCode.Alpha0)) //Testing Corruption levels
+            {
+                IncreaseCorruption(10);
+            }
+            if(Input.GetKeyDown(KeyCode.Alpha9))
+            {
+                DecreaseCorruption(10);
+            }
+            Debug.Log(currentCorruption + " - " + corruptionLevel);
+
         }
        
 
@@ -130,15 +141,18 @@ public class GameManager : Singleton<GameManager>
             case CorruptionLevel.LOW:
                 _P.normalModel.SetActive(true);
                 _P.corruptModel.SetActive(false);
+                _P.atkDamage = 20;
                 break;
             case CorruptionLevel.NORMAL:
                 _P.normalModel.SetActive(true);
                 _P.corruptModel.SetActive(false);
+                _P.atkDamage = 20;
                 break;
             case CorruptionLevel.HIGH:
                 _PROMPT.ChangeState(PromptState.Ten);
                 _P.normalModel.SetActive(false);
                 _P.corruptModel.SetActive(true);
+                _P.atkDamage = 40;
                 break;
         }
     }
@@ -156,7 +170,7 @@ public class GameManager : Singleton<GameManager>
             {
                 ChangeState(CorruptionLevel.HIGH);
             }
-            else if (currentCorruption > -50)
+            else if (currentCorruption < -50)
             {
                 ChangeState(CorruptionLevel.LOW);
             }
@@ -180,7 +194,7 @@ public class GameManager : Singleton<GameManager>
             {
                 ChangeState(CorruptionLevel.HIGH);
             }
-            else if (currentCorruption > -50)
+            else if (currentCorruption < -50)
             {
                 ChangeState(CorruptionLevel.LOW);
             }
