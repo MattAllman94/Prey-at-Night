@@ -15,6 +15,7 @@ public class PlayerController : Singleton<PlayerController>
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
     Vector3 moveDir;
+    public AudioSource footStepSource;
 
     [Header("Enemy Scripts")]
     public Civilian civilianScript;
@@ -88,6 +89,9 @@ public class PlayerController : Singleton<PlayerController>
             moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
+
+            
+            _AM.PlayFootStep(footStepSource);
         }
 
         if (!controller.isGrounded)

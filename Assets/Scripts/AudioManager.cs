@@ -38,9 +38,21 @@ public class AudioManager : Singleton<AudioManager>
     
     public void PlayCastSound(AudioClip _clip)
     {
-        castAudioSource.clip = _clip;
-        castAudioSource.pitch = Random.Range(0.8f, 1f);
-        castAudioSource.Play();
+        if (!castAudioSource.isPlaying)
+        {
+            castAudioSource.clip = _clip;
+            castAudioSource.pitch = Random.Range(0.8f, 1f);
+            castAudioSource.Play();
+        }        
+    }
+
+    public void PlayFootStep(AudioSource _source)
+    {
+        if (!_source.isPlaying)
+        {
+            _source.pitch = Random.Range(0.8f, 1f);
+            _source.Play();
+        }   
     }
 
     public void ChangeBackgroundVolume(float _volume)

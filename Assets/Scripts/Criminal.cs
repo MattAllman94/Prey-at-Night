@@ -11,10 +11,16 @@ public class Criminal : NPC
     public float delay;
     bool attacking = false;
 
+    Vector3 lastPosition;
+    Transform myTransform;
+    public AudioSource footStepSource;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = FindObjectOfType<PlayerController>().gameObject;
+        myTransform = transform;
+        lastPosition = myTransform.position;
 
         ResetNPC();
     }
@@ -63,6 +69,12 @@ public class Criminal : NPC
                 }
                 break;
         }
+
+        if (myTransform.position != lastPosition) // Check if npc is moving
+        {
+            _AM.PlayFootStep(footStepSource);
+        }          
+        lastPosition = myTransform.position;
     }
 
     public void ChangeState(State _state)

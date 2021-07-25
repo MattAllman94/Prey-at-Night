@@ -20,12 +20,18 @@ public class Monster : NPC
     public float delay;
     bool attacking = false;
 
+    Vector3 lastPosition;
+    Transform myTransform;
+    public AudioSource footStepSource;
+
     void Start()
     {
         player = FindObjectOfType<PlayerController>().gameObject;
         agent = GetComponent<NavMeshAgent>();
         timer = 0;
-        
+        myTransform = transform;
+        lastPosition = myTransform.position;
+
         health = 200f;
         damage = 20;
 
@@ -59,6 +65,12 @@ public class Monster : NPC
                 }
                 break;
         }
+
+        if (myTransform.position != lastPosition) // Check if npc is moving
+        {
+            _AM.PlayFootStep(footStepSource);
+        }
+        lastPosition = myTransform.position;
     }
 
     //private void OnDrawGizmosSelected()
