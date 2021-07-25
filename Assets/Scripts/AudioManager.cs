@@ -21,8 +21,14 @@ public class AudioManager : Singleton<AudioManager>
     public AudioClip playerAttack;
     public AudioClip playerHurt;
 
+    public AudioClip uiHover;
+    public AudioClip uiClick;
+    public AudioClip uiDrag;
+    public AudioClip uiPlay; 
+
     public AudioSource castAudioSource;
     public AudioSource playerAudioSource;
+    public AudioSource uiAudioSource;
 
     public void PlaySFX(AudioClip _clip, Vector3 _pos, bool _randomPitch = true)
     {
@@ -76,6 +82,28 @@ public class AudioManager : Singleton<AudioManager>
             _source.pitch = Random.Range(0.8f, 1f);
             _source.Play();
         }   
+    }
+
+
+    public void PlayUISound(int _clipNum)
+    {
+        switch (_clipNum)
+        {
+            case (1):
+                uiAudioSource.clip = uiHover;
+                break;
+            case (2):
+                uiAudioSource.clip = uiClick;
+                break;
+            case (3):
+                uiAudioSource.clip = uiDrag;
+                break;
+            case (4):
+                uiAudioSource.clip = uiPlay;
+                break;
+        }
+        uiAudioSource.pitch = Random.Range(0.95f, 1f);
+        uiAudioSource.Play();
     }
 
     public void ChangeBackgroundVolume(float _volume)
