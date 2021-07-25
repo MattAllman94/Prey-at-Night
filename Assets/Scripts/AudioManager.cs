@@ -18,7 +18,11 @@ public class AudioManager : Singleton<AudioManager>
     public AudioClip stakeHitNpc;
     public AudioClip stakeHitEnviro;
 
+    public AudioClip playerAttack;
+    public AudioClip playerHurt;
+
     public AudioSource castAudioSource;
+    public AudioSource playerAudioSource;
 
     public void PlaySFX(AudioClip _clip, Vector3 _pos, bool _randomPitch = true)
     {
@@ -44,6 +48,25 @@ public class AudioManager : Singleton<AudioManager>
             castAudioSource.pitch = Random.Range(0.8f, 1f);
             castAudioSource.Play();
         }        
+    }
+
+    public void PlayerAttackSound(bool _Attacking = true)
+    {      
+            playerAudioSource.pitch = Random.Range(0.9f, 1f);
+            if (_Attacking)
+                playerAudioSource.clip = playerAttack;
+            else
+                playerAudioSource.clip = playerHurt;
+            playerAudioSource.Play();              
+    }
+
+    public void NPCHurtSound(AudioSource _source)
+    {
+        if(!_source.isPlaying)
+        {
+            _source.pitch = Random.Range(0.9f, 1f);
+            _source.Play();
+        }
     }
 
     public void PlayFootStep(AudioSource _source)

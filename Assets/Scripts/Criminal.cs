@@ -14,13 +14,14 @@ public class Criminal : NPC
     Vector3 lastPosition;
     Transform myTransform;
     public AudioSource footStepSource;
-
+    public AudioSource myAudioSource;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = FindObjectOfType<PlayerController>().gameObject;
         myTransform = transform;
         lastPosition = myTransform.position;
+        myAudioSource = GetComponent<AudioSource>();
 
         ResetNPC();
     }
@@ -153,6 +154,7 @@ public class Criminal : NPC
         attacking = true;
         //Debug.Log("Attack");
         _P.ChangeHealth(damage, false);
+        _AM.PlayerAttackSound(false);
         yield return new WaitForSeconds(delay);
         attacking = false;
     }

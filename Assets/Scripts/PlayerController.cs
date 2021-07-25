@@ -105,6 +105,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         isAttacking = true;
         atkHitbox.SetActive(true);
+        _AM.PlayerAttackSound();
         yield return new WaitForSeconds(atkDuration);
         atkHitbox.SetActive(false);
         isAttacking = false;
