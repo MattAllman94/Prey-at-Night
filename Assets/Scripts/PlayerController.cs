@@ -113,7 +113,7 @@ public class PlayerController : Singleton<PlayerController>
 
     public void HitNPC() // Deals damage
     {
-        Debug.Log("Hit");
+        //Debug.Log("Hit");
         hitNPC.TakeDamage(atkDamage);
         if(hitNPC.myType == EnemyType.Civilian)
         {
