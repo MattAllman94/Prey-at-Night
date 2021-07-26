@@ -167,7 +167,15 @@ public enum Powers
 {
     NoPower,
     BloodDrain,
-    StakeThrow
+    StakeThrow,
+    ShadowStrike,
+    Hypnosis,
+    BloodVision,
+    ExplosiveBlood,
+    CloakedInShadow,
+    CreaturesStare,
+    ShadowRush,
+    BloodLust
 }
 
 public enum PowerStatus
