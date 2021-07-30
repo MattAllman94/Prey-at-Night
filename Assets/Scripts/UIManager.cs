@@ -15,6 +15,7 @@ public class UIManager : Singleton<UIManager>
     public TextMeshProUGUI cHealthText;
     public TextMeshProUGUI prompts;
     public GameObject promptPanel;
+    public Slider healthSlider;
 
     public Image power1Icon;
     public Image power2Icon;
@@ -82,12 +83,13 @@ public class UIManager : Singleton<UIManager>
     {
         powerTreePanel.SetActive(false);
         powerTextSide.SetActive(false);
+        UpdateHealth(_P.currentHealth);
     }
 
     public void Update()
     {
         UpdateBlood(_GM.currentBlood);
-        UpdateHealth(_P.currentHealth);
+        //UpdateHealth(_P.currentHealth);
         UpdatePowerPoints(_GM.powerPoints);
 
         if(Input.GetKey(KeyCode.P))
@@ -309,6 +311,7 @@ public class UIManager : Singleton<UIManager>
     public void UpdateHealth(float _health)
     {
         cHealthText.text = _health.ToString("f0");
+        healthSlider.value = _health;
     }
 
     public void UpdatePowerPoints(int _points)
