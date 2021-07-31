@@ -133,6 +133,11 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     public void ChangeState(CorruptionLevel _corrupt)
     {
         corruptionLevel = _corrupt;

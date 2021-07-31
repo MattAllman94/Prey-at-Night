@@ -16,6 +16,7 @@ public class PlayerController : Singleton<PlayerController>
     float turnSmoothVelocity;
     Vector3 moveDir;
     public AudioSource footStepSource;
+    public Animator playerAnim;
 
     [Header("Enemy Scripts")]
     public Civilian civilianScript;
@@ -70,7 +71,7 @@ public class PlayerController : Singleton<PlayerController>
             drainHitbox.SetActive(false);
         }
 
-        //Debug.Log(currentHealth);
+        
     }
 
     public void Movement() //Controls the players walk, sprint and crouch
@@ -92,6 +93,15 @@ public class PlayerController : Singleton<PlayerController>
 
             
             _AM.PlayFootStep(footStepSource);
+            //play run anim
+            SetAnimBool("Running");
+            SetAnimBool("Idle", false);
+        }
+        else
+        {
+            //play idle animation
+            SetAnimBool("Idle");
+            SetAnimBool("Running", false);
         }
 
         if (!controller.isGrounded)
@@ -171,5 +181,10 @@ public class PlayerController : Singleton<PlayerController>
     {
         _GM.ChangeGameState(GameState.GAMEOVER);
         _UI.losePanel.SetActive(true);
+    }
+
+    public void SetAnimBool(string _name, bool _bool = true)
+    {
+        playerAnim.SetBool(_name, _bool);     
     }
 }
