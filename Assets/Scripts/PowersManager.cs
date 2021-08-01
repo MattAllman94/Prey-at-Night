@@ -107,6 +107,7 @@ public class PowersManager : Singleton<PowersManager>
                 Civilian npcScript = hit.collider.GetComponent<Civilian>();
 
                 float modifier = 0.02f;
+                npcScript.ChangeState(State.Drained);
                 _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
                 _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);  // add health
                 npcScript.TakeDamage(_power.damage);                         // damage enemy        
@@ -117,6 +118,7 @@ public class PowersManager : Singleton<PowersManager>
                 Criminal npcScript = hit.collider.GetComponent<Criminal>();
 
                 float modifier = 0.02f;
+                npcScript.ChangeState(State.Drained);
                 _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
                 _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);  // add health
                 npcScript.TakeDamage(_power.damage);                           // damage enemy
