@@ -25,6 +25,7 @@ public class PlayerData
 {
     public float playerHealth;
     public Vector3 lastPosition;
+    public Quaternion lastRotation;
 }
 
 [Serializable]
@@ -92,6 +93,7 @@ public class GameDataManager : GameData
             data.playerData = new PlayerData();
             data.playerData.playerHealth = 100;
             data.playerData.lastPosition = new Vector3(-38, -3.8f, 63);
+            data.playerData.lastRotation = new Quaternion(0, 180, 0, 1);
 
             //create time info if none
             data.playTime = new PlayTimeData();
@@ -125,6 +127,7 @@ public class GameDataManager : GameData
     {
         data.playerData.playerHealth = _P.currentHealth;
         data.playerData.lastPosition = _P.transform.position;
+        data.playerData.lastRotation = _P.transform.rotation;
     }
 
     #endregion
@@ -158,6 +161,11 @@ public class GameDataManager : GameData
     public Vector3 GetLastPosition()
     {
         return data.playerData.lastPosition;
+    }
+
+    public Quaternion GetLastRotation()
+    {
+        return data.playerData.lastRotation;
     }
     #endregion
 

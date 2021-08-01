@@ -75,6 +75,7 @@ public class GameManager : Singleton<GameManager>
         powerPoints = _DATA.GetPowerPoints();
         _P.currentHealth = _DATA.GetCurrentHealth();
         _P.transform.position = _DATA.GetLastPosition();
+        _P.transform.rotation = _DATA.GetLastRotation();
     }
 
     void Update()
