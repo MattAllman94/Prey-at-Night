@@ -70,6 +70,7 @@ public class NPC : Prey
         {
             _NPC.monstersKilled += 1;
             _NPC.monsters.Remove(this.gameObject);
+            //Destroy(this.gameObject);
             _UI.UpdateMonstersDefeated(_NPC.monstersKilled);
             _NPC.CheckForBoss();
             if(_NPC.monstersKilled == 1)

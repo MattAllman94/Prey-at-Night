@@ -79,6 +79,13 @@ public class Monster : NPC
     //    Gizmos.DrawSphere(waypoint.transform.position, wanderRadius);
     //}
 
+    public override void ResetNPC()
+    {
+        base.ResetNPC();
+
+        Destroy(this.gameObject);
+    }
+
     public void ChangeState(State _state)
     {
         myState = _state;

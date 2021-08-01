@@ -75,7 +75,8 @@ public class UIManager : Singleton<UIManager>
         "Press '1' to use your powers", //7
         "There was a rumble when I killed the gargoyle. \n I must be doing something right!", //8
         "What was that roar? It came from the Cathedral! \n I should check it out", //9
-        "I feel powerful... But at what cost?" //10
+        "I feel powerful... But at what cost?", //10
+        "There is nothing this way for me, I should turn back" //11
 
     };
 
@@ -416,6 +417,4 @@ public class UIManager : Singleton<UIManager>
                 }
         }
     }
-
-
 }
