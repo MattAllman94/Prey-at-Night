@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 
 public class AudioManager : Singleton<AudioManager>
@@ -14,21 +15,29 @@ public class AudioManager : Singleton<AudioManager>
     int currentSource = 0;
 
     public AudioSource rainSource;
+    public AudioSource musicSource;
 
+    public AudioSource castAudioSource;
+    public AudioSource playerAudioSource;
+    public AudioSource uiAudioSource;
+
+    [Header("Player Sounds")]
     public AudioClip stakeHitNpc;
     public AudioClip stakeHitEnviro;
 
     public AudioClip playerAttack;
     public AudioClip playerHurt;
 
+    [Header("UI Sounds")]
     public AudioClip uiHover;
     public AudioClip uiClick;
     public AudioClip uiDrag;
-    public AudioClip uiPlay; 
+    public AudioClip uiPlay;
 
-    public AudioSource castAudioSource;
-    public AudioSource playerAudioSource;
-    public AudioSource uiAudioSource;
+    [Header("Music")]
+    public AudioClip titleMusic;
+    public AudioClip inGameMusic;
+    
 
     public void PlaySFX(AudioClip _clip, Vector3 _pos, bool _randomPitch = true)
     {
@@ -106,10 +115,22 @@ public class AudioManager : Singleton<AudioManager>
         uiAudioSource.Play();
     }
 
-    public void ChangeBackgroundVolume(float _volume)
+    public void ChangeRainVolume(float _volume)
     {
         if (rainSource != null)
             rainSource.volume = _volume;
     }
-
+    public void ChangeMusic(bool _toInGame = true)
+    {
+        if (_toInGame)
+        {
+            musicSource.clip = inGameMusic;
+            musicSource.Play();
+        }
+        else
+        {
+            musicSource.clip = titleMusic;
+            musicSource.Play();
+        }
+    }
 }

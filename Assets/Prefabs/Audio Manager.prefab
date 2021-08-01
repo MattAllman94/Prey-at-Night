@@ -326,6 +326,10 @@ MonoBehaviour:
   uiSFX: []
   music: []
   rainSource: {fileID: 0}
+  musicSource: {fileID: 0}
+  castAudioSource: {fileID: 0}
+  playerAudioSource: {fileID: 0}
+  uiAudioSource: {fileID: 0}
   stakeHitNpc: {fileID: 8300000, guid: 6111d41e1553fd748ae53f1f5688e0af, type: 3}
   stakeHitEnviro: {fileID: 8300000, guid: fd0a4bd22254c02439f637eb0481199b, type: 3}
   playerAttack: {fileID: 8300000, guid: 571e2fad697ba024998d109a4e99e175, type: 3}
@@ -334,9 +338,8 @@ MonoBehaviour:
   uiClick: {fileID: 8300000, guid: 992b50ac9e91960439a500617985a277, type: 3}
   uiDrag: {fileID: 8300000, guid: e4da91f10a1e3804289f8f56be909a8f, type: 3}
   uiPlay: {fileID: 8300000, guid: b6ca1cc712cae9c4e8b53a79899e163e, type: 3}
-  castAudioSource: {fileID: 0}
-  playerAudioSource: {fileID: 0}
-  uiAudioSource: {fileID: 0}
+  titleMusic: {fileID: 8300000, guid: ef63b5e9341e47740993412bbfdbef96, type: 3}
+  inGameMusic: {fileID: 8300000, guid: bbc8e97b3d517eb43b26540dde0097d6, type: 3}
 --- !u!1 &2056925333833796200
 GameObject:
   m_ObjectHideFlags: 0
