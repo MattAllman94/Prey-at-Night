@@ -17,6 +17,10 @@ public class PlayerController : Singleton<PlayerController>
     Vector3 moveDir;
     public AudioSource footStepSource;
     public Animator playerAnim;
+    public Transform gCheckPos;
+    public float gCheckRadius = 0.4f;
+    public LayerMask groundMask;
+    bool isGrounded;
 
     [Header("Enemy Scripts")]
     public Civilian civilianScript;
@@ -70,12 +74,12 @@ public class PlayerController : Singleton<PlayerController>
             isDrinking = false;
             drainHitbox.SetActive(false);
         }
-
-        
     }
 
     public void Movement() //Controls the players walk, sprint and crouch
     {
+        isGrounded = Physics.CheckSphere(gCheckPos.position, gCheckRadius, groundMask);
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f , vertical).normalized;
@@ -92,17 +96,39 @@ public class PlayerController : Singleton<PlayerController>
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
 
             
-            _AM.PlayFootStep(footStepSource);
+            
             //play run anim
-            SetAnimBool("Running");
-            SetAnimBool("Idle", false);
+            if(isGrounded && isAttacking == false)
+            {
+                _AM.PlayFootStep(footStepSource);
+                SetAnimBool("Running");
+                SetAnimBool("Idle", false);
+                SetAnimBool("Falling", false);
+                SetAnimBool("Attacking", false);
+            }
         }
         else
         {
-            //play idle animation
-            SetAnimBool("Idle");
-            SetAnimBool("Running", false);
+            if (isGrounded && isAttacking == false)
+            {
+                //play idle animation
+                SetAnimBool("Idle");
+                SetAnimBool("Running", false);
+                SetAnimBool("Falling", false);
+                SetAnimBool("Attacking", false);
+            }
         }
+
+
+        if (!isGrounded)
+        {
+            SetAnimBool("Falling");
+            SetAnimBool("Running", false);
+            SetAnimBool("Idle", false);
+            SetAnimBool("Attacking", false);
+        }
+
+
 
         if (!controller.isGrounded)
         {
@@ -114,6 +140,8 @@ public class PlayerController : Singleton<PlayerController>
     IEnumerator Attack() // Turns the hitbox on and off 
     {
         isAttacking = true;
+        SetAnimBool("Attacking");
+        yield return new WaitForSeconds(0.4f);
         atkHitbox.SetActive(true);
         _AM.PlayerAttackSound();
         yield return new WaitForSeconds(atkDuration);

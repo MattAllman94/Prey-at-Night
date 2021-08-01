@@ -2580,7 +2580,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293651583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.817, z: 0}
+  m_LocalPosition: {x: 0, y: -1.004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7759173331181039857}
@@ -2598,7 +2598,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a39c87496415f70448274a7648d628dd, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.855
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -17294,7 +17294,7 @@ Animator:
   m_GameObject: {fileID: 1579435852}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ae3d5730019fc2b468627683af0e0f11, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9ded68bea8eedc84e97f152e5b38b44d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -23182,7 +23182,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7759173330320837719}
-  m_LocalRotation: {x: -0.05267049, y: -0.006440424, z: -0.00033969886, w: 0.9985912}
+  m_LocalRotation: {x: -0.052670717, y: -0.0057103485, z: -0.00030119115, w: 0.99859565}
   m_LocalPosition: {x: 0, y: 0.24113464, z: -5.554924}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -23512,8 +23512,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7759173330687691643}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.62}
-  m_LocalScale: {x: 1.3256, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.214, z: 0.461}
+  m_LocalScale: {x: 0.7690336, y: 1, z: 0.73896}
   m_Children: []
   m_Father: {fileID: 7759173331181039857}
   m_RootOrder: 2
@@ -23533,7 +23533,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7759173330687691643}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -23717,13 +23717,19 @@ MonoBehaviour:
   speed: 6
   turnSmoothTime: 0.1
   footStepSource: {fileID: 293651585}
+  playerAnim: {fileID: 1579435854}
+  gCheckPos: {fileID: 293651584}
+  gCheckRadius: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
   civilianScript: {fileID: 0}
   criminalScript: {fileID: 0}
   monsterScript: {fileID: 0}
   atkHitbox: {fileID: 7759173330687691643}
   isAttacking: 0
-  atkDamage: 20
-  atkDuration: 1
+  atkDamage: 100
+  atkDuration: 0.75
   hitNPC: {fileID: 0}
   drainHitbox: {fileID: 383427317}
   drainDamage: 5
@@ -23760,7 +23766,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.82
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -23768,7 +23774,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 2
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -23804,7 +23810,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.814
       inSlope: 0
       outSlope: 0
       tangentMode: 0
