@@ -63,6 +63,8 @@ public class UIManager : Singleton<UIManager>
 
     int warnSlot = 0;
 
+    //public Camera uiCam;
+
     public string[] messages = new string[]
     {
         "There is a monster up ahead!! \n I need to get stronger if I am to fight this", //0
@@ -82,6 +84,8 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
+        //uiCam.orthographicSize = 51;
+        //uiCam.orthographicSize = 50;
         powerTreePanel.SetActive(false);
         powerTextSide.SetActive(false);
         UpdateHealth(_P.currentHealth);
@@ -89,9 +93,9 @@ public class UIManager : Singleton<UIManager>
 
     public void Update()
     {
-        UpdateBlood(_GM.currentBlood);
+        //UpdateBlood(_GM.currentBlood);
         //UpdateHealth(_P.currentHealth);
-        UpdatePowerPoints(_GM.powerPoints);
+        //UpdatePowerPoints(_GM.powerPoints);
 
         if(Input.GetKey(KeyCode.P))
         {
@@ -128,8 +132,8 @@ public class UIManager : Singleton<UIManager>
 
     public void Load()
     {
-        _GM.ChangeGameState(GameState.INGAME);
         _GM.LoadData();
+        _GM.ChangeGameState(GameState.INGAME);
     }
 
     public void QuitGame()
@@ -307,12 +311,14 @@ public class UIManager : Singleton<UIManager>
     public void UpdateBlood(float _blood)
     {
         cBloodText.text = _blood.ToString("f0");
+        //bloodSprite.fillAmount = MapTo01(_blood, 0f, _GM.maxBlood);
     }
 
     public void UpdateHealth(float _health)
     {
         cHealthText.text = _health.ToString("f0");
         healthSlider.value = _health;
+        //healthSprite.fillAmount = MapTo01(_health, 0f, _P.maxHealth);
     }
 
     public void UpdatePowerPoints(int _points)

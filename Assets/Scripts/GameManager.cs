@@ -57,7 +57,8 @@ public class GameManager : Singleton<GameManager>
         IncreaseCorruption(0);
         ChangeBlood(0);
         ChangeGameState(GameState.TITLE);
-
+        _UI.gameObject.SetActive(false);
+        _UI.gameObject.SetActive(true);
     }
     
     public void SaveData()
@@ -80,42 +81,44 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
+#if UNITY_EDITOR
         if (debug) // All Debugging checks
         {
-            //if(Input.GetKeyDown(KeyCode.L))
-            //{
-            //    SaveData();        // FOR TESTING SAVING
-            //    Debug.Log("Saved State");
-            //}
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                SaveData();        // FOR TESTING SAVING
+                Debug.Log("Saved State");
+            }
 
-            //if (Input.GetKeyDown(KeyCode.J))
-            //{
-            //    ChangePowerPoints(5, true);        // Testing Power Points
-            //}
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                ChangePowerPoints(5, true);        // Testing Power Points
+            }
 
-            //if (Input.GetKeyDown(KeyCode.B))
-            //{
-            //    ChangeBlood(25f, true);        // Testing Power Points
-            //}
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                ChangeBlood(25f, true);        // Testing Power Points
+            }
 
             //if (Input.GetKeyDown(KeyCode.K))
             //{
             //    _NPC.currentMonsters += 1;
             //}
 
-            if(Input.GetKeyDown(KeyCode.Alpha0)) //Testing Corruption levels
+            if (Input.GetKeyDown(KeyCode.Alpha0)) //Testing Corruption levels
             {
                 IncreaseCorruption(10);
             }
-            if(Input.GetKeyDown(KeyCode.Alpha9))
+            if (Input.GetKeyDown(KeyCode.Alpha9))
             {
                 DecreaseCorruption(10);
             }
-            
-            //Debug.Log(currentCorruption + " - " + corruptionLevel);
+
+            Debug.Log(currentCorruption + " - " + corruptionLevel);
 
         }
-       
+#endif
+
 
         if (Input.GetKeyDown(KeyCode.Escape) && gameState != GameState.TITLE)
         {

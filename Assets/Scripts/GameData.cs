@@ -19,18 +19,18 @@ public abstract class GameData : Prey
 
     public abstract void DeleteData();
 
-    void OnApplicationQuit()
-    {
-        SaveData();
-    }
+    //void OnApplicationQuit()
+    //{
+    //    SaveData();
+    //}
 
-    private void OnApplicationFocus(bool appInFocus)
-    {
-        if(!appInFocus)
-        {
-            SaveData();
-        }
-    }
+    //private void OnApplicationFocus(bool appInFocus)
+    //{
+    //    if(!appInFocus)
+    //    {
+    //        SaveData();
+    //    }
+    //}
 
     protected string MakeTimeStampNow()
     {

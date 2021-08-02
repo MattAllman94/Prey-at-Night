@@ -179,6 +179,7 @@ public class GameDataManager : GameData
     public override void DeleteData()
     {
         DeleteDataObject();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
     #endregion
 }
