@@ -190,12 +190,12 @@ public class Prompts : Singleton<Prompts>
         _UI.promptPanel.SetActive(false);
         ChangeState(PromptState.Blank);
     }
-
     IEnumerator MessageEleven()
     {
         _UI.promptPanel.SetActive(true);
         _UI.prompts.text = _UI.messages[11];
-        return null;
+        yield return new WaitForSeconds(delay);
+        ChangeState(PromptState.Blank);
     }
     #endregion
 }
