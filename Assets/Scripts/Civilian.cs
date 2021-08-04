@@ -30,6 +30,8 @@ public class Civilian : NPC
     public override void ResetNPC()
     {
         //base.ResetNPC();
+        transform.position = _NPC.civilianSpawn[Random.Range(0, _NPC.civilianSpawn.Count)].transform.position;
+
         currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
         agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
 

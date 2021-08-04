@@ -24,10 +24,13 @@ public class Monster : NPC
     Transform myTransform;
     public AudioSource footStepSource;
 
+    public Animator anim;
+
     void Start()
     {
         player = FindObjectOfType<PlayerController>().gameObject;
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
         timer = 0;
         myTransform = transform;
         lastPosition = myTransform.position;
@@ -54,7 +57,7 @@ public class Monster : NPC
                 break;
             case State.Attack:
                 //Debug.Log(DistToPlayer);
-                if (DistToPlayer < 1.5f && !attacking)
+                if (DistToPlayer < 1.8f && !attacking)
                 {
                     //Debug.Log("Reached Player");
                     StartCoroutine(Attack());
@@ -83,7 +86,8 @@ public class Monster : NPC
     {
         base.ResetNPC();
 
-        Destroy(this.gameObject);
+        Destroy(this.gameObject.GetComponent<CapsuleCollider>());
+        StartCoroutine(Death());
     }
 
     public void ChangeState(State _state)
@@ -94,12 +98,17 @@ public class Monster : NPC
         {
             case State.Idle:
                 MonsterMovement();
+                anim.SetBool("isWalking", true);
+                anim.SetBool("isAttacking", false);
                 break;
             case State.Attack:
                 agent.SetDestination(_P.transform.position);
+                anim.SetBool("isWalking", false);
                 break;
             case State.Flee:
                 MonsterFlee();
+                anim.SetBool("isWalking", true);
+                anim.SetBool("isAttacking", false);
                 break;
         }
     }
@@ -147,15 +156,25 @@ public class Monster : NPC
     {
         //Debug.Log("Is Attacking");
         attacking = true;
+        anim.SetBool("isAttacking", true);
         //Debug.Log("Attack");
         _P.ChangeHealth(damage, false);
         yield return new WaitForSeconds(delay);
         attacking = false;
+        anim.SetBool("isAttacking", false);
     }
 
     public void MonsterFlee()
     {
         agent.SetDestination(waypoint.transform.position);
         //.Log("Flee");
+    }
+
+    IEnumerator Death()
+    {
+        agent.isStopped = true;
+        anim.SetBool("Died", true);
+        yield return new WaitForSeconds(3);
+        Destroy(this.gameObject);
     }
 }

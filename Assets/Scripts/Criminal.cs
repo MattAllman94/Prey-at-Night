@@ -29,6 +29,7 @@ public class Criminal : NPC
     public override void ResetNPC()
     {
         //base.ResetNPC();
+        transform.position = _NPC.civilianSpawn[Random.Range(0, _NPC.civilianSpawn.Count)].transform.position;
 
         currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count);
         agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);

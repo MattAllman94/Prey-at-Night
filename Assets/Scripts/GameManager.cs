@@ -114,7 +114,7 @@ public class GameManager : Singleton<GameManager>
                 DecreaseCorruption(10);
             }
 
-            Debug.Log(currentCorruption + " - " + corruptionLevel);
+            //Debug.Log(currentCorruption + " - " + corruptionLevel);
 
         }
 #endif

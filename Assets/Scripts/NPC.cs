@@ -86,7 +86,6 @@ public class NPC : Prey
 
         //TODO
         //Ensure that waypoint selected is not close/visible to the player
-        transform.position = _NPC.civilianSpawn[Random.Range(0, _NPC.civilianSpawn.Count)].transform.position;
         ResetNPC();
     }
 
@@ -98,6 +97,7 @@ public class NPC : Prey
     public void TakeDamage(float _damage, bool _dot = false)
     {
         health -= _dot ? _damage * Time.deltaTime : _damage;
+
 
         if (health <= 0)
         {

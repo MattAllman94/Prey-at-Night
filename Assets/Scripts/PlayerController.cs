@@ -164,6 +164,7 @@ public class PlayerController : Singleton<PlayerController>
         if (hitNPC.myType == EnemyType.Monster)
         {
             monsterScript.ChangeState(State.Attack);
+            monsterScript.anim.SetTrigger("Damaged");
         }
     }
 
