@@ -15,11 +15,13 @@ public class Civilian : NPC
     Transform myTransform;
     public AudioSource footStepSource;
 
+    public Animator anim;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = FindObjectOfType<PlayerController>().gameObject;
+        anim = GetComponent<Animator>();
         myTransform = transform;
         lastPosition = myTransform.position;
 
@@ -36,6 +38,7 @@ public class Civilian : NPC
         agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
 
         health = 100f;
+        agent.speed = 3.5f;
 
         ChangeState(State.Idle);
 
@@ -89,13 +92,19 @@ public class Civilian : NPC
             case State.Idle:
                 CivilianMovement();
                 agent.isStopped = false;
+                anim.SetBool("isWalking", true);
+                anim.SetBool("isRunning", false);
                 break;
             case State.Drained:
                 agent.isStopped = true;
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isRunning", false);
                 break;
             case State.Flee:
                 Flee();
                 agent.isStopped = false;
+                anim.SetBool("isRunning", true);
+                anim.SetBool("isWalking", false);
                 break;
         }
     }
@@ -133,6 +142,7 @@ public class Civilian : NPC
 
     public void Flee()
     {
+        agent.speed = 5;
         //Debug.Log("Flee");
         currentWaypoint = Random.Range(0, _NPC.civilianSpawn.Count - 1);
         agent.SetDestination(_NPC.civilianSpawn[currentWaypoint].transform.position);

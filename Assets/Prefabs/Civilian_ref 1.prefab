@@ -14417,6 +14417,7 @@ GameObject:
   - component: {fileID: 8934585969483087896}
   - component: {fileID: 3289368259630017951}
   - component: {fileID: 1608908362}
+  - component: {fileID: 1263862838932950686}
   m_Layer: 0
   m_Name: Civilian_ref 1
   m_TagString: Civilian
@@ -14564,6 +14565,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 10
   m_CollisionDetection: 0
+--- !u!95 &1263862838932950686
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7858592156999755519}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: ae3d5730019fc2b468627683af0e0f11, type: 3}
+  m_Controller: {fileID: 9100000, guid: 87e8d3031a84e5c4385f3a1e46e2eddb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7864734968382195549
 GameObject:
   m_ObjectHideFlags: 0
