@@ -16,6 +16,8 @@ public class Civilian : NPC
     public AudioSource footStepSource;
 
     public Animator anim;
+    public Avatar femaleAvatar;
+    public Avatar maleAvatar;
 
     void Start()
     {
@@ -47,11 +49,13 @@ public class Civilian : NPC
         {
             male.SetActive(true);
             female.SetActive(false);
+            anim.avatar = maleAvatar;
         }
         else if (rnd == 1)
         {
             male.SetActive(false);
             female.SetActive(true);
+            anim.avatar = femaleAvatar;
         }
 
     }
@@ -94,15 +98,18 @@ public class Civilian : NPC
                 agent.isStopped = false;
                 anim.SetBool("isWalking", true);
                 anim.SetBool("isRunning", false);
+                anim.SetBool("isIdle", false);
                 break;
             case State.Drained:
                 agent.isStopped = true;
-                anim.SetBool("isWalking", false);
+                anim.SetBool("isIdle", true);
                 anim.SetBool("isRunning", false);
+                anim.SetBool("isWalking", false);
                 break;
             case State.Flee:
                 Flee();
                 agent.isStopped = false;
+                anim.SetBool("isIdle", false);
                 anim.SetBool("isRunning", true);
                 anim.SetBool("isWalking", false);
                 break;
