@@ -12,10 +12,12 @@ public class UIManager : Singleton<UIManager>
     [Header("In Game")]
     public GameObject inGamePanel;
     public TextMeshProUGUI cBloodText;
-    public TextMeshProUGUI cHealthText;
+    //public TextMeshProUGUI cHealthText;
     public TextMeshProUGUI prompts;
     public GameObject promptPanel;
-    public Slider healthSlider;
+    //public Slider healthSlider;
+    public Image healthImg;
+    public Image bloodImg;
 
     public Image power1Icon;
     public Image power2Icon;
@@ -311,14 +313,12 @@ public class UIManager : Singleton<UIManager>
     public void UpdateBlood(float _blood)
     {
         cBloodText.text = _blood.ToString("f0");
-        //bloodSprite.fillAmount = MapTo01(_blood, 0f, _GM.maxBlood);
+        bloodImg.fillAmount = MapTo01(_blood, 0f, _GM.maxBlood);
     }
 
     public void UpdateHealth(float _health)
-    {
-        cHealthText.text = _health.ToString("f0");
-        healthSlider.value = _health;
-        //healthSprite.fillAmount = MapTo01(_health, 0f, _P.maxHealth);
+    {      
+        healthImg.fillAmount = MapTo01(_health, 0f, _P.maxHealth);
     }
 
     public void UpdatePowerPoints(int _points)
