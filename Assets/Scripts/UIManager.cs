@@ -95,9 +95,6 @@ public class UIManager : Singleton<UIManager>
 
     public void Update()
     {
-        //UpdateBlood(_GM.currentBlood);
-        //UpdateHealth(_P.currentHealth);
-        //UpdatePowerPoints(_GM.powerPoints);
 
         if(Input.GetKey(KeyCode.P))
         {
