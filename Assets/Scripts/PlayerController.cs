@@ -175,11 +175,11 @@ public class PlayerController : Singleton<PlayerController>
         civilianScript.TakeDamage(drainDamage, true);
         if (_GM.currentBlood < 100f)
         {
-            _GM.currentBlood += drainDamage / 2 * Time.deltaTime;
+            _GM.ChangeBlood(drainDamage / 2 * Time.deltaTime, true);
         }
         if (currentHealth < 100f)
         {
-            currentHealth += drainDamage / 3 * Time.deltaTime;
+            ChangeHealth(drainDamage / 3 * Time.deltaTime, true);
         }
     }
 
@@ -188,11 +188,13 @@ public class PlayerController : Singleton<PlayerController>
         criminalScript.TakeDamage(drainDamage, true);
         if (_GM.currentBlood < 100f)
         {
-            _GM.currentBlood += drainDamage / 4 * Time.deltaTime;
+            //_GM.currentBlood += drainDamage / 4 * Time.deltaTime;
+            _GM.ChangeBlood(drainDamage / 4 * Time.deltaTime, true);
         }
         if (currentHealth < 100f)
         {
-            currentHealth += drainDamage / 3 * Time.deltaTime;
+            //currentHealth += drainDamage / 3 * Time.deltaTime;
+            ChangeHealth(drainDamage / 3 * Time.deltaTime, true);
         }
     }
 
