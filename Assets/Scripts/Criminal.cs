@@ -15,10 +15,14 @@ public class Criminal : NPC
     Transform myTransform;
     public AudioSource footStepSource;
     public AudioSource myAudioSource;
+
+    public Animator anim;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = FindObjectOfType<PlayerController>().gameObject;
+        anim = GetComponent<Animator>();
         myTransform = transform;
         lastPosition = myTransform.position;
         myAudioSource = GetComponent<AudioSource>();
@@ -29,7 +33,16 @@ public class Criminal : NPC
     public override void ResetNPC()
     {
         //base.ResetNPC();
+        StartCoroutine(Reset());
+
+    }
+
+    IEnumerator Reset()
+    {
+        anim.SetBool("isDead", true);
+        yield return new WaitForSeconds(3);
         transform.position = _NPC.civilianSpawn[Random.Range(0, _NPC.civilianSpawn.Count)].transform.position;
+        anim.SetBool("isDead", false);
 
         currentWaypoint = Random.Range(0, _NPC.criminalWaypoints.Count);
         agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);
@@ -88,9 +101,15 @@ public class Criminal : NPC
             case State.Idle:
                 CriminalMovement();
                 agent.isStopped = false;
+                anim.SetBool("isWalking", true);
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isIdle", false);
                 break;
             case State.Drained:
                 agent.isStopped = true;
+                anim.SetBool("isIdle", true);
+                anim.SetBool("isRunning", false);
+                anim.SetBool("isWalking", false);
                 break;
             case State.Attack:
                 agent.SetDestination(_P.transform.position);
@@ -99,6 +118,9 @@ public class Criminal : NPC
             case State.Flee:
                 Flee();
                 agent.isStopped = false;
+                anim.SetBool("isIdle", false);
+                anim.SetBool("isRunning", true);
+                anim.SetBool("isWalking", false);
                 break;
         }
     }
@@ -153,6 +175,7 @@ public class Criminal : NPC
     {
         //Debug.Log("Is Attacking");
         attacking = true;
+        anim.SetTrigger("Attack");
         //Debug.Log("Attack");
         _P.ChangeHealth(damage, false);
         _AM.PlayerAttackSound(false);

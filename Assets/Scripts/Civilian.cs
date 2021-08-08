@@ -34,7 +34,15 @@ public class Civilian : NPC
     public override void ResetNPC()
     {
         //base.ResetNPC();
+        StartCoroutine(Reset());
+    }
+
+    IEnumerator Reset()
+    {
+        anim.SetBool("isDead", true);
+        yield return new WaitForSeconds(3);
         transform.position = _NPC.civilianSpawn[Random.Range(0, _NPC.civilianSpawn.Count)].transform.position;
+        anim.SetBool("isDead", false);
 
         currentWaypoint = Random.Range(0, _NPC.civilianWaypoints.Count - 1);
         agent.SetDestination(_NPC.civilianWaypoints[currentWaypoint].transform.position);
@@ -57,7 +65,6 @@ public class Civilian : NPC
             female.SetActive(true);
             anim.avatar = femaleAvatar;
         }
-
     }
 
     void Update()
