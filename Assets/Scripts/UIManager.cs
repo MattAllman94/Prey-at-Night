@@ -37,6 +37,7 @@ public class UIManager : Singleton<UIManager>
     [Header("Title")]
     public GameObject titlePanel;
     public CanvasGroup fadePanelGroup;
+    public GameObject optionsPanel;
     public float cvFadeTime = 2f;
 
     [Header ("Power Tree")]
@@ -372,50 +373,45 @@ public class UIManager : Singleton<UIManager>
         
     }
 
+    public void ShowPanel(GameObject _panel)
+    {
+        inGamePanel.SetActive(false);
+        powerTreePanel.SetActive(false);
+        pausedPanel.SetActive(false);
+        losePanel.SetActive(false);
+        winPanel.SetActive(false);
+        titlePanel.SetActive(false);
+        optionsPanel.SetActive(false);
+
+        _panel.SetActive(true);
+    }
+
     public void ChangeGameState(GameState _gameState)
     {
         switch(_gameState)
         {
             case GameState.PAUSED:
                 {
-                    inGamePanel.SetActive(false);
-                    powerTreePanel.SetActive(false);
-                    pausedPanel.SetActive(true);
-                    losePanel.SetActive(false);
-                    winPanel.SetActive(false);
+                    ShowPanel(pausedPanel);
                     break;
                 }
             case GameState.POWERMENU:
                 {
-                    inGamePanel.SetActive(false);
-                    powerTreePanel.SetActive(true);
-                    pausedPanel.SetActive(false);
-                    losePanel.SetActive(false);
-                    winPanel.SetActive(false);
+                    ShowPanel(powerTreePanel);
                     ppText.text = ("PP: " + _GM.powerPoints.ToString());
                     break;
                 }
             case GameState.INGAME:
                 {
                     ClearUI();
-                    inGamePanel.SetActive(true);
-                    powerTreePanel.SetActive(false);
-                    powerTextSide.SetActive(false);
-                    pausedPanel.SetActive(false);
-                    titlePanel.SetActive(false);
-                    losePanel.SetActive(false);
-                    winPanel.SetActive(false);
+                    ShowPanel(inGamePanel);
+                    powerTextSide.SetActive(false);                  
                     break;
                 }
             case GameState.TITLE:
                 {
-                    inGamePanel.SetActive(false);
-                    powerTreePanel.SetActive(false);
-                    powerTextSide.SetActive(false);
-                    pausedPanel.SetActive(false);
-                    titlePanel.SetActive(true);
-                    losePanel.SetActive(false);
-                    winPanel.SetActive(false);
+                    ShowPanel(titlePanel);
+                    powerTextSide.SetActive(false);                
                     break;
                 }
         }
