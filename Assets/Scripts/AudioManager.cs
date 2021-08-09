@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+using UnityEngine.Audio;
 
 public class AudioManager : Singleton<AudioManager>
 {
@@ -114,6 +114,8 @@ public class AudioManager : Singleton<AudioManager>
         uiAudioSource.pitch = Random.Range(0.95f, 1f);
         uiAudioSource.Play();
     }
+
+
 
     public void ChangeRainVolume(float _volume)
     {
