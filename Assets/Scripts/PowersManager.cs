@@ -22,8 +22,8 @@ public class PowersManager : Singleton<PowersManager>
 
     private void Start()
     {
-        activePower1.power = Powers.NoPower;
-        activePower2.power = Powers.NoPower;
+        //activePower1.power = Powers.NoPower;
+        //activePower2.power = Powers.NoPower;
     }
 
     private void Update()
@@ -202,7 +202,7 @@ public enum Range
 }
 
 [System.Serializable]
-public class Power 
+public class Power
 {
     public Powers power;
     public DamageType damageType;   

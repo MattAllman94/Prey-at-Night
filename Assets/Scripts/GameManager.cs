@@ -63,9 +63,12 @@ public class GameManager : Singleton<GameManager>
     
     public void SaveData()
     {
+        Debug.Log("Saved");
         _DATA.SetSettings(settings);
         _DATA.SetGameData(currentBlood, currentCorruption, powerPoints);
         _DATA.SetPlayerData();
+        _DATA.SetPowerData();
+        
     }
 
     public void LoadData()
@@ -77,6 +80,8 @@ public class GameManager : Singleton<GameManager>
         _P.currentHealth = _DATA.GetCurrentHealth();
         _P.transform.position = _DATA.GetLastPosition();
         _P.transform.rotation = _DATA.GetLastRotation();
+        _PM.activePower1 = _DATA.GetPower1();
+        _PM.activePower2 = _DATA.GetPower2();
     }
 
     void Update()

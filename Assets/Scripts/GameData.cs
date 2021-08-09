@@ -116,6 +116,7 @@ public abstract class GameData : Prey
 
     string GetPath()
     {
-        return Application.persistentDataPath + "/" + subDir + "/" + fileName;
+        //return Application.persistentDataPath + "/" + subDir + "/" + fileName;
+        return Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + subDir + "/" + fileName;
     }
 }

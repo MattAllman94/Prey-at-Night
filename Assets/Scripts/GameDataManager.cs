@@ -29,6 +29,13 @@ public class PlayerData
 }
 
 [Serializable]
+public class PowerData
+{
+    public Power activePower1;
+    public Power activePower2;
+}
+
+[Serializable]
 public class PlayTimeData
 {
     public int hoursPlayed = 0;
@@ -50,6 +57,9 @@ public class GameDataObject //Put Data in here
     //public Dictionary<string, PlayerData> player = new Dictionary<string, PlayerData>();
     public PlayerData playerData = new PlayerData();
 
+    //Power Settings
+    public PowerData powerData = new PowerData();
+
     //Times
     public PlayTimeData playTime = new PlayTimeData();
 
@@ -66,6 +76,8 @@ public class GameDataManager : GameData
     public static GameDataManager INSTANCE;
     private void Awake()
     {
+        Debug.Log(Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + "Save" + "/" + fileName);
+
         if (INSTANCE != null)
         {
             Debug.Log("GameDataManager already instanced");
@@ -94,6 +106,11 @@ public class GameDataManager : GameData
             data.playerData.playerHealth = 100;
             data.playerData.lastPosition = new Vector3(-38, -3.8f, 63);
             data.playerData.lastRotation = new Quaternion(0, 180, 0, 1);
+
+            //Initialize Power Data dictionary
+            data.powerData = new PowerData();
+            data.powerData.activePower1 = null;
+            data.powerData.activePower2 = null;
 
             //create time info if none
             data.playTime = new PlayTimeData();
@@ -128,6 +145,12 @@ public class GameDataManager : GameData
         data.playerData.playerHealth = _P.currentHealth;
         data.playerData.lastPosition = _P.transform.position;
         data.playerData.lastRotation = _P.transform.rotation;
+    }
+
+    public void SetPowerData()
+    {
+        data.powerData.activePower1 = _PM.activePower1;
+        data.powerData.activePower1 = _PM.activePower2;
     }
 
     #endregion
@@ -166,6 +189,16 @@ public class GameDataManager : GameData
     public Quaternion GetLastRotation()
     {
         return data.playerData.lastRotation;
+    }
+
+    public Power GetPower1()
+    {
+        return data.powerData.activePower1;
+    }
+
+    public Power GetPower2()
+    {
+        return data.powerData.activePower2;
     }
     #endregion
 
