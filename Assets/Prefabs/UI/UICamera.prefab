@@ -3529,7 +3529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3824628999548673207
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3669,7 +3669,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: QUIT
+  m_Text: Quit
 --- !u!1 &1220891082633920055
 GameObject:
   m_ObjectHideFlags: 0
@@ -4114,7 +4114,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TITLE
+  m_text: Title
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
   m_sharedMaterial: {fileID: -8123518760837827171, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
@@ -4875,7 +4875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YES
+  m_text: Yes
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
   m_sharedMaterial: {fileID: -8123518760837827171, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
@@ -6264,7 +6264,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CANCEL
+  m_text: Cancel
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
   m_sharedMaterial: {fileID: -8123518760837827171, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
@@ -6532,7 +6532,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '  EQUIP'
+  m_text: Equip
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
   m_sharedMaterial: {fileID: -8123518760837827171, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
@@ -6800,7 +6800,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: POWERS
+  m_text: Powers
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
   m_sharedMaterial: {fileID: -8123518760837827171, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
@@ -6834,7 +6834,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 16
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6934,7 +6934,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: WARNING
+  m_text: Warning
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
   m_sharedMaterial: {fileID: -8123518760837827171, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
@@ -7954,7 +7954,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'UNLOCK COST: 3 '
+  m_text: 'Unlock Cost: 3'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
   m_sharedMaterial: {fileID: -8123518760837827171, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
@@ -9280,7 +9280,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RESUME
+  m_text: Resume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
   m_sharedMaterial: {fileID: -8123518760837827171, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
@@ -9427,7 +9427,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OPTIONS
+  m_Text: Options
 --- !u!1 &4800842619345593026
 GameObject:
   m_ObjectHideFlags: 0
@@ -9493,9 +9493,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'OPTIONS
-
-'
+  m_text: Options
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
   m_sharedMaterial: {fileID: -8123518760837827171, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
@@ -9818,7 +9816,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PAUSED
+  m_text: Paused
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
   m_sharedMaterial: {fileID: -8123518760837827171, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
@@ -10726,7 +10724,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PLAY
+  m_Text: Play
 --- !u!1 &7986013235895019853
 GameObject:
   m_ObjectHideFlags: 0
@@ -10829,7 +10827,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SAVE
+  m_text: Save
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
   m_sharedMaterial: {fileID: -8123518760837827171, guid: cb84cb3a0a79f6d4d8ad25295c4eff9b, type: 2}
@@ -12447,7 +12445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9164519402773262221, guid: eea5f4a45fba6d2489372a92bd5312d1, type: 3}
       propertyPath: m_text
-      value: SLOT 2
+      value: Slot 2
       objectReference: {fileID: 0}
     - target: {fileID: 9164519402773262221, guid: eea5f4a45fba6d2489372a92bd5312d1, type: 3}
       propertyPath: m_fontAsset
@@ -13180,6 +13178,10 @@ PrefabInstance:
     - target: {fileID: 9164519402773262220, guid: eea5f4a45fba6d2489372a92bd5312d1, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -95
+      objectReference: {fileID: 0}
+    - target: {fileID: 9164519402773262221, guid: eea5f4a45fba6d2489372a92bd5312d1, type: 3}
+      propertyPath: m_text
+      value: Slot 1
       objectReference: {fileID: 0}
     - target: {fileID: 9164519402773262221, guid: eea5f4a45fba6d2489372a92bd5312d1, type: 3}
       propertyPath: m_fontAsset
