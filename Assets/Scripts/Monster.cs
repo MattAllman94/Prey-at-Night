@@ -23,6 +23,10 @@ public class Monster : NPC
     Vector3 lastPosition;
     Transform myTransform;
     public AudioSource footStepSource;
+    public AudioSource snarlSource;
+    public AudioClip AttackSound;
+    public AudioClip snarlSound;
+    public AudioClip dieSound;
 
     public Animator anim;
 
@@ -39,6 +43,7 @@ public class Monster : NPC
         damage = 20;
 
         ChangeState(State.Idle);
+
     }
 
 
@@ -157,6 +162,8 @@ public class Monster : NPC
         //Debug.Log("Is Attacking");
         attacking = true;
         anim.SetBool("isAttacking", true);
+        snarlSource.clip = AttackSound;
+        snarlSource.Play();
         //Debug.Log("Attack");
         _P.ChangeHealth(damage, false);
         yield return new WaitForSeconds(delay);
@@ -174,7 +181,16 @@ public class Monster : NPC
     {
         agent.isStopped = true;
         anim.SetBool("Died", true);
+        snarlSource.clip = dieSound;
+        snarlSource.Play();
         yield return new WaitForSeconds(3);
         Destroy(this.gameObject);
+    }
+
+    IEnumerator RandomSnarl()
+    {
+        yield return new WaitForSeconds(Random.Range(5f, 10f));
+        snarlSource.clip = snarlSound;
+        snarlSource.Play();
     }
 }
