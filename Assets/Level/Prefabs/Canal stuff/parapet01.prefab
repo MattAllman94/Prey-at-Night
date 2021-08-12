@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6047934146281304370}
   - component: {fileID: 7224142711136353943}
   - component: {fileID: 4874505360730393181}
+  - component: {fileID: 3750828913307414113}
   m_Layer: 0
   m_Name: parapet01
   m_TagString: Untagged
@@ -59,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8748892135801146194, guid: aa49c04f3f5846949b39f611c934f35a, type: 3}
+  - {fileID: 2100000, guid: 53413a1caf430284bae57dd765eaa7c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -81,3 +82,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3750828913307414113
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387587223234882440}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7194341752742793344, guid: aa49c04f3f5846949b39f611c934f35a, type: 3}
