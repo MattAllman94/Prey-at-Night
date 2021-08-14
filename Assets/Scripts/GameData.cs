@@ -24,13 +24,13 @@ public abstract class GameData : Prey
     //    SaveData();
     //}
 
-    //private void OnApplicationFocus(bool appInFocus)
-    //{
-    //    if(!appInFocus)
-    //    {
-    //        SaveData();
-    //    }
-    //}
+    private void OnApplicationFocus(bool appInFocus)
+    {
+        if (!appInFocus)
+        {
+            SaveData();
+        }
+    }
 
     protected string MakeTimeStampNow()
     {
@@ -42,6 +42,7 @@ public abstract class GameData : Prey
         //ensure the file exists
         if(File.Exists(GetPath()))
         {
+
             //Create filestream for opening files
             FileStream stream = new FileStream(GetPath(), FileMode.Open);
 
@@ -56,6 +57,7 @@ public abstract class GameData : Prey
 
             //Returmn tje decrypted string converted to json then as a GameDataObject Type
             return JsonUtility.FromJson<T>(jSave);
+            
         }
         else
         {
@@ -91,6 +93,8 @@ public abstract class GameData : Prey
         writer.Close();
 
         stream.Close();
+
+        Debug.Log("SaveDataObject");
     }
 
     protected void DeleteDataObject()

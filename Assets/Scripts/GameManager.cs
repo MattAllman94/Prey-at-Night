@@ -83,8 +83,7 @@ public class GameManager : Singleton<GameManager>
         _PM.activePower1 = _DATA.GetPower1();
         _PM.activePower2 = _DATA.GetPower2();
         _NPC.monstersKilled = _DATA.GetMonstersKilled();
-        _NPC.civilians = _DATA.GetCivilians();
-        _NPC.criminals = _DATA.GetCriminals();
+        //_NPC.monsters = _DATA.GetMonsters();
     }
 
     void Update()

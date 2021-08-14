@@ -39,8 +39,7 @@ public class PowerData
 public class NPCData
 {
     public int monstersKilled;
-    public List<GameObject> civilians;
-    public List<GameObject> criminals;
+    //public List<GameObject> monsters;
 }
 
 [Serializable]
@@ -124,9 +123,7 @@ public class GameDataManager : GameData
             data.powerData.activePower2 = null;
 
             //Initialize NPC Data
-            data.npcData = new NPCData();
             data.npcData.monstersKilled = 0;
-
 
             //create time info if none
             data.playTime = new PlayTimeData();
@@ -166,26 +163,12 @@ public class GameDataManager : GameData
     public void SetPowerData()
     {
         data.powerData.activePower1 = _PM.activePower1;
-        data.powerData.activePower1 = _PM.activePower2;
+        data.powerData.activePower2 = _PM.activePower2;
     }
 
     public void SetNPCData()
     {
         data.npcData.monstersKilled = _NPC.monstersKilled;
-        foreach(GameObject i in data.npcData.civilians)
-        {
-            foreach(GameObject o in _NPC.civilians)
-            {
-                i.transform.position = o.transform.position;
-            }
-        }
-        foreach (GameObject i in data.npcData.criminals)
-        {
-            foreach (GameObject o in _NPC.criminals)
-            {
-                i.transform.position = o.transform.position;
-            }
-        }
     }
 
     #endregion
@@ -241,15 +224,10 @@ public class GameDataManager : GameData
         return data.npcData.monstersKilled;
     }
 
-    public List<GameObject> GetCivilians()
-    {
-        return data.npcData.civilians;
-    }
-
-    public List<GameObject> GetCriminals()
-    {
-        return data.npcData.criminals;
-    }
+    //public List<GameObject> GetMonsters()
+    //{
+    //    return data.npcData.monsters;
+    //}
     #endregion
 
     #region Functions

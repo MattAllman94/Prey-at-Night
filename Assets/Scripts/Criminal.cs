@@ -39,6 +39,7 @@ public class Criminal : NPC
 
     IEnumerator Reset()
     {
+        agent.isStopped = true;
         anim.SetBool("isDead", true);
         yield return new WaitForSeconds(3);
         transform.position = _NPC.civilianSpawn[Random.Range(0, _NPC.civilianSpawn.Count)].transform.position;
