@@ -32480,7 +32480,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1932.5962
+  m_Intensity: 1972.6371
   m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -52913,7 +52913,7 @@ MonoBehaviour:
   maxCorruption: 100
   minCorruption: -100
   corruptionLevel: 0
-  currentBlood: 5
+  currentBlood: 100
   maxBlood: 100
   powerPoints: 10
   debug: 1
@@ -57490,6 +57490,7 @@ MonoBehaviour:
         castSound: {fileID: 0}
         playerAnimation: {fileID: 0}
         enemyAnimation: {fileID: 0}
+        particles: {fileID: 0}
       activePower2:
         power: 0
         damageType: 0
@@ -57509,6 +57510,7 @@ MonoBehaviour:
         castSound: {fileID: 0}
         playerAnimation: {fileID: 0}
         enemyAnimation: {fileID: 0}
+        particles: {fileID: 0}
     npcData:
       monstersKilled: 0
     playTime:
@@ -71319,7 +71321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2875968596280843255, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2875968596508831771, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -71537,6 +71539,91 @@ PrefabInstance:
       propertyPath: castPos
       value: 
       objectReference: {fileID: 268197618}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower1.icon
+      value: 
+      objectReference: {fileID: 1161201145128540330, guid: 1bcb5e43ac167ec42a77e37eed746e5e, type: 3}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower2.icon
+      value: 
+      objectReference: {fileID: 2130535880278150251, guid: 1bcb5e43ac167ec42a77e37eed746e5e, type: 3}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower1.power
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower2.model
+      value: 
+      objectReference: {fileID: 3255979631947617402, guid: e7c92b2d449f00949a75e1b8d53e79b7, type: 3}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower2.power
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower2.range
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower1.damage
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower2.damage
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower2.cooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower1.bloodCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower1.castSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1936c4cf18ac1c947ab8c5ba6a529256, type: 3}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower2.bloodCost
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower2.castSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e74aeede2df16d3468a3b7d3e40fcc59, type: 3}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower1.damageType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower1.unlockCost
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower2.unlockCost
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower1.description
+      value: Hold down the key on a target to drain their blood and convert it into
+        health.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower1.hasCooldown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower2.description
+      value: Throw a stake for devastating damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower1.myRequirement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
+      propertyPath: activePower2.myRequirement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3041530503642445361, guid: 98a4070613eb9934db4f54d240138e3b, type: 3}
       propertyPath: allPowers.Array.data[1].castSound
       value: 

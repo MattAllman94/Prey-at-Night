@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.VFX;
 
 public class PowersManager : Singleton<PowersManager>
 {
-
+    
     [Header ("Powers")]
     public List<Power> allPowers;
 
@@ -91,6 +92,7 @@ public class PowersManager : Singleton<PowersManager>
                     _P.SetAnimBool("Idle", false);
                     _P.SetAnimBool("Running", false);
                     UseBloodDrain(_power);
+                    _power.particles.gameObject.SetActive(true);
                     break;
                 }
             case (Powers.StakeThrow):
