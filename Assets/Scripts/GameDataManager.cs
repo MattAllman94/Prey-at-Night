@@ -115,7 +115,7 @@ public class GameDataManager : GameData
             //Initialize Player Data 
             data.playerData = new PlayerData();
             data.playerData.playerHealth = 100;
-            data.playerData.lastPosition = new Vector3(-38, -3.8f, 63);
+            data.playerData.lastPosition = new Vector3(-40, -3.8f, 63);
             data.playerData.lastRotation = new Quaternion(0, 180, 0, 1);
 
             //Initialize Power Data 
