@@ -1147,7 +1147,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39477888}
-  m_LocalRotation: {x: -0.00025598012, y: 0.99825704, z: 0.05885622, w: 0.0043416643}
+  m_LocalRotation: {x: -0.00038093908, y: 0.99824554, z: 0.058855537, w: 0.0064610858}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -31988,7 +31988,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1932.5962
+  m_Intensity: 1972.6371
   m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -57347,8 +57347,6 @@ MonoBehaviour:
         enemyAnimation: {fileID: 0}
     npcData:
       monstersKilled: 0
-      civilians: []
-      criminals: []
     playTime:
       hoursPlayed: 0
       minutesPlayed: 0
@@ -71185,7 +71183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2875968595356438781, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2875968595356438783, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
       propertyPath: m_RootOrder
@@ -71273,11 +71271,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2875968596063180850, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -21
+      value: -20.999939
       objectReference: {fileID: 0}
     - target: {fileID: 2875968596210872380, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -21
+      value: -20.999939
       objectReference: {fileID: 0}
     - target: {fileID: 2875968596508831771, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -71369,7 +71367,7 @@ PrefabInstance:
       objectReference: {fileID: 93229508}
     - target: {fileID: 8454105478467768412, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -9
+      value: -8.999939
       objectReference: {fileID: 0}
     - target: {fileID: 8829931164338954780, guid: 0a8a267374dfcfa4a9f7e783716674e4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -71715,6 +71713,10 @@ PrefabInstance:
       propertyPath: m_UpdateMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1497159989, guid: 01574c6e2e8d5244fb590452004baf6f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9ded68bea8eedc84e97f152e5b38b44d, type: 2}
     - target: {fileID: 1579435854, guid: 01574c6e2e8d5244fb590452004baf6f, type: 3}
       propertyPath: m_Avatar
       value: 
@@ -71733,19 +71735,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7759173330320837716, guid: 01574c6e2e8d5244fb590452004baf6f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99860495
+      value: 0.9985965
       objectReference: {fileID: 0}
     - target: {fileID: 7759173330320837716, guid: 01574c6e2e8d5244fb590452004baf6f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.052671216
+      value: -0.05267077
       objectReference: {fileID: 0}
     - target: {fileID: 7759173330320837716, guid: 01574c6e2e8d5244fb590452004baf6f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0037351218
+      value: -0.005558463
       objectReference: {fileID: 0}
     - target: {fileID: 7759173330320837716, guid: 01574c6e2e8d5244fb590452004baf6f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00019700824
+      value: -0.00029318
+      objectReference: {fileID: 0}
+    - target: {fileID: 7759173330320837718, guid: 01574c6e2e8d5244fb590452004baf6f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7759173330687691623, guid: 01574c6e2e8d5244fb590452004baf6f, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -71796,12 +71802,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7759173331181039861, guid: 01574c6e2e8d5244fb590452004baf6f, type: 3}
+      propertyPath: evil
+      value: 
+      objectReference: {fileID: 9000000, guid: 65a7b8d18b23aa24d97d30a07ff4a251, type: 3}
+    - target: {fileID: 7759173331181039861, guid: 01574c6e2e8d5244fb590452004baf6f, type: 3}
+      propertyPath: normal
+      value: 
+      objectReference: {fileID: 9000000, guid: ae3d5730019fc2b468627683af0e0f11, type: 3}
+    - target: {fileID: 7759173331181039861, guid: 01574c6e2e8d5244fb590452004baf6f, type: 3}
       propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7759173331181039861, guid: 01574c6e2e8d5244fb590452004baf6f, type: 3}
       propertyPath: currentHealth
-      value: 20
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7759173331181039862, guid: 01574c6e2e8d5244fb590452004baf6f, type: 3}
       propertyPath: m_Name

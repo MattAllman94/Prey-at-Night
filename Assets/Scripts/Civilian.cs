@@ -39,7 +39,7 @@ public class Civilian : NPC
 
     IEnumerator Reset()
     {
-        agent.isStopped = true;
+        ChangeState(State.Dying);
         anim.SetBool("isDead", true);
         yield return new WaitForSeconds(3);
         transform.position = _NPC.civilianSpawn[Random.Range(0, _NPC.civilianSpawn.Count)].transform.position;
@@ -69,7 +69,8 @@ public class Civilian : NPC
     }
 
     void Update()
-    {     
+    {
+        //Debug.Log(myState);
         Response();
 
         if(ReachedWaypoint(_NPC.civilianWaypoints[currentWaypoint]))
@@ -121,6 +122,9 @@ public class Civilian : NPC
                 anim.SetBool("isRunning", true);
                 anim.SetBool("isWalking", false);
                 break;
+            case State.Dying:
+                agent.isStopped = true;
+                break;
         }
     }
 
@@ -161,7 +165,6 @@ public class Civilian : NPC
         //Debug.Log("Flee");
         currentWaypoint = Random.Range(0, _NPC.civilianSpawn.Count - 1);
         agent.SetDestination(_NPC.civilianSpawn[currentWaypoint].transform.position);
-
     }
 
     

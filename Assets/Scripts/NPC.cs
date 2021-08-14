@@ -8,7 +8,7 @@ using UnityEngine.AI;
     }
     public enum State
     {
-        Idle, Detect, Attack, Drained, Flee
+        Idle, Detect, Attack, Drained, Flee, Dying
     }
 public class NPC : Prey
 {
@@ -48,7 +48,11 @@ public class NPC : Prey
         //Debug.Log("Die");
         if(myType == EnemyType.Civilian)
         {
-            _GM.currentCorruption += _despawn ? 0 : 10;
+            if(!_despawn)
+            {
+                _GM.IncreaseCorruption(10);
+            }
+            //_GM.currentCorruption += _despawn ? 0 : 10;
             _GM.powerPoints += _despawn ? 0 : 2;
             _NPC.civiliansKilled += _despawn ? 0 : 1;
             if(_NPC.civiliansKilled == 1 && _despawn == false)
@@ -58,7 +62,11 @@ public class NPC : Prey
         }
         else if (myType == EnemyType.Criminal)
         {
-            _GM.currentCorruption -= _despawn ? 0 : 10;
+            if (!_despawn)
+            {
+                _GM.DecreaseCorruption(10);
+            }
+            //_GM.currentCorruption -= _despawn ? 0 : 10;
             _GM.powerPoints += _despawn ? 0 : 1;
             _NPC.criminalsKilled += _despawn ? 0 : 1;
             if(_NPC.criminalsKilled == 1 && _despawn == false)

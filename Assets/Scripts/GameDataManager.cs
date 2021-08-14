@@ -86,7 +86,8 @@ public class GameDataManager : GameData
     public static GameDataManager INSTANCE;
     private void Awake()
     {
-        Debug.Log(Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + "Save" + "/" + fileName);
+        //Debug.Log(Application.dataPath.Substring(0, Application.dataPath.LastIndexOf('/')) + "/" + "Save" + "/" + fileName);
+        Debug.Log(Application.persistentDataPath + "/" + "Save" + "/" + fileName);
 
         if (INSTANCE != null)
         {

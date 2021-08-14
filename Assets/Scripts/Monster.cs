@@ -115,6 +115,9 @@ public class Monster : NPC
                 anim.SetBool("isWalking", true);
                 anim.SetBool("isAttacking", false);
                 break;
+            case State.Dying:
+                agent.isStopped = true;
+                break;
         }
     }
 
@@ -179,7 +182,7 @@ public class Monster : NPC
 
     IEnumerator Death()
     {
-        agent.isStopped = true;
+        ChangeState(State.Dying);
         anim.SetBool("Died", true);
         snarlSource.clip = dieSound;
         snarlSource.Play();

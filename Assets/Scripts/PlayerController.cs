@@ -156,17 +156,26 @@ public class PlayerController : Singleton<PlayerController>
         if(hitNPC.myType == EnemyType.Civilian)
         {
             civilianScript.anim.SetTrigger("Damaged");
-            civilianScript.ChangeState(State.Flee);
+            if (civilianScript.health != 0)
+            {
+                civilianScript.ChangeState(State.Flee);
+            }
         }
         if(hitNPC.myType == EnemyType.Criminal)
         {
             criminalScript.anim.SetTrigger("Damaged");
-            criminalScript.ChangeState(State.Attack);
+            if (criminalScript.health != 0)
+            {
+                criminalScript.ChangeState(State.Attack);
+            }
         }
         if (hitNPC.myType == EnemyType.Monster)
         {
-            monsterScript.ChangeState(State.Attack);
             monsterScript.anim.SetTrigger("Damaged");
+            if (monsterScript.health != 0)
+            {
+                monsterScript.ChangeState(State.Attack);
+            }
         }
     }
 

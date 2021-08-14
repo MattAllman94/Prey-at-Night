@@ -64,11 +64,13 @@ public class GameManager : Singleton<GameManager>
     public void SaveData()
     {
         Debug.Log("Saved");
+        
         _DATA.SetSettings(settings);
         _DATA.SetGameData(currentBlood, currentCorruption, powerPoints);
         _DATA.SetPlayerData();
         _DATA.SetPowerData();
         _DATA.SetNPCData();
+        _DATA.SaveData();
     }
 
     public void LoadData()
@@ -158,17 +160,20 @@ public class GameManager : Singleton<GameManager>
             case CorruptionLevel.LOW:
                 _P.normalModel.SetActive(true);
                 _P.corruptModel.SetActive(false);
+                _P.maxHealth = 100f;
                 _P.atkDamage = 20;
                 break;
             case CorruptionLevel.NORMAL:
                 _P.normalModel.SetActive(true);
                 _P.corruptModel.SetActive(false);
+                _P.maxHealth = 100f;
                 _P.atkDamage = 20;
                 break;
             case CorruptionLevel.HIGH:
                 _PROMPT.ChangeState(PromptState.Ten);
                 _P.normalModel.SetActive(false);
                 _P.corruptModel.SetActive(true);
+                _P.maxHealth = 200f;
                 _P.atkDamage = 40;
                 break;
         }

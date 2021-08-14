@@ -39,7 +39,7 @@ public class Criminal : NPC
 
     IEnumerator Reset()
     {
-        agent.isStopped = true;
+        ChangeState(State.Dying);
         anim.SetBool("isDead", true);
         yield return new WaitForSeconds(3);
         transform.position = _NPC.civilianSpawn[Random.Range(0, _NPC.civilianSpawn.Count)].transform.position;
@@ -50,6 +50,7 @@ public class Criminal : NPC
 
         health = 100f;
         damage = 10;
+        agent.speed = 3.5f;
 
         ChangeState(State.Idle);
     }
@@ -123,6 +124,9 @@ public class Criminal : NPC
                 anim.SetBool("isRunning", true);
                 anim.SetBool("isWalking", false);
                 break;
+            case State.Dying:
+                agent.isStopped = true;
+                break;
         }
     }
 
@@ -186,6 +190,7 @@ public class Criminal : NPC
 
     public void Flee()
     {
+        agent.speed = 5f;
         currentWaypoint = Random.Range(0, _NPC.civilianSpawn.Count);
         //Debug.Log(currentWaypoint);
         agent.SetDestination(_NPC.civilianSpawn[currentWaypoint].transform.position);
