@@ -1,129 +1,365 @@
 fileFormatVersion: 2
 guid: cfa692eeacd8b9e4593581d031825470
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: Humanoid_
-    100004: Humanoid_ Head
-    100006: Humanoid_ L Calf
-    100008: Humanoid_ L Clavicle
-    100010: Humanoid_ L Finger0
-    100012: Humanoid_ L Finger01
-    100014: Humanoid_ L Finger02
-    100016: Humanoid_ L Finger1
-    100018: Humanoid_ L Finger11
-    100020: Humanoid_ L Finger12
-    100022: Humanoid_ L Finger2
-    100024: Humanoid_ L Finger21
-    100026: Humanoid_ L Finger22
-    100028: Humanoid_ L Finger3
-    100030: Humanoid_ L Finger31
-    100032: Humanoid_ L Finger32
-    100034: Humanoid_ L Finger4
-    100036: Humanoid_ L Finger41
-    100038: Humanoid_ L Finger42
-    100040: Humanoid_ L Foot
-    100042: Humanoid_ L Forearm
-    100044: Humanoid_ L ForearmTwist
-    100046: Humanoid_ L Hand
-    100048: Humanoid_ L Thigh
-    100050: Humanoid_ L Toe0
-    100052: Humanoid_ L UpperArm
-    100054: Humanoid_ Neck
-    100056: Humanoid_ Pelvis
-    100058: Humanoid_ Ponytail1
-    100060: Humanoid_ R Calf
-    100062: Humanoid_ R Clavicle
-    100064: Humanoid_ R Finger0
-    100066: Humanoid_ R Finger01
-    100068: Humanoid_ R Finger02
-    100070: Humanoid_ R Finger1
-    100072: Humanoid_ R Finger11
-    100074: Humanoid_ R Finger12
-    100076: Humanoid_ R Finger2
-    100078: Humanoid_ R Finger21
-    100080: Humanoid_ R Finger22
-    100082: Humanoid_ R Finger3
-    100084: Humanoid_ R Finger31
-    100086: Humanoid_ R Finger32
-    100088: Humanoid_ R Finger4
-    100090: Humanoid_ R Finger41
-    100092: Humanoid_ R Finger42
-    100094: Humanoid_ R Foot
-    100096: Humanoid_ R Forearm
-    100098: Humanoid_ R ForearmTwist
-    100100: Humanoid_ R Hand
-    100102: Humanoid_ R Thigh
-    100104: Humanoid_ R Toe0
-    100106: Humanoid_ R UpperArm
-    100108: Humanoid_ Spine
-    100110: Humanoid_ Spine1
-    100112: Humanoid_ Spine2
-    100114: root
-    400000: //RootNode
-    400002: Humanoid_
-    400004: Humanoid_ Head
-    400006: Humanoid_ L Calf
-    400008: Humanoid_ L Clavicle
-    400010: Humanoid_ L Finger0
-    400012: Humanoid_ L Finger01
-    400014: Humanoid_ L Finger02
-    400016: Humanoid_ L Finger1
-    400018: Humanoid_ L Finger11
-    400020: Humanoid_ L Finger12
-    400022: Humanoid_ L Finger2
-    400024: Humanoid_ L Finger21
-    400026: Humanoid_ L Finger22
-    400028: Humanoid_ L Finger3
-    400030: Humanoid_ L Finger31
-    400032: Humanoid_ L Finger32
-    400034: Humanoid_ L Finger4
-    400036: Humanoid_ L Finger41
-    400038: Humanoid_ L Finger42
-    400040: Humanoid_ L Foot
-    400042: Humanoid_ L Forearm
-    400044: Humanoid_ L ForearmTwist
-    400046: Humanoid_ L Hand
-    400048: Humanoid_ L Thigh
-    400050: Humanoid_ L Toe0
-    400052: Humanoid_ L UpperArm
-    400054: Humanoid_ Neck
-    400056: Humanoid_ Pelvis
-    400058: Humanoid_ Ponytail1
-    400060: Humanoid_ R Calf
-    400062: Humanoid_ R Clavicle
-    400064: Humanoid_ R Finger0
-    400066: Humanoid_ R Finger01
-    400068: Humanoid_ R Finger02
-    400070: Humanoid_ R Finger1
-    400072: Humanoid_ R Finger11
-    400074: Humanoid_ R Finger12
-    400076: Humanoid_ R Finger2
-    400078: Humanoid_ R Finger21
-    400080: Humanoid_ R Finger22
-    400082: Humanoid_ R Finger3
-    400084: Humanoid_ R Finger31
-    400086: Humanoid_ R Finger32
-    400088: Humanoid_ R Finger4
-    400090: Humanoid_ R Finger41
-    400092: Humanoid_ R Finger42
-    400094: Humanoid_ R Foot
-    400096: Humanoid_ R Forearm
-    400098: Humanoid_ R ForearmTwist
-    400100: Humanoid_ R Hand
-    400102: Humanoid_ R Thigh
-    400104: Humanoid_ R Toe0
-    400106: Humanoid_ R UpperArm
-    400108: Humanoid_ Spine
-    400110: Humanoid_ Spine1
-    400112: Humanoid_ Spine2
-    400114: root
-    7400000: Jab1Combat_RM
-    9500000: //RootNode
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Humanoid_
+  - first:
+      1: 100004
+    second: Humanoid_ Head
+  - first:
+      1: 100006
+    second: Humanoid_ L Calf
+  - first:
+      1: 100008
+    second: Humanoid_ L Clavicle
+  - first:
+      1: 100010
+    second: Humanoid_ L Finger0
+  - first:
+      1: 100012
+    second: Humanoid_ L Finger01
+  - first:
+      1: 100014
+    second: Humanoid_ L Finger02
+  - first:
+      1: 100016
+    second: Humanoid_ L Finger1
+  - first:
+      1: 100018
+    second: Humanoid_ L Finger11
+  - first:
+      1: 100020
+    second: Humanoid_ L Finger12
+  - first:
+      1: 100022
+    second: Humanoid_ L Finger2
+  - first:
+      1: 100024
+    second: Humanoid_ L Finger21
+  - first:
+      1: 100026
+    second: Humanoid_ L Finger22
+  - first:
+      1: 100028
+    second: Humanoid_ L Finger3
+  - first:
+      1: 100030
+    second: Humanoid_ L Finger31
+  - first:
+      1: 100032
+    second: Humanoid_ L Finger32
+  - first:
+      1: 100034
+    second: Humanoid_ L Finger4
+  - first:
+      1: 100036
+    second: Humanoid_ L Finger41
+  - first:
+      1: 100038
+    second: Humanoid_ L Finger42
+  - first:
+      1: 100040
+    second: Humanoid_ L Foot
+  - first:
+      1: 100042
+    second: Humanoid_ L Forearm
+  - first:
+      1: 100044
+    second: Humanoid_ L ForearmTwist
+  - first:
+      1: 100046
+    second: Humanoid_ L Hand
+  - first:
+      1: 100048
+    second: Humanoid_ L Thigh
+  - first:
+      1: 100050
+    second: Humanoid_ L Toe0
+  - first:
+      1: 100052
+    second: Humanoid_ L UpperArm
+  - first:
+      1: 100054
+    second: Humanoid_ Neck
+  - first:
+      1: 100056
+    second: Humanoid_ Pelvis
+  - first:
+      1: 100058
+    second: Humanoid_ Ponytail1
+  - first:
+      1: 100060
+    second: Humanoid_ R Calf
+  - first:
+      1: 100062
+    second: Humanoid_ R Clavicle
+  - first:
+      1: 100064
+    second: Humanoid_ R Finger0
+  - first:
+      1: 100066
+    second: Humanoid_ R Finger01
+  - first:
+      1: 100068
+    second: Humanoid_ R Finger02
+  - first:
+      1: 100070
+    second: Humanoid_ R Finger1
+  - first:
+      1: 100072
+    second: Humanoid_ R Finger11
+  - first:
+      1: 100074
+    second: Humanoid_ R Finger12
+  - first:
+      1: 100076
+    second: Humanoid_ R Finger2
+  - first:
+      1: 100078
+    second: Humanoid_ R Finger21
+  - first:
+      1: 100080
+    second: Humanoid_ R Finger22
+  - first:
+      1: 100082
+    second: Humanoid_ R Finger3
+  - first:
+      1: 100084
+    second: Humanoid_ R Finger31
+  - first:
+      1: 100086
+    second: Humanoid_ R Finger32
+  - first:
+      1: 100088
+    second: Humanoid_ R Finger4
+  - first:
+      1: 100090
+    second: Humanoid_ R Finger41
+  - first:
+      1: 100092
+    second: Humanoid_ R Finger42
+  - first:
+      1: 100094
+    second: Humanoid_ R Foot
+  - first:
+      1: 100096
+    second: Humanoid_ R Forearm
+  - first:
+      1: 100098
+    second: Humanoid_ R ForearmTwist
+  - first:
+      1: 100100
+    second: Humanoid_ R Hand
+  - first:
+      1: 100102
+    second: Humanoid_ R Thigh
+  - first:
+      1: 100104
+    second: Humanoid_ R Toe0
+  - first:
+      1: 100106
+    second: Humanoid_ R UpperArm
+  - first:
+      1: 100108
+    second: Humanoid_ Spine
+  - first:
+      1: 100110
+    second: Humanoid_ Spine1
+  - first:
+      1: 100112
+    second: Humanoid_ Spine2
+  - first:
+      1: 100114
+    second: root
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Humanoid_
+  - first:
+      4: 400004
+    second: Humanoid_ Head
+  - first:
+      4: 400006
+    second: Humanoid_ L Calf
+  - first:
+      4: 400008
+    second: Humanoid_ L Clavicle
+  - first:
+      4: 400010
+    second: Humanoid_ L Finger0
+  - first:
+      4: 400012
+    second: Humanoid_ L Finger01
+  - first:
+      4: 400014
+    second: Humanoid_ L Finger02
+  - first:
+      4: 400016
+    second: Humanoid_ L Finger1
+  - first:
+      4: 400018
+    second: Humanoid_ L Finger11
+  - first:
+      4: 400020
+    second: Humanoid_ L Finger12
+  - first:
+      4: 400022
+    second: Humanoid_ L Finger2
+  - first:
+      4: 400024
+    second: Humanoid_ L Finger21
+  - first:
+      4: 400026
+    second: Humanoid_ L Finger22
+  - first:
+      4: 400028
+    second: Humanoid_ L Finger3
+  - first:
+      4: 400030
+    second: Humanoid_ L Finger31
+  - first:
+      4: 400032
+    second: Humanoid_ L Finger32
+  - first:
+      4: 400034
+    second: Humanoid_ L Finger4
+  - first:
+      4: 400036
+    second: Humanoid_ L Finger41
+  - first:
+      4: 400038
+    second: Humanoid_ L Finger42
+  - first:
+      4: 400040
+    second: Humanoid_ L Foot
+  - first:
+      4: 400042
+    second: Humanoid_ L Forearm
+  - first:
+      4: 400044
+    second: Humanoid_ L ForearmTwist
+  - first:
+      4: 400046
+    second: Humanoid_ L Hand
+  - first:
+      4: 400048
+    second: Humanoid_ L Thigh
+  - first:
+      4: 400050
+    second: Humanoid_ L Toe0
+  - first:
+      4: 400052
+    second: Humanoid_ L UpperArm
+  - first:
+      4: 400054
+    second: Humanoid_ Neck
+  - first:
+      4: 400056
+    second: Humanoid_ Pelvis
+  - first:
+      4: 400058
+    second: Humanoid_ Ponytail1
+  - first:
+      4: 400060
+    second: Humanoid_ R Calf
+  - first:
+      4: 400062
+    second: Humanoid_ R Clavicle
+  - first:
+      4: 400064
+    second: Humanoid_ R Finger0
+  - first:
+      4: 400066
+    second: Humanoid_ R Finger01
+  - first:
+      4: 400068
+    second: Humanoid_ R Finger02
+  - first:
+      4: 400070
+    second: Humanoid_ R Finger1
+  - first:
+      4: 400072
+    second: Humanoid_ R Finger11
+  - first:
+      4: 400074
+    second: Humanoid_ R Finger12
+  - first:
+      4: 400076
+    second: Humanoid_ R Finger2
+  - first:
+      4: 400078
+    second: Humanoid_ R Finger21
+  - first:
+      4: 400080
+    second: Humanoid_ R Finger22
+  - first:
+      4: 400082
+    second: Humanoid_ R Finger3
+  - first:
+      4: 400084
+    second: Humanoid_ R Finger31
+  - first:
+      4: 400086
+    second: Humanoid_ R Finger32
+  - first:
+      4: 400088
+    second: Humanoid_ R Finger4
+  - first:
+      4: 400090
+    second: Humanoid_ R Finger41
+  - first:
+      4: 400092
+    second: Humanoid_ R Finger42
+  - first:
+      4: 400094
+    second: Humanoid_ R Foot
+  - first:
+      4: 400096
+    second: Humanoid_ R Forearm
+  - first:
+      4: 400098
+    second: Humanoid_ R ForearmTwist
+  - first:
+      4: 400100
+    second: Humanoid_ R Hand
+  - first:
+      4: 400102
+    second: Humanoid_ R Thigh
+  - first:
+      4: 400104
+    second: Humanoid_ R Toe0
+  - first:
+      4: 400106
+    second: Humanoid_ R UpperArm
+  - first:
+      4: 400108
+    second: Humanoid_ Spine
+  - first:
+      4: 400110
+    second: Humanoid_ Spine1
+  - first:
+      4: 400112
+    second: Humanoid_ Spine2
+  - first:
+      4: 400114
+    second: root
+  - first:
+      74: 7400000
+    second: Jab1Combat_RM
+  - first:
+      95: 9500000
+    second: //RootNode
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -152,6 +388,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Jab1Combat_RM
       takeName: Take 001
+      internalID: 0
       firstFrame: 0
       lastFrame: 22
       wrapMode: 0
@@ -160,7 +397,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
@@ -184,25 +421,32 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -211,10 +455,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 1
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: Humanoid_ Pelvis
       humanName: Hips
@@ -935,14 +1179,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 6f6eba35b8edc7d46be2a84fcc3eb248,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 6f6eba35b8edc7d46be2a84fcc3eb248, type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
