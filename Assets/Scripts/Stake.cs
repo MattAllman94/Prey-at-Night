@@ -31,13 +31,15 @@ public class Stake : Prey
             Civilian npcScript = col.gameObject.GetComponent<Civilian>();
             _AM.PlaySFX(_AM.stakeHitNpc, transform.position);
             npcScript.TakeDamage(damage);
+            npcScript.anim.SetTrigger("Damaged");
         }
         else if (col.gameObject.CompareTag("Criminal"))
         {
             gameObject.transform.SetParent(col.gameObject.transform);
             Criminal npcScript = col.gameObject.GetComponent<Criminal>();
             _AM.PlaySFX(_AM.stakeHitNpc, transform.position);
-            npcScript.TakeDamage(damage);       
+            npcScript.TakeDamage(damage);
+            npcScript.anim.SetTrigger("Damaged");
         }
         else if (col.gameObject.CompareTag("Monster"))
         {
@@ -45,6 +47,7 @@ public class Stake : Prey
             Monster npcScript = col.gameObject.GetComponent<Monster>();
             _AM.PlaySFX(_AM.stakeHitNpc, transform.position);
             npcScript.TakeDamage(damage);
+            npcScript.anim.SetTrigger("Damaged");
         }
         else
         {

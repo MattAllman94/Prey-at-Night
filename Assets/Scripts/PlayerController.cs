@@ -104,7 +104,6 @@ public class PlayerController : Singleton<PlayerController>
                 SetAnimBool("Running");
                 SetAnimBool("Idle", false);
                 SetAnimBool("Falling", false);
-                SetAnimBool("Attacking", false);
             }
         }
         else
@@ -115,7 +114,6 @@ public class PlayerController : Singleton<PlayerController>
                 SetAnimBool("Idle");
                 SetAnimBool("Running", false);
                 SetAnimBool("Falling", false);
-                SetAnimBool("Attacking", false);
             }
         }
 
@@ -125,7 +123,6 @@ public class PlayerController : Singleton<PlayerController>
             SetAnimBool("Falling");
             SetAnimBool("Running", false);
             SetAnimBool("Idle", false);
-            SetAnimBool("Attacking", false);
         }
 
 
@@ -140,12 +137,11 @@ public class PlayerController : Singleton<PlayerController>
     IEnumerator Attack() // Turns the hitbox on and off 
     {
         isAttacking = true;
-        SetAnimBool("Attacking");
-        yield return new WaitForSeconds(0.4f);
-        atkHitbox.SetActive(true);
+        playerAnim.SetTrigger("Attacking");
         _AM.PlayerAttackSound();
-        yield return new WaitForSeconds(atkDuration);
-        atkHitbox.SetActive(false);
+        atkHitbox.SetActive(true);
+        yield return new WaitForSeconds(0.4f);
+        atkHitbox.SetActive(false);     
         isAttacking = false;
     }
 

@@ -87,11 +87,17 @@ public class PowersManager : Singleton<PowersManager>
         {
             case (Powers.BloodDrain):
                 {
+                    _P.playerAnim.SetTrigger("Draining");
+                    _P.SetAnimBool("Idle", false);
+                    _P.SetAnimBool("Running", false);
                     UseBloodDrain(_power);
                     break;
                 }
             case (Powers.StakeThrow):
                 {
+                    _P.playerAnim.SetTrigger("Throwing");
+                    _P.SetAnimBool("Idle", false);
+                    _P.SetAnimBool("Running", false);
                     UseStakeThrow(_power);
                     break;
                 }
@@ -100,12 +106,12 @@ public class PowersManager : Singleton<PowersManager>
 
     public void UseBloodDrain(Power _power)
     {
-        if(Physics.Raycast(castPos.position, castPos.transform.forward, out hit, GetRange(_power.range))) 
+        if (Physics.Raycast(castPos.position, castPos.transform.forward, out hit, GetRange(_power.range))) 
         {
             if(hit.collider.CompareTag("Civilian"))
             {                
                 Civilian npcScript = hit.collider.GetComponent<Civilian>();
-
+                
                 float modifier = 0.02f;
                 npcScript.ChangeState(State.Drained);
                 _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
