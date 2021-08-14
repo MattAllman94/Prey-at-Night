@@ -24,13 +24,13 @@ public abstract class GameData : Prey
     //    SaveData();
     //}
 
-    private void OnApplicationFocus(bool appInFocus)
-    {
-        if (!appInFocus)
-        {
-            SaveData();
-        }
-    }
+    //private void OnApplicationFocus(bool appInFocus)
+    //{
+    //    if (!appInFocus)
+    //    {
+    //        SaveData();
+    //    }
+    //}
 
     protected string MakeTimeStampNow()
     {
