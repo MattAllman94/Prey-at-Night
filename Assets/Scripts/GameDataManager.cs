@@ -36,6 +36,14 @@ public class PowerData
 }
 
 [Serializable]
+public class NPCData
+{
+    public int monstersKilled;
+    public List<GameObject> civilians;
+    public List<GameObject> criminals;
+}
+
+[Serializable]
 public class PlayTimeData
 {
     public int hoursPlayed = 0;
@@ -59,6 +67,9 @@ public class GameDataObject //Put Data in here
 
     //Power Settings
     public PowerData powerData = new PowerData();
+
+    //Enemy Settings
+    public NPCData npcData = new NPCData();
 
     //Times
     public PlayTimeData playTime = new PlayTimeData();
@@ -95,22 +106,27 @@ public class GameDataManager : GameData
             data = new GameDataObject();
             Debug.Log("NEW GAME DATA");
 
-            //Initialize game setting dictionary
+            //Initialize game setting
             data.gameData = new GameSettingData();
             data.gameData.bloodLevel = 0;
             data.gameData.corruptionLevel = 0;
             data.gameData.powerPoints = 0;
 
-            //Initialize Player Data dictionary
+            //Initialize Player Data 
             data.playerData = new PlayerData();
             data.playerData.playerHealth = 100;
             data.playerData.lastPosition = new Vector3(-38, -3.8f, 63);
             data.playerData.lastRotation = new Quaternion(0, 180, 0, 1);
 
-            //Initialize Power Data dictionary
+            //Initialize Power Data 
             data.powerData = new PowerData();
             data.powerData.activePower1 = null;
             data.powerData.activePower2 = null;
+
+            //Initialize NPC Data
+            data.npcData = new NPCData();
+            data.npcData.monstersKilled = 0;
+
 
             //create time info if none
             data.playTime = new PlayTimeData();
@@ -151,6 +167,25 @@ public class GameDataManager : GameData
     {
         data.powerData.activePower1 = _PM.activePower1;
         data.powerData.activePower1 = _PM.activePower2;
+    }
+
+    public void SetNPCData()
+    {
+        data.npcData.monstersKilled = _NPC.monstersKilled;
+        foreach(GameObject i in data.npcData.civilians)
+        {
+            foreach(GameObject o in _NPC.civilians)
+            {
+                i.transform.position = o.transform.position;
+            }
+        }
+        foreach (GameObject i in data.npcData.criminals)
+        {
+            foreach (GameObject o in _NPC.criminals)
+            {
+                i.transform.position = o.transform.position;
+            }
+        }
     }
 
     #endregion
@@ -199,6 +234,21 @@ public class GameDataManager : GameData
     public Power GetPower2()
     {
         return data.powerData.activePower2;
+    }
+
+    public int GetMonstersKilled()
+    {
+        return data.npcData.monstersKilled;
+    }
+
+    public List<GameObject> GetCivilians()
+    {
+        return data.npcData.civilians;
+    }
+
+    public List<GameObject> GetCriminals()
+    {
+        return data.npcData.criminals;
     }
     #endregion
 

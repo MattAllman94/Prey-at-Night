@@ -68,7 +68,7 @@ public class GameManager : Singleton<GameManager>
         _DATA.SetGameData(currentBlood, currentCorruption, powerPoints);
         _DATA.SetPlayerData();
         _DATA.SetPowerData();
-        
+        _DATA.SetNPCData();
     }
 
     public void LoadData()
@@ -82,6 +82,9 @@ public class GameManager : Singleton<GameManager>
         _P.transform.rotation = _DATA.GetLastRotation();
         _PM.activePower1 = _DATA.GetPower1();
         _PM.activePower2 = _DATA.GetPower2();
+        _NPC.monstersKilled = _DATA.GetMonstersKilled();
+        _NPC.civilians = _DATA.GetCivilians();
+        _NPC.criminals = _DATA.GetCriminals();
     }
 
     void Update()
