@@ -49,7 +49,7 @@ public class Criminal : NPC
         agent.SetDestination(_NPC.criminalWaypoints[currentWaypoint].transform.position);
 
         health = 100f;
-        damage = 10;
+        damage = 5;
         agent.speed = 3.5f;
 
         ChangeState(State.Idle);

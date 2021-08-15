@@ -24,8 +24,8 @@ public class PowersManager : Singleton<PowersManager>
 
     private void Start()
     {
-        activePower1.power = Powers.NoPower;
-        activePower2.power = Powers.NoPower;
+        //activePower1.power = Powers.NoPower;
+        //activePower2.power = Powers.NoPower;
 
         if (activePower1 == null || activePower2 == null)
         {
@@ -43,16 +43,20 @@ public class PowersManager : Singleton<PowersManager>
             #region INPUT // 
             if (Input.GetKeyDown(KeyCode.Alpha1) && activePower1.power != Powers.NoPower & _GM.currentBlood >= activePower1.bloodCost) // USE POWER 1
             {
+                
                 if (activePower1.hasCooldown)
                 {
+                    
                     if (Time.time >= activePower1.nextTimeToCast)
                     {
+                        
                         activePower1.nextTimeToCast = Time.time + activePower1.cooldown;
                         UsePower(activePower1);
                     }
                 }
                 else
                 {
+                    
                     UsePower(activePower1);
                 }
             }
@@ -116,6 +120,7 @@ public class PowersManager : Singleton<PowersManager>
 
     public void UseBloodDrain(Power _power)
     {
+        Debug.Log("Blood Drain");
         if (Physics.Raycast(castPos.position, castPos.transform.forward, out hit, GetRange(_power.range))) 
         {
             if(hit.collider.CompareTag("Civilian"))
@@ -154,7 +159,8 @@ public class PowersManager : Singleton<PowersManager>
     }
 
     public void UseStakeThrow(Power _power)
-    {      
+    {
+        Debug.Log("Stake Throw");
         GameObject stake = Instantiate(_power.model, castPos.position, castPos.rotation);    // spawn stake
         stake.GetComponent<Stake>().damage = _power.damage;
         Destroy(stake, 10f);    

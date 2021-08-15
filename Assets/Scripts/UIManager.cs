@@ -280,7 +280,7 @@ public class UIManager : Singleton<UIManager>
 
     void UpdateSlot1()
     {
-        _PM.activePower1.power = selectedPower.power;
+        _PM.activePower1 = selectedPower;
         selectedPower.activeSlot = 1;
         slot1Icon.sprite = selectedPower.icon;
         power1Icon.sprite = selectedPower.icon;
@@ -290,7 +290,7 @@ public class UIManager : Singleton<UIManager>
     void UpdateSlot2()
     {
 
-        _PM.activePower2.power = selectedPower.power;
+        _PM.activePower2 = selectedPower;
         selectedPower.activeSlot = 2;
         slot2Icon.sprite = selectedPower.icon;
         power2Icon.sprite = selectedPower.icon;
@@ -406,8 +406,7 @@ public class UIManager : Singleton<UIManager>
     }
 
     public void ResetActivePowers()
-    {
-        
+    {   
         Power a = new Power();
         Power b = new Power();
 
@@ -429,7 +428,7 @@ public class UIManager : Singleton<UIManager>
                 }
             case GameState.POWERMENU:
                 {
-                    ResetActivePowers();
+                    //ResetActivePowers();
                     ShowPanel(powerTreePanel);
                     ClearUI();
                     ppText.text = ("PP: " + _GM.powerPoints.ToString());

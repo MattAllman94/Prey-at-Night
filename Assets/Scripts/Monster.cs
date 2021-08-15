@@ -40,7 +40,7 @@ public class Monster : NPC
         lastPosition = myTransform.position;
 
         health = 200f;
-        damage = 20;
+        damage = 10;
 
         ChangeState(State.Idle);
 
