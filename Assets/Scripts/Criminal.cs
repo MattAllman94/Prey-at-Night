@@ -106,10 +106,12 @@ public class Criminal : NPC
                 anim.SetBool("isWalking", true);
                 anim.SetBool("isRunning", false);
                 anim.SetBool("isIdle", false);
+                anim.SetBool("Draining", false);
                 break;
             case State.Drained:
                 agent.isStopped = true;
-                anim.SetBool("isIdle", true);
+                anim.SetBool("Draining", true);
+                anim.SetBool("isIdle", false);
                 anim.SetBool("isRunning", false);
                 anim.SetBool("isWalking", false);
                 break;
@@ -123,6 +125,7 @@ public class Criminal : NPC
                 anim.SetBool("isIdle", false);
                 anim.SetBool("isRunning", true);
                 anim.SetBool("isWalking", false);
+                anim.SetBool("Draining", false);
                 break;
             case State.Dying:
                 agent.isStopped = true;

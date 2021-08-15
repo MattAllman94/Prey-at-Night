@@ -158,18 +158,21 @@ public class GameManager : Singleton<GameManager>
         switch (corruptionLevel)
         {
             case CorruptionLevel.LOW:
+                _P.playerAnim = _P.normalAnim;
                 _P.normalModel.SetActive(true);
                 _P.corruptModel.SetActive(false);
                 _P.maxHealth = 100f;
                 _P.atkDamage = 20;
                 break;
             case CorruptionLevel.NORMAL:
+                _P.playerAnim = _P.normalAnim;
                 _P.normalModel.SetActive(true);
                 _P.corruptModel.SetActive(false);
                 _P.maxHealth = 100f;
                 _P.atkDamage = 20;
                 break;
             case CorruptionLevel.HIGH:
+                _P.playerAnim = _P.evilAnim;
                 _PROMPT.ChangeState(PromptState.Ten);
                 _P.normalModel.SetActive(false);
                 _P.corruptModel.SetActive(true);

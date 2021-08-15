@@ -17,6 +17,8 @@ public class PlayerController : Singleton<PlayerController>
     Vector3 moveDir;
     public AudioSource footStepSource;
     public Animator playerAnim;
+    public Animator normalAnim;
+    public Animator evilAnim;
     public Transform gCheckPos;
     public float gCheckRadius = 0.4f;
     public LayerMask groundMask;

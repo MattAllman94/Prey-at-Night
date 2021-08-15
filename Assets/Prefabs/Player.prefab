@@ -15710,7 +15710,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 59cc0bb55c514904c9b6c9fea7af3e30, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 1
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -16284,7 +16284,7 @@ Animator:
   m_GameObject: {fileID: 1497159987}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 65a7b8d18b23aa24d97d30a07ff4a251, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9ded68bea8eedc84e97f152e5b38b44d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -23182,7 +23182,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7759173330320837719}
-  m_LocalRotation: {x: -0.052670456, y: -0.006543485, z: -0.0003451348, w: 0.9985905}
+  m_LocalRotation: {x: -0.05267077, y: -0.005558463, z: -0.00029318, w: 0.9985965}
   m_LocalPosition: {x: 0, y: 0.24113464, z: -5.554924}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -23239,7 +23239,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7759173330320837719}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &7759173330320837714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23710,8 +23710,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a34e2b41f8b8ed24cac179d8512d6d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10000
-  currentHealth: 100
+  maxHealth: 100
+  currentHealth: 200
   controller: {fileID: 1364753544}
   cam: {fileID: 7759173330320837716}
   speed: 6
