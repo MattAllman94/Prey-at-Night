@@ -354,7 +354,7 @@ public class UIManager : Singleton<UIManager>
         powerDesc.text = "";
         equippedText.text = "";
         unlockButton.SetActive(false);
-        selectedPower.power = Powers.NoPower;
+        //selectedPower.power = Powers.NoPower;
     }
 
     IEnumerator StartSequence()

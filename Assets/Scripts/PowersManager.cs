@@ -245,6 +245,7 @@ public class Power
     public AudioClip castSound;
     public AnimationClip playerAnimation;
     public AnimationClip enemyAnimation;
+    public VisualEffect vfx;
 
     /*
     public void PlayMyEffect()
