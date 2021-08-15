@@ -94,6 +94,8 @@ public class UIManager : Singleton<UIManager>
         UpdateHealth(_P.currentHealth);
     }
 
+
+
     public void Update()
     {
 
@@ -178,8 +180,11 @@ public class UIManager : Singleton<UIManager>
             {
                 case ("1"):
                     {
-                        if(_PM.activePower1 != null)
-                        {
+                       // if(_PM.activePower1 == null || _PM.activePower1.power == null)
+                        //{
+                        //    _PM.activePower1.power = Powers.NoPower;
+                        //}
+                
                             if (_PM.activePower1 != selectedPower && _PM.activePower1.power != Powers.NoPower) // checks if theres a power on slot 1
                             {
                                 //warn Player
@@ -187,7 +192,7 @@ public class UIManager : Singleton<UIManager>
                             }
                             else
                             {
-                                if (_PM.activePower2 == selectedPower)
+                                if (_PM.activePower2.power == selectedPower.power)
                                 {
                                     ClearSlot2();
                                 }
@@ -195,10 +200,10 @@ public class UIManager : Singleton<UIManager>
                                 UpdateSlot1();
                             }
                           
-                        }
+                        
                         break;
                     }
-
+                            
                 case ("2"):
                     {
                         if (_PM.activePower2 != null)
@@ -210,7 +215,7 @@ public class UIManager : Singleton<UIManager>
                             }
                             else
                             {
-                                if (_PM.activePower1 == selectedPower)
+                                if (_PM.activePower1.power == selectedPower.power)
                                 {
                                     ClearSlot1();
                                 }
@@ -275,7 +280,7 @@ public class UIManager : Singleton<UIManager>
 
     void UpdateSlot1()
     {
-        _PM.activePower1 = selectedPower;
+        _PM.activePower1.power = selectedPower.power;
         selectedPower.activeSlot = 1;
         slot1Icon.sprite = selectedPower.icon;
         power1Icon.sprite = selectedPower.icon;
@@ -285,7 +290,7 @@ public class UIManager : Singleton<UIManager>
     void UpdateSlot2()
     {
 
-        _PM.activePower2 = selectedPower;
+        _PM.activePower2.power = selectedPower.power;
         selectedPower.activeSlot = 2;
         slot2Icon.sprite = selectedPower.icon;
         power2Icon.sprite = selectedPower.icon;
@@ -295,7 +300,7 @@ public class UIManager : Singleton<UIManager>
     void ClearSlot1()
     {
         _PM.activePower1.activeSlot = 0;
-        _PM.activePower1 = null; // remove selected power assignment from other keys 
+        _PM.activePower1.power = Powers.NoPower; // remove selected power assignment from other keys 
         slot1Icon.sprite = null;
         power1Icon.sprite = null;
     }
@@ -303,7 +308,7 @@ public class UIManager : Singleton<UIManager>
     void ClearSlot2()
     {   
         _PM.activePower2.activeSlot = 0;
-        _PM.activePower2 = null; // remove selected power assignment from other keys  
+        _PM.activePower2.power = Powers.NoPower; // remove selected power assignment from other keys  
         slot2Icon.sprite = null;
         power2Icon.sprite = null;
     }
@@ -349,7 +354,7 @@ public class UIManager : Singleton<UIManager>
         powerDesc.text = "";
         equippedText.text = "";
         unlockButton.SetActive(false);
-        selectedPower = null;
+        selectedPower.power = Powers.NoPower;
     }
 
     IEnumerator StartSequence()
@@ -400,6 +405,19 @@ public class UIManager : Singleton<UIManager>
         _panel.SetActive(true);
     }
 
+    public void ResetActivePowers()
+    {
+        
+        Power a = new Power();
+        Power b = new Power();
+
+        a.power = Powers.NoPower;
+        b.power = Powers.NoPower;
+
+        _PM.activePower1 = a;
+        _PM.activePower2 = b;
+    }
+
     public void ChangeGameState(GameState _gameState)
     {
         switch(_gameState)
@@ -411,7 +429,9 @@ public class UIManager : Singleton<UIManager>
                 }
             case GameState.POWERMENU:
                 {
+                    ResetActivePowers();
                     ShowPanel(powerTreePanel);
+                    ClearUI();
                     ppText.text = ("PP: " + _GM.powerPoints.ToString());
                     break;
                 }

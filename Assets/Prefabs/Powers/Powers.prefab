@@ -67,7 +67,7 @@ MonoBehaviour:
     powerStatus: 0
     myRequirement: 1
     activeSlot: 0
-    unlockCost: 2
+    unlockCost: 4
     description: Hold down the key on a target to drain their blood and convert it
       into health.
     hasCooldown: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
     bloodCost: 1
     model: {fileID: 0}
     icon: {fileID: 1161201145128540330, guid: 1bcb5e43ac167ec42a77e37eed746e5e, type: 3}
-    castSound: {fileID: 0}
+    castSound: {fileID: 8300000, guid: 1936c4cf18ac1c947ab8c5ba6a529256, type: 3}
     playerAnimation: {fileID: 0}
     enemyAnimation: {fileID: 0}
   - power: 2
@@ -86,7 +86,7 @@ MonoBehaviour:
     powerStatus: 0
     myRequirement: 1
     activeSlot: 0
-    unlockCost: 4
+    unlockCost: 8
     description: Throw a stake for devastating damage
     hasCooldown: 1
     cooldown: 1
@@ -96,45 +96,46 @@ MonoBehaviour:
     bloodCost: 25
     model: {fileID: 3255979631947617402, guid: e7c92b2d449f00949a75e1b8d53e79b7, type: 3}
     icon: {fileID: 2130535880278150251, guid: 1bcb5e43ac167ec42a77e37eed746e5e, type: 3}
-    castSound: {fileID: 0}
+    castSound: {fileID: 8300000, guid: e74aeede2df16d3468a3b7d3e40fcc59, type: 3}
     playerAnimation: {fileID: 0}
     enemyAnimation: {fileID: 0}
   activePower1:
     power: 0
-    damageType: 0
+    damageType: 1
     powerStatus: 0
-    myRequirement: 0
+    myRequirement: 1
     activeSlot: 0
-    unlockCost: 0
-    description: 
-    hasCooldown: 1
+    unlockCost: 4
+    description: Hold down the key on a target to drain their blood and convert it
+      into health.
+    hasCooldown: 0
     cooldown: 0
     nextTimeToCast: 0
-    damage: 0
+    damage: 0.1
     range: 0
-    bloodCost: 0
+    bloodCost: 1
     model: {fileID: 0}
-    icon: {fileID: 0}
-    castSound: {fileID: 0}
+    icon: {fileID: 1161201145128540330, guid: 1bcb5e43ac167ec42a77e37eed746e5e, type: 3}
+    castSound: {fileID: 8300000, guid: 1936c4cf18ac1c947ab8c5ba6a529256, type: 3}
     playerAnimation: {fileID: 0}
     enemyAnimation: {fileID: 0}
   activePower2:
     power: 0
     damageType: 0
     powerStatus: 0
-    myRequirement: 0
+    myRequirement: 1
     activeSlot: 0
-    unlockCost: 0
-    description: 
+    unlockCost: 8
+    description: Throw a stake for devastating damage
     hasCooldown: 1
-    cooldown: 0
+    cooldown: 1
     nextTimeToCast: 0
-    damage: 0
-    range: 0
-    bloodCost: 0
-    model: {fileID: 0}
-    icon: {fileID: 0}
-    castSound: {fileID: 0}
+    damage: 50
+    range: 2
+    bloodCost: 25
+    model: {fileID: 3255979631947617402, guid: e7c92b2d449f00949a75e1b8d53e79b7, type: 3}
+    icon: {fileID: 2130535880278150251, guid: 1bcb5e43ac167ec42a77e37eed746e5e, type: 3}
+    castSound: {fileID: 8300000, guid: e74aeede2df16d3468a3b7d3e40fcc59, type: 3}
     playerAnimation: {fileID: 0}
     enemyAnimation: {fileID: 0}
   castPos: {fileID: 0}

@@ -14,6 +14,7 @@ public class PowersManager : Singleton<PowersManager>
     public Power activePower1;
     public Power activePower2;
 
+
     [Header ("Casting")]
     public Transform castPos;
     
@@ -23,8 +24,16 @@ public class PowersManager : Singleton<PowersManager>
 
     private void Start()
     {
-        //activePower1.power = Powers.NoPower;
-        //activePower2.power = Powers.NoPower;
+        activePower1.power = Powers.NoPower;
+        activePower2.power = Powers.NoPower;
+
+        if (activePower1 == null || activePower2 == null)
+        {
+            activePower1.power = Powers.NoPower;
+            activePower2.power = Powers.NoPower;
+        }
+
+        
     }
 
     private void Update()
