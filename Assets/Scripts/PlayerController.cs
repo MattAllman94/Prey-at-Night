@@ -59,6 +59,7 @@ public class PlayerController : Singleton<PlayerController>
         if(!isDrinking)
         {
             Movement();
+            _PM.drainVFX.gameObject.SetActive(false);
         }
 
         if (Input.GetButtonDown("Fire1") && isAttacking == false && _GM.gameState == GameState.INGAME)

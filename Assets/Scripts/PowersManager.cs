@@ -17,7 +17,7 @@ public class PowersManager : Singleton<PowersManager>
 
     [Header ("Casting")]
     public Transform castPos;
-    
+    public VisualEffect drainVFX;    
 
     RaycastHit hit;
     public float rayRange = 100f;
@@ -101,9 +101,6 @@ public class PowersManager : Singleton<PowersManager>
         {
             case (Powers.BloodDrain):
                 {
-                    _P.playerAnim.SetTrigger("Draining");
-                    _P.SetAnimBool("Idle", false);
-                    _P.SetAnimBool("Running", false);
                     UseBloodDrain(_power);
                     break;
                 }
@@ -120,13 +117,18 @@ public class PowersManager : Singleton<PowersManager>
 
     public void UseBloodDrain(Power _power)
     {
-        Debug.Log("Blood Drain");
+        //Debug.Log("Blood Drain");
         if (Physics.Raycast(castPos.position, castPos.transform.forward, out hit, GetRange(_power.range))) 
         {
             if(hit.collider.CompareTag("Civilian"))
             {                
                 Civilian npcScript = hit.collider.GetComponent<Civilian>();
-                
+
+                _P.isDrinking = true;
+                _P.playerAnim.SetTrigger("Draining");
+                _P.SetAnimBool("Idle", false);
+                _P.SetAnimBool("Running", false);
+                drainVFX.gameObject.SetActive(true);
                 float modifier = 0.02f;
                 npcScript.ChangeState(State.Drained);
                 _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
@@ -138,6 +140,11 @@ public class PowersManager : Singleton<PowersManager>
             {
                 Criminal npcScript = hit.collider.GetComponent<Criminal>();
 
+                _P.isDrinking = true;
+                _P.playerAnim.SetTrigger("Draining");
+                _P.SetAnimBool("Idle", false);
+                _P.SetAnimBool("Running", false);
+                drainVFX.gameObject.SetActive(true);
                 float modifier = 0.02f;
                 npcScript.ChangeState(State.Drained);
                 _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
@@ -149,6 +156,11 @@ public class PowersManager : Singleton<PowersManager>
             {
                 Monster npcScript = hit.collider.GetComponent<Monster>();
 
+                _P.isDrinking = true;
+                _P.playerAnim.SetTrigger("Draining");
+                _P.SetAnimBool("Idle", false);
+                _P.SetAnimBool("Running", false);
+                drainVFX.gameObject.SetActive(true);
                 float modifier = 0.02f;
                 _GM.ChangeBlood(_power.bloodCost * modifier);              // use blood
                 _P.ChangeHealth(_power.bloodCost * (modifier / 2), true);  // add health
@@ -160,7 +172,7 @@ public class PowersManager : Singleton<PowersManager>
 
     public void UseStakeThrow(Power _power)
     {
-        Debug.Log("Stake Throw");
+        //Debug.Log("Stake Throw");
         GameObject stake = Instantiate(_power.model, castPos.position, castPos.rotation);    // spawn stake
         stake.GetComponent<Stake>().damage = _power.damage;
         Destroy(stake, 10f);    
@@ -245,7 +257,6 @@ public class Power
     public AudioClip castSound;
     public AnimationClip playerAnimation;
     public AnimationClip enemyAnimation;
-    public VisualEffect vfx;
 
     /*
     public void PlayMyEffect()

@@ -106,7 +106,6 @@ public class NPC : Prey
     {
         health -= _dot ? _damage * Time.deltaTime : _damage;
 
-
         if (health <= 0)
         {
             Die(false);
