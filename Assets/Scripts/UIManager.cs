@@ -130,6 +130,20 @@ public class UIManager : Singleton<UIManager>
         _GM.ChangeGameState(GameState.TITLE);
     }
 
+    public void Return()
+    {
+        if (_GM.gameState == GameState.TITLE)
+        {
+            optionsPanel.SetActive(false);
+            titlePanel.SetActive(true);
+        }
+        else if (_GM.gameState == GameState.PAUSED)
+        {
+            optionsPanel.SetActive(false);
+            pausedPanel.SetActive(true);
+        }
+    }
+
     public void Load()
     {
         _GM.LoadData();
